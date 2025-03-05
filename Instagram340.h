@@ -1,7 +1,10 @@
 #include "LinkedBagDS/LinkedBag.h"
+#include "User.h"
 // TO DO include necessary libraries
 
- 
+#ifndef INSTAGRAM340
+#define INSTAGRAM340
+
 
 // This class only contains a list of users
 // It should allow clients to add users and retrieve a user from the list
@@ -18,3 +21,5 @@ class Instagram340 {
 
 		User getUser(const int& indexK);
 };
+
+#endif

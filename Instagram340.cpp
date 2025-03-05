@@ -3,8 +3,9 @@
 #include <string>
 #include "Instagram340.h"
 
-Instagram340::Instagram340(){
-	// TO DO: implement constructor
+
+Instagram340::Instagram340() { // After discussing, we found that there is nothing we can put in the default constructor (right?????). There is nothing to initialize.
+
 }
 
 Instagram340::~Instagram340(){
@@ -18,5 +19,13 @@ void Instagram340::createUser(const std::string& username, const std::string& em
 }
 
 User Instagram340::getUser(const int& indexK){
-	// TO DO: implement function
+	Node<User>* userNode = users.findKthItem(indexK);
+
+	if (userNode != NULL) {
+		return userNode->getItem();
+	}
+
+	return NULL;
+
 }
+

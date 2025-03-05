@@ -11,6 +11,31 @@
 
 // Assignment 2 functions -------------------------------------------
 // TO DO: implement the two functions here
+template<class ItemType>
+bool append(const ItemType& newEntry) {
+	Node<ItemType>* travelNode = headPtr;
+	Node<ItemType>* oldNode = nullptr;
+	while (travelNode != NULL) {
+		oldNode = travelNode;		
+		travelNode = oldNode->getNext	
+	}
+	itemCount++;
+
+	return true;
+}
+
+template<class ItemType>
+Node<ItemType>* findKthItem(const int& indexK) const {
+	Node<ItemType>* travelNode = headPtr;
+	int i = 1;
+	while (i <= indexK || travelNode != null) {
+		travelNode = travelNode->getNext;
+		i++			
+	}
+
+	return travelNode
+
+}
 
 // ------------------------------------------------------------------
 

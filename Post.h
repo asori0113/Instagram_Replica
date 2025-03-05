@@ -4,24 +4,48 @@
 // You may directly include it in your class definition. 
 // You don't need to modify it but will have to put it inside your class. 
 // Operator overloading function prototype:
-#include <string>
-#include <chrono>
+
 #ifndef POST_
 #define POST_
+
+#include <string>
+#include <chrono>
+
 class Post {
+
 private:
-	std::chrono::duration<double> time_stamp;
-	int postDuration;
 	std::string title;
-	int computeTimeToExpiration() const;
+	std::string url;
+	int timeStamp;
+	int numLikes;
+	int postNum;
+	int postDuration;
+
 	
 public:
-	Post(std::string title, int timeSTMP, int likes, std::string url, int postNo, int duration);
+	Post();
+	Post(std::string postTitle, std::string url, int likes, int postNo, int duration);
 	bool operator==(const Post& otherPost) const;
-	virtual void editPost();
 	virtual void display();
-	void setTimeStamp();
+	virtual void editPost();
+
+	// Setters
+
+	void editTitle(std::string newTitle);
+	void setNumLikes(int likes);
+	//void setTimeStamp();
+	//void setPostURL(std::string newURL);
+	//void setPostNum(int num);
+	//void setDuration(int newDuration);
+
+	// Getters
+
+	std::string getTitle();
+	std::string getURL();
 	int getTimeStamp();
+	int getNumLikes();
+	int getPostNum();
+	int getDuration();
 	
 	
 };

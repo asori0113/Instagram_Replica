@@ -2,22 +2,24 @@
 
 #ifndef STORY_
 #define STORY_
-class Story : public Post // THIS AINT WORKING?!?!? WHY????
-{
-private: 
+
+#include "Post.h"
+#include <string>
+
+class Story : public Post {
+private:
 	int expirationTime;
 	int maxDuration;
-	int Post::computeTimeToExpiration() const;
+	int computeTimeToExpiration();
 
 public:
-	Story(std::string title, int timeSTMP, int likes, std::string url, int postNo, int duration, int expiration);
+	Story();
+	Story(std::string postTitle, std::string postURL, int likes, int postNo, int duration);
 	int getExpirationTime();
-	void editPost();
 	void display();
+	void editPost();
 
 };
-#include "Post.cpp"
-#include <string>
 #include "Story.cpp"
 #endif
 

@@ -1,5 +1,8 @@
 // TO DO: #include all the standard libraries and your own libraries here
+
 #include "Story.h"
+#include "Reel.h"
+
 
 
 // To DO: define the class Post with the necessary functions' prototypes and data fields

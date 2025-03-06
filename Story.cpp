@@ -29,12 +29,12 @@ int Story::getExpirationTime() {
 }
 
 // Please check whether  editPost() and display() actually override the same methods in Post class.
-void Story::editPost() {
+void editPost() {
 	std::cout << "*****Filter, music, stickers and effects have been added to the post." << "\n";
 }
 
 // Call parent class display and print whether the story expired or when it expires
-void Story::display() {
+void display() {
 
 	Post::display();
 
@@ -49,7 +49,7 @@ void Story::display() {
 }
 
 //Function provided to compute expiration time
-int Story::computeTimeToExpiration() {
+int computeTimeToExpiration() {
 
 	//auto time_stamp provided to set time stamp
 	auto time_stamp = std::chrono::steady_clock::now();

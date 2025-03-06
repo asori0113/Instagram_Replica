@@ -25,7 +25,7 @@ bool append(const ItemType& newEntry) {
 }
 
 template<class ItemType>
-Node<ItemType>* findKthItem(const int& indexK) const {
+Node<ItemType>* findKthItem(const int& indexK)  {
 	Node<ItemType>* travelNode = headPtr;
 	int i = 1;
 	while (i <= indexK || travelNode != null) {

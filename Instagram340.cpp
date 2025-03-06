@@ -2,8 +2,10 @@
 #include <iostream>
 #include <string>
 #include "Instagram340.h"
+#include "User.h"
 
-Instagram340::Instagram340(){
+template<class ItemType>
+Instagram340::Instagram340():user(nullptr), User(0){
 	// TO DO: implement constructor
 }
 
@@ -15,8 +17,28 @@ void Instagram340::createUser(const std::string& username, const std::string& em
 				const std::string& bio, const std::string& profilePicture){
 	// TO DO: implement function
 
+	User newUser;
+	
+
+	newUser.append(username);
+	newUser.append(email);
+	newUser.append(password);
+	newUser.append(bio);
+	newUser.append(profilePicture);
+	
+	users.append(newUser);
+	
+
+
 }
 
 User Instagram340::getUser(const int& indexK){
-	// TO DO: implement function
+	Node<User>* userNode = users.findKthItem(indexK);
+
+	if (userNode != NULL) {
+		return userNode->getItem();
+	}
+
+	return NULL;
+
 }

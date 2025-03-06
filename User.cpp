@@ -2,15 +2,12 @@
 #include "User.h"
 #include <string>
 // TO DO: function implementations
-User() {
+User::User():User("","","","") {}
 
-}
-~User() {
-	
-}
+~User() {}
 
 User(std::string username, std::string currentPass, std::string email, std::string profilePicturePath) {
-
+	
 }
 
 bool operator==(const User& otherUser) const; 

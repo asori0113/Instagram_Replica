@@ -17,10 +17,10 @@ Reel::Reel(std::string postTitle, std::string postURL, int likes, int postNo, in
 		std::cin >> duration;
 	} while (duration > maxDuration);
 
-    Reel::Post(postTitle, postURL, likes, postNo, duration);
+    Post(postTitle, postURL, likes, postNo, duration);
 }
 
-void editPost() {
+void Reel::editPost() {
     std::cout << "*****Filter, AR effects, and music have been added to the post.\n";
 }
 

@@ -1,36 +1,69 @@
 // TO DO: #include all the standard libraries and your own libraries here
-#include <chrono>
+#include "Post.h"
+#include <iostream>
 
+Post::Post() : title(""), timeStamp(-1), numLikes(-1), url(""), postNum(-1), postDuration(-1) {} // default constructor
 
-// TO DO: function implementations
+// Main constructor to use. Initializes title, url, likes, postNum, and duration. Sets time stamp upon instantiation. 
+Post::Post(std::string postTitle, std::string postURL, int likes, int postNo, int duration) : title(postTitle), url(postURL), numLikes(likes), postNum(postNo), postDuration(duration)
+{
+	// Code provided for setting time stamp 
+	auto time_stamp = std::chrono::steady_clock::now();
+	timeStamp = std::chrono::duration_cast<std::chrono::seconds>(time_stamp.time_since_epoch()).count();
+}
 
-
-
-// When creating a post, you may use this code to set time stamp
-auto time_stamp = std::chrono::steady_clock::now();
-
-
-// ------------------------------------------------------------------------------
 // Operator overloading implementation
 bool Post::operator==(const Post& otherPost) const {
 	return Post::title == otherPost.title;
 }
 
-// When displaying a story, use this to compute expected expiration time: timeToExpiration
-// Define this as a private function 
-int Post::computeTimeToExpiration() const{
-	const int secondsInHour = 3600;
-	// 24 hours in seconds
-	const int expiresAfter = 24 * secondsInHour; 
+void Post::display() {
+}
 
-	// Get current time
-	auto time_now = std::chrono::steady_clock::now();
-	// Compute elapsed time since post creation
-	std::chrono::duration<double> elapsed_seconds = time_now - Post::time_stamp;
-	// time to expiration in hours
-	int timeToExpiration = (expiresAfter - elapsed_seconds.count()) / secondsInHour;
+void Post::editPost() {
+}
 
-	return timeToExpiration;
+// Setters
+
+void Post::editTitle(std::string newTitle) {
+	title = newTitle;
 }
 
 
+
+void Post::setNumLikes(int likes) {
+	numLikes = likes;
+}
+
+//void Post::setTimeStamp() {}
+//void Post::setPostURL(std::string newURL) {}
+//void Post::setPostNum(int num) {}
+// 
+//void Post::setDuration(int newDuration) {
+//	duration = newDuration;
+//}
+
+// Getters
+
+std::string Post::getTitle() {
+	return title;
+}
+std::string Post::getURL() {
+	return url;
+}
+
+int Post::getTimeStamp() {
+	return timeStamp;
+}
+
+int Post::getNumLikes() {
+	return numLikes;
+}
+
+int Post::getPostNum() {
+	return postNum;
+}
+	
+int Post::getDuration() {
+	return postDuration;
+}

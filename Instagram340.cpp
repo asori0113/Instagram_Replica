@@ -4,8 +4,7 @@
 #include "Instagram340.h"
 #include "User.h"
 
-template<class ItemType>
-Instagram340::Instagram340():user(nullptr), User(0){
+Instagram340::Instagram340(){
 	// TO DO: implement constructor
 }
 

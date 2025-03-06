@@ -14,8 +14,9 @@ public:
 	Story();
 	Story(std::string postTitle, std::string postURL, int likes, int postNo, int duration);
 	int getExpirationTime();
-	void display();
-	void editPost();
+	
+	void display() override;
+	void editPost() override;
 
 };
 #include "Story.cpp"

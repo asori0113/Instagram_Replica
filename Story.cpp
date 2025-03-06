@@ -3,7 +3,7 @@
 #include <iostream>
 
 Story::Story() : maxDuration(60) {
-	Story::Post("", "", -1, -1, -1);
+	Post("", "", -1, -1, -1);
 	expirationTime = computeTimeToExpiration();
 
 }
@@ -18,7 +18,7 @@ Story::Story(std::string postTitle, std::string postURL, int likes, int postNo, 
 		std::cin >> duration;
 	} while (duration > maxDuration);
 
-	Story::Post(postTitle, postURL, likes, postNo, duration);
+	Post(postTitle, postURL, likes, postNo, duration);
 	expirationTime = computeTimeToExpiration();
 }
 
@@ -29,12 +29,12 @@ int Story::getExpirationTime() {
 }
 
 // Please check whether  editPost() and display() actually override the same methods in Post class.
-void editPost() {
+void Story::editPost() {
 	std::cout << "*****Filter, music, stickers and effects have been added to the post." << "\n";
 }
 
 // Call parent class display and print whether the story expired or when it expires
-void display() {
+void Story::display() {
 
 	Post::display();
 
@@ -49,7 +49,7 @@ void display() {
 }
 
 //Function provided to compute expiration time
-int computeTimeToExpiration() {
+int Story::computeTimeToExpiration() {
 
 	//auto time_stamp provided to set time stamp
 	auto time_stamp = std::chrono::steady_clock::now();

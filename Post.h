@@ -18,13 +18,12 @@ private:
 	std::string url;
 	int timeStamp;
 	int numLikes;
-	int postNum;
 	int postDuration;
 
 	
 public:
 	Post();
-	Post(std::string postTitle, std::string url, int likes, int postNo, int duration);
+	Post(std::string postTitle, std::string url, int likes, int duration);
 	bool operator==(const Post& otherPost) const;
 	virtual void display();
 	virtual void editPost();
@@ -36,7 +35,7 @@ public:
 	//void setTimeStamp();
 	//void setPostURL(std::string newURL);
 	//void setPostNum(int num);
-	//void setDuration(int newDuration);
+	void setDuration(int newDuration);
 
 	// Getters
 
@@ -44,7 +43,6 @@ public:
 	std::string getURL();
 	int getTimeStamp();
 	int getNumLikes();
-	int getPostNum();
 	int getDuration();
 	
 	

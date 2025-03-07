@@ -3,33 +3,36 @@
 #include <iostream>
 
 Story::Story() : maxDuration(60) {
-	Story::Post("", "", -1, -1, -1);
 	expirationTime = computeTimeToExpiration();
 
 }
 
 // Main constructor. Calls parent class to initialize title, url, likes, postNum, duration. Initializes maxDuration to 60. 
-Story::Story(std::string postTitle, std::string postURL, int likes, int postNo, int duration) : maxDuration(60) 
+Story::Story(std::string postTitle, std::string postURL, int likes, int duration) : Post(postTitle, postURL, likes, duration), maxDuration(60)
 {
 	//If duration exceeds maxDuration, keep prompting for a new duration. 
-	do {
-		std::cout << "Error: Video duration must be at most 60 seconds. \n";
-		std::cout << "Please input new video duration: \n";
-		std::cin >> duration;
-	} while (duration > maxDuration);
+	if (duration > maxDuration) {
 
-	Story::Post(postTitle, postURL, likes, postNo, duration);
+		while (duration > maxDuration) {
+			std::cout << "===========================\n\n";
+			std::cout << "Error: Video duration must be at most 90 seconds. Please input new video duration: \n";
+			std::cin >> duration;
+
+		}
+
+		Post::setDuration(duration);
+	}
+
 	expirationTime = computeTimeToExpiration();
 }
-
-//Why is there a red squiggle on a BLANK line?
 
 int Story::getExpirationTime() {
 	return expirationTime;
 }
 
-// Please check whether  editPost() and display() actually override the same methods in Post class.
+// Please check whether  editPost() and display() actually override the virtual methods in Post class.
 void Story::editPost() {
+	std::cout << "EDITING POST\n";
 	std::cout << "*****Filter, music, stickers and effects have been added to the post." << "\n";
 }
 
@@ -43,8 +46,10 @@ void Story::display() {
 	}
 
 	else {
-		std::cout << "Expires in " << expirationTime << "\n";
+		std::cout << "Expires in " << expirationTime << "s\n";
 	}
+
+	std::cout << "===========================\n\n\n";
 	
 }
 

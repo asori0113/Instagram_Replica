@@ -1,10 +1,10 @@
 #include "Post.h"
 #include <iostream>
 
-Post::Post() : title(""), timeStamp(-1), numLikes(-1), url(""), postNum(-1), postDuration(-1) {} // default constructor
+Post::Post() : title(""), timeStamp(-1), numLikes(-1), url(""), postDuration(-1) {} // default constructor
 
 // Main constructor to use. Initializes title, url, likes, postNum, and duration. Sets time stamp upon instantiation. 
-Post::Post(std::string postTitle, std::string postURL, int likes, int postNo, int duration) : title(postTitle), url(postURL), numLikes(likes), postNum(postNo), postDuration(duration)
+Post::Post(std::string postTitle, std::string postURL, int likes, int duration) : title(postTitle), url(postURL), numLikes(likes), postDuration(duration)
 {
 	// Code provided for setting time stamp 
 	auto time_stamp = std::chrono::steady_clock::now();
@@ -18,15 +18,13 @@ bool Post::operator==(const Post& otherPost) const {
 
 void Post::display() {
 
-	// Not sure whether to use "this" notation when calling functions
-
 	std::cout << "===========================\n";
 	std::cout << "POST INFO: \n\n";
 	std::cout << "Title: " << getTitle() << "\n";
 	std::cout << "Time Stamp: " << getTimeStamp() << "\n";
 	std::cout << "Likes: " << getNumLikes() << "\n";
 	std::cout << "URL: " << getURL() << "\n";
-	std::cout << "Duration: " << getDuration() << "\n";
+	std::cout << "Duration: " << getDuration() << "s\n\n";
 
 
 }
@@ -34,7 +32,7 @@ void Post::display() {
 void Post::editPost() {
 	std::cout << "===========================\n";
 	std::cout << "You have edited your post. \n";
-	std::cout << "===========================\n";
+	std::cout << "===========================\n\n\n";
 
 }
 
@@ -54,9 +52,9 @@ void Post::setNumLikes(int likes) {
 //void Post::setPostURL(std::string newURL) {}
 //void Post::setPostNum(int num) {}
 // 
-//void Post::setDuration(int newDuration) {
-//	duration = newDuration;
-//}
+void Post::setDuration(int newDuration) {
+	postDuration = newDuration;
+}
 
 // Getters
 
@@ -73,10 +71,6 @@ int Post::getTimeStamp() {
 
 int Post::getNumLikes() {
 	return numLikes;
-}
-
-int Post::getPostNum() {
-	return postNum;
 }
 	
 int Post::getDuration() {

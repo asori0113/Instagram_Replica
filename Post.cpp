@@ -1,6 +1,8 @@
 // TO DO: #include all the standard libraries and your own libraries here
 #include "Post.h"
 #include <iostream>
+#include <string>
+
 
 Post::Post() : title(""), timeStamp(-1), numLikes(-1), url(""), postNum(-1), postDuration(-1) {} // default constructor
 
@@ -20,9 +22,22 @@ bool Post::operator==(const Post& otherPost) const {
 }
 
 void Post::display() {
+	// Not sure whether to use "this" notation when calling functions
+
+	std::cout << "===========================\n";
+	std::cout << "POST INFO: \n\n";
+	std::cout << "Title: " << getTitle() << "\n";
+	std::cout << "Time Stamp: " << getTimeStamp() << "\n";
+	std::cout << "Likes: " << getNumLikes() << "\n";
+	std::cout << "URL: " << getURL() << "\n";
+	std::cout << "Duration: " << getDuration() << "\n";
+
 }
 
 void Post::editPost() {
+	std::cout << "===========================\n";
+	std::cout << "You have edited your post. \n";
+	std::cout << "===========================\n";
 }
 
 // Setters

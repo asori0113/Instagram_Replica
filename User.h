@@ -15,7 +15,7 @@ public:
 
     User();
     ~User();
-    User(std::string username, std::string currentPass, std::string email, std::string profilePicturePath);
+    User(std::string name, std::string password, std::string eMail, std::string path);
 
     void displayProfile();
     void modifyPassword(std::string newPass);

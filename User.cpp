@@ -15,15 +15,21 @@ User::User(std::string name, std::string password, std::string eMail, std::strin
 }
 
 void User::displayProfile() {
+	std::cout << "===========================\n\n";
+	std::cout << getUsername() << "'s" << " Profile\n";
+	std::cout << getBio() << "\n\n";
+
+	//Profile picture should also be displayed but since we're not using GUI, we're skipping it. 
+	
 
 }
 
 void User::modifyPassword(std::string newPass) {
-
+	currentPass = newPass;
 }
 
 void User::displayPosts() {
-
+	
 }
 
 void User::displayNthPost(int n) {

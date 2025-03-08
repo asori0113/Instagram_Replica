@@ -29,15 +29,60 @@ void User::modifyPassword(std::string newPass) {
 }
 
 void User::displayPosts() {
-	
+	int postNumber = 1;
+
+	if (!userPosts.isEmpty()) {
+
+		// Continue to display until you reach the end
+		while (postNumber != userPosts.getCurrentSize()) {
+			displayNthPost(postNumber);
+			postNumber++;
+		}
+	}
+	else {
+		std::cout << "No post to display\n\n";
+	}
+
+
 }
 
 void User::displayNthPost(int n) {
+	Node<Post*>* post = userPosts.findKthItem(n);
 
+	if (post != NULL) {
+		post->getItem()->display();
+	}
+
+	else {
+		std::cout << "No post to display\n\n";
+	}
+	
 }
 
-void User::createPost() {
+void User::createPost(std::string postTitle, std::string url, int likes, int duration, bool isReel) {
+	
 
+	Post* newPost = nullptr;
+
+	//Check whether reel or story
+	if (isReel) {
+		newPost = new Reel(postTitle, url, likes, duration);
+	}
+	else {
+		newPost = new Story(postTitle, url, likes, duration);
+	}
+
+
+	//Add to usersPost if empty, append otherwise.
+	if (userPosts.isEmpty()) {
+		userPosts.add(newPost);
+	}
+
+	else {
+		userPosts.append(newPost);
+	}
+
+	
 }
 
 void User::modifyPost(std::string newTitle, int postNum) {

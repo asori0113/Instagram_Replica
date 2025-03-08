@@ -2,9 +2,13 @@
 #define USER_
 #include "LinkedBagDS/LinkedBag.h"
 #include "Post.h"
+#include "Reel.h"
+#include "Story.h"
 class User {
 private:
-    LinkedBag<Post> userPosts;
+    //LinkedBag contains Post pointers to enable polymorphism.
+    LinkedBag<Post*> userPosts;
+
     std::string username;
     std::string currentPass;
     std::string email;
@@ -21,7 +25,7 @@ public:
     void modifyPassword(std::string newPass);
     void displayPosts();
     void displayNthPost(int n);
-    void createPost();
+    void createPost(std::string postTitle, std::string url, int likes, int duration, bool isReel);
     void modifyPost(std::string newTitle, int postNum);
     void editPost(int postIndex);
     void deletePost();

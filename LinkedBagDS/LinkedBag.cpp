@@ -43,11 +43,7 @@ Node<ItemType>* LinkedBag<ItemType>::findKthItem(const int& indexK) const {
 	// When travelNode == null or item does not exist, return null.
 	// Return travelNode when itemNum = indexK
 
-	while ((travelNode != NULL)) {
-
-		if (itemNum == indexK) {
-			return travelNode;
-		}
+	while ((travelNode != NULL) && !(itemNum == indexK)) {
 
 		travelNode = travelNode->getNext();
 		itemNum++;

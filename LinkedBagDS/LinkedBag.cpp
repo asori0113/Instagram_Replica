@@ -23,7 +23,7 @@ bool LinkedBag<ItemType>::append(const ItemType& newEntry) {
 	//Go to tail node
 	while (travelNode != NULL) {
 		oldNode = travelNode;
-		travelNode = oldNode->getNext;
+		travelNode = oldNode->getNext();
 	}
 
 	//Add a new node to the end of the list. oldNode is the tail node.
@@ -43,7 +43,11 @@ Node<ItemType>* LinkedBag<ItemType>::findKthItem(const int& indexK) const {
 	// When travelNode == null or item does not exist, return null.
 	// Return travelNode when itemNum = indexK
 
-	while ((travelNode != NULL) || (itemNum <= indexK)) {
+	while ((travelNode != NULL)) {
+
+		if (itemNum == indexK) {
+			return travelNode;
+		}
 
 		travelNode = travelNode->getNext();
 		itemNum++;

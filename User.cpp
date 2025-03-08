@@ -1,16 +1,16 @@
-
 #include "User.h"
 #include <string>
+#include <iostream>
 
 // TO DO: function implementations
-User::User() {
+User::User() : username(""), currentPass(""), email(""), profilePicturePath("") {
 
 }
 User::~User() {
 
 }
 
-User::User(std::string username, std::string currentPass, std::string email, std::string profilePicturePath) {
+User::User(std::string name, std::string password, std::string eMail, std::string path): username(name), currentPass(password), email(eMail), profilePicturePath(path) {
 
 }
 
@@ -45,6 +45,19 @@ void User::editPost(int postIndex) {
 void User::deletePost() {
 
 }
+
+std::string User::getUsername() {
+	return username;
+}
+
+std::string User::getBio() {
+	return bio;
+}
+
+std::string User::getProfilePicture() {
+	return profilePicturePath;
+}
+
 
 
 // This is a function that allows you to compare two users based on their username and email address.  

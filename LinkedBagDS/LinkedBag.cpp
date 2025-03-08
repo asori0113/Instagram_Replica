@@ -17,27 +17,29 @@
 template<class ItemType>
 bool LinkedBag<ItemType>::append(const ItemType& newEntry) {
 
-	// TO DO LATER: ADD ERROR CHECK FOR DUPLICATES
-
 	Node<ItemType>* travelNode = headptr;
 	Node<ItemType>* oldNode = nullptr;
 
+	//Go to tail node
 	while (travelNode != NULL) {
 		oldNode = travelNode;
 		travelNode = oldNode->getNext;
 	}
 
+	//Add a new node to the end of the list. oldNode is the tail node.
 	Node<ItemType>* newNode = new Node<ItemType>(newEntry, nullptr);
 	oldNode->setNext(newNode);
+	itemCount++;
 
-	return true; // CORRECT LATER WHEN ERROR CHECKING IS IMPLEMENTED
+	return true; 
 }
 
 template<class ItemType>
-Node<ItemType>* LinkedBag<ItemType>::findKthItem(const int& indexK) const { // TODO CHECK ORIGINAL DECLARATION
+Node<ItemType>* LinkedBag<ItemType>::findKthItem(const int& indexK) const {
 	Node<ItemType>* travelNode = headptr;
 	int itemNum = 1;
 
+	//This function assumes that we do not start at 0 when counting. 
 	// When travelNode == null or item does not exist, return null.
 	// Return travelNode when itemNum = indexK
 

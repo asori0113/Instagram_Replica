@@ -27,6 +27,10 @@ public:
     void deletePost();
     bool operator==(const User& otherUser) const;
 
+    std::string getUsername();
+    std::string getProfilePicture();
+    std::string getBio();
+
 
 };
 #include "User.cpp"

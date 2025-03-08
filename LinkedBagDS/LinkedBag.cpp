@@ -17,7 +17,7 @@
 template<class ItemType>
 bool LinkedBag<ItemType>::append(const ItemType& newEntry) {
 
-	Node<ItemType>* travelNode = headptr;
+	Node<ItemType>* travelNode = headPtr;
 	Node<ItemType>* oldNode = nullptr;
 
 	//Go to tail node
@@ -36,7 +36,7 @@ bool LinkedBag<ItemType>::append(const ItemType& newEntry) {
 
 template<class ItemType>
 Node<ItemType>* LinkedBag<ItemType>::findKthItem(const int& indexK) const {
-	Node<ItemType>* travelNode = headptr;
+	Node<ItemType>* travelNode = headPtr;
 	int itemNum = 1;
 
 	//This function assumes that we do not start at 0 when counting. 

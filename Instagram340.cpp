@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include "Instagram340.h"
-#include "Node.h"
+
 
 Instagram340::Instagram340() { // After discussing, we found that there is nothing we can put in the default constructor (right?????). There is nothing to initialize.
 
@@ -28,17 +28,8 @@ User Instagram340::getUser(const int& indexK){
 		return userNode->getItem();
 	}
 
-	return isEmpty();
+	return  User("","","","","");
 
 }
 
-User Instagram340::getUser(const int& indexK){
-	Node<User>* userNode = users.findKthItem(indexK);
 
-	if (userNode != NULL) {
-		return userNode->getItem();
-	}
-
-	return NULL;
-
-}

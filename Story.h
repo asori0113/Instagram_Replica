@@ -1,7 +1,9 @@
+
+
 #ifndef STORY_
 #define STORY_
 
-#include "Post.h"
+#include "Post.h" // From what I googled, you have to include the header file of the base class. 
 #include <string>
 
 class Story : public Post {
@@ -12,9 +14,10 @@ private:
 
 public:
 	Story();
-	Story(std::string postTitle, std::string postURL, int likes, int postNo, int duration);
+	Story(std::string postTitle, std::string postURL, int likes, int duration);
 	int getExpirationTime();
-	
+
+	// Override keyword is a failsafe. 
 	void display() override;
 	void editPost() override;
 

@@ -1,13 +1,15 @@
-// TO DO: #include all the standard libraries and your own libraries here
-#include "LinkedBagDS/LinkedBag.h"
-#include "Post.h"
-// To DO: define the class User with the necessary functions and data fields
 #ifndef USER_
 #define USER_
-
+#include "LinkedBagDS/LinkedBag.h"
+#include "Post.h"
+#include "Reel.h"
+#include "Story.h"
 class User {
+    
 private:
-    LinkedBag<Post> userPosts;
+    //LinkedBag contains Post pointers to enable polymorphism.
+    LinkedBag<Post*> userPosts;
+
     std::string username;
     std::string currentPass;
     std::string email;
@@ -15,32 +17,26 @@ private:
     std::string bio;
 
 public:
+
     User();
     ~User();
-    User(std::string username, std::string currentPass, std::string email, std::string profilePicturePath) {}
+    User(std::string name, std::string password, std::string bio, std::string eMail, std::string path);
 
     void displayProfile();
     void modifyPassword(std::string newPass);
     void displayPosts();
     void displayNthPost(int n);
-    void createPost();
+    void createPost(std::string postTitle, std::string url, int likes, int duration, bool isReel);
     void modifyPost(std::string newTitle, int postNum);
     void editPost(int postIndex);
     void deletePost();
     bool operator==(const User& otherUser) const;
 
+    std::string getUsername();
+    std::string getProfilePicture();
+    std::string getBio();
 
-    
-    
+
 };
-
-
-
-
-// This is a function that allows you to compare two users based on their username and email address.  
-// You may directly include it in your class definition. 
-// You don't need to modify it but will have to put it inside your class. 
-// Operator == overloading function prototype: 
-
 #include "User.cpp"
 #endif

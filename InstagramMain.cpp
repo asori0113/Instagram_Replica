@@ -3,6 +3,7 @@
 
 // TO DO: #include any other libraries you need
 #include "Instagram340.h"
+#include "User.h"
 
 
 using namespace std;
@@ -32,11 +33,16 @@ void displayUserManu(User& user){
 		switch (userChoice) {
 			case 1:{
 				// TO DO: display user's profile information
-				//      : e.g. user.displayProfile();
+				user.displayProfile();
 				break;
 			}
 			case 2: {
 				// TO DO: ask for new password and update user's password
+				std::string newPass;
+				cout << "What is your new password\n";
+				cin >> newPass;
+
+				user.modifyPassword(newPass);
 				break;
 			}
 			case 3: {
@@ -49,12 +55,22 @@ void displayUserManu(User& user){
 			case 4:{
 				// TO DO: display all user's posts
 				//        You may re-use code from class demo
+				Story storyPost;
+				Reel reelPost;
+
+				storyPost.display();
+				reelPost.display();
 				break;
 			}
 			case 5: {
 				// TO DO: ask the user for a value k
 				// Find the Kth post, if k > Linked Bag size, 
 				//    return an error message that includes the size of the Linked Bag
+				int value;
+				cout << "What Value nth post would you like to access: \n";
+				cin >> value;
+
+				user.displayNthPost(value);
 				break;
 			}
 			case 6: {
@@ -62,6 +78,13 @@ void displayUserManu(User& user){
 				// Find the post, then update the title. 
 				// If index > Linked Bag size, 
 				//    return an error message that includes the size of the Linked Bag
+				string title;
+				int postnum;
+				cout << "\nWhich post would you like to modify: ";
+				cin >> postnum;
+
+				cout << "\nWhat would you like to name it: "
+				user.modifyPost(title, postnum);
 				break;
 			}
 			case 7: {
@@ -95,10 +118,31 @@ int main(){
 	// TO DO: Ask the user to enter their information 
 	//        Instantiate a new User object
 
+	string username;
+	string email;
+	string password;
+	string bio;
+	string profilePicture;
+
+	cout << "Enter Username: ";
+	cin >> username;
+
+	cout <<"\nEnter email: ";
+	cin >> email;
+	
+	cout << "\nEnter Password: ";
+	cin >> password;
+
+	cout << "\nEnter bio: ";
+	cin >> bio;
+
+	cout << "Enter Profile Picture Path: ";
+	cin >> profilePicture;
 
 	// call instagram createUser function 
 	// replace /*...*/ with the right parameters
-	instagram.createUser(/*...*/);
+	instagram.createUser(username, email, password,
+		bio, profilePicture);
 
 	// Retrieve the user 
 	User currentUser = instagram.getUser(0);

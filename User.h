@@ -14,6 +14,7 @@ private:
     std::string email;
     std::string profilePicturePath;
     std::string bio;
+    int postCount;
 
 public:
 
@@ -27,8 +28,9 @@ public:
     void displayNthPost(int n);
     void createPost(const std::string& postTitle, const std::string& url, int likes, int duration, bool isReel);
     void modifyNthPost(const std::string& newTitle, int n);
-    void editNthPost(int n);
     void deletePost();
+
+    int getPostCount();
     bool operator==(const User& otherUser) const;
 
     std::string getUsername();

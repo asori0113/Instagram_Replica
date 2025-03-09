@@ -3,15 +3,19 @@
 #include <iostream>
 
 // TO DO: function implementations
-User::User() : username(""), currentPass(""), email(""), profilePicturePath("") {
+User::User() : username(""), currentPass(""), email(""), profilePicturePath(""), postCount(0) {
 
 }
 User::~User() {
 	userPosts.clear();
 }
 
-User::User(const std::string& name, const std::string& emailAdd, const std::string& password, const std::string& bioStr, const std::string& profilePicture) : username(name), email(emailAdd), currentPass(password), bio(bioStr), profilePicturePath(profilePicture) {
+User::User(const std::string& name, const std::string& emailAdd, const std::string& password, const std::string& bioStr, const std::string& profilePicture) : username(name), email(emailAdd), currentPass(password), bio(bioStr), profilePicturePath(profilePicture), postCount(0) {
 
+}
+
+int User::getPostCount() {
+	return postCount;
 }
 
 void User::displayProfile() {
@@ -85,12 +89,10 @@ void User::createPost(const std::string& postTitle, const std::string& url, int 
 void User::modifyNthPost(const std::string& newTitle, int n) {
 	Node<Post*>* post = userPosts.findKthItem(n);
 	post->getItem()->editTitle(newTitle);
+	post->getItem()->editPost();
+
 }
 
-void User::editNthPost(int n) {
-	Node<Post*>* post = userPosts.findKthItem(n);
-	post->getItem()->editPost();
-}
 
 void User::deletePost() {
 

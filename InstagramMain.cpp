@@ -3,7 +3,6 @@
 
 // TO DO: #include any other libraries you need
 #include "Instagram340.h"
-#include "User.h"
 
 
 using namespace std;
@@ -36,7 +35,6 @@ void displayUserManu(User& user) {
 			break;
 		}
 		case 2: {
-			// TO DO: ask for new password and update user's password
 			std::string newPass;
 			cout << "What is your new password?\n";
 			cin >> newPass;
@@ -52,20 +50,22 @@ void displayUserManu(User& user) {
 			break;
 		}
 		case 4: {
-			// TO DO: display all user's posts
-			//        You may re-use code from class demo
 			cout << "DISPLAYING ALL POSTS \n";
 			user.displayPosts();
 
 			break;
 		}
 		case 5: {
-			// TO DO: ask the user for a value k
-			// Find the Kth post, if k > Linked Bag size, 
-			//    return an error message that includes the size of the Linked Bag
 			int value;
-			cout << "What value nth post would you like to access: \n";
+
+			cout << "Which post would you like to display? Enter the post number: (e.g Enter '1' for the 1st post) \n";
 			cin >> value;
+
+			while (value > user.getPostCount() || value < 1) {
+				cout << "Error: You only have " << user.getPostCount() << " post(s)." << "Please enter another number.\n";
+				cin >> value;
+
+			}
 
 			user.displayNthPost(value);
 			break;
@@ -75,13 +75,22 @@ void displayUserManu(User& user) {
 			// Find the post, then update the title. 
 			// If index > Linked Bag size, 
 			//    return an error message that includes the size of the Linked Bag
-			string title;
 			int postnum;
-			cout << "\nWhich post would you like to modify: ";
+			cout << "Which post would you like to modify? Enter the post number: (e.g Enter '1' for the 1st post) \n";
 			cin >> postnum;
 
-			cout << "\nWhat would you like to name it: ";
-				user.modifyNthPost(title, postnum);
+			while (postnum > user.getPostCount() || postnum < 1) {
+				cout << "Error: You only have " << user.getPostCount() << " post(s)." << "Please enter another number.\n";
+				cin >> postnum;
+
+			}
+
+			string title;
+			cout << "Enter new post title: \n";
+			cin >> title;
+
+			user.modifyNthPost(title, postnum);
+
 			break;
 		}
 		case 7: {
@@ -118,19 +127,19 @@ int main() {
 	string profilePicture;
 
 	cout << "Enter Username: ";
-	cin >> username;
+	getline(cin, username);
 
 	cout << "\nEnter email: ";
-	cin >> email;
+	getline(cin, email);
 
 	cout << "\nEnter Password: ";
-	cin >> password;
+	getline(cin, password);
 
 	cout << "\nEnter bio: ";
-	cin >> bio;
+	getline(cin, bio);
 
-	cout << "Enter Profile Picture Path: ";
-	cin >> profilePicture;
+	cout << "\nEnter Profile Picture Path: ";
+	getline(cin, profilePicture);
 
 	// call instagram createUser function 
 	// replace /*...*/ with the right parameters
@@ -140,6 +149,7 @@ int main() {
 	// Retrieve the user 
 	User currentUser = instagram.getUser(1);
 	displayUserManu(currentUser);
-
 	return 0;
+
+
 }

@@ -32,9 +32,8 @@ User Instagram340::getUser(const int& indexK){
 	if (userNode != NULL) {
 		return userNode->getItem();
 	}
-
-	User emptyUser();
-	return emptyUser();
+	
+	return User();
 
 }
 

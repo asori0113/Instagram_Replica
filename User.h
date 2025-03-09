@@ -19,14 +19,14 @@ public:
 
     User();
     ~User();
-    User(std::string name, std::string password, std::string eMail, std::string path);
+    User(const std::string& name, const std::string& emailAdd, const std::string& password, const std::string& bioStr, const std::string& profilePicture);
 
     void displayProfile();
-    void modifyPassword(std::string newPass);
+    void modifyPassword(const std::string& newPass);
     void displayPosts();
     void displayNthPost(int n);
-    void createPost(std::string postTitle, std::string url, int likes, int duration, bool isReel);
-    void modifyPost(std::string newTitle, int postNum);
+    void createPost(const std::string& postTitle, const std::string& url, int likes, int duration, bool isReel);
+    void modifyPost(const std::string& newTitle, int postNum);
     void editPost(int postIndex);
     void deletePost();
     bool operator==(const User& otherUser) const;

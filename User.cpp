@@ -10,7 +10,7 @@ User::~User() {
 
 }
 
-User::User(std::string name, std::string password, std::string eMail, std::string path): username(name), currentPass(password), email(eMail), profilePicturePath(path) {
+User::User(const std::string& name, const std::string& emailAdd, const std::string& password, const std::string& bioStr, const std::string& profilePicture) : username(name), email(emailAdd), currentPass(password), bio(bioStr), profilePicturePath(profilePicture) {
 
 }
 
@@ -24,19 +24,20 @@ void User::displayProfile() {
 
 }
 
-void User::modifyPassword(std::string newPass) {
+void User::modifyPassword(const std::string& newPass) {
 	currentPass = newPass;
 }
 
 void User::displayPosts() {
-	int postNumber = 1;
-
 	if (!userPosts.isEmpty()) {
 
-		// Continue to display until you reach the end
-		while (postNumber != userPosts.getCurrentSize()) {
-			displayNthPost(postNumber);
-			postNumber++;
+		//Set postNode to headPtr
+		Node<Post*>* postNode = userPosts.findKthItem(1);
+
+		// Iterate through bag, calling Post's display until reach the end
+		while (postNode != NULL) {
+			postNode->getItem()->display();
+			postNode = postNode->getNext();
 		}
 	}
 	else {
@@ -59,9 +60,7 @@ void User::displayNthPost(int n) {
 	
 }
 
-void User::createPost(std::string postTitle, std::string url, int likes, int duration, bool isReel) {
-	
-
+void User::createPost(const std::string& postTitle, const std::string& url, int likes, int duration, bool isReel) {
 	Post* newPost = nullptr;
 
 	//Check whether reel or story
@@ -81,11 +80,9 @@ void User::createPost(std::string postTitle, std::string url, int likes, int dur
 	else {
 		userPosts.append(newPost);
 	}
-
-	
 }
 
-void User::modifyPost(std::string newTitle, int postNum) {
+void User::modifyPost(const std::string& newTitle, int postNum) {
 
 }
 

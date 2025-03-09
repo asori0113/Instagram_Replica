@@ -1,14 +1,18 @@
 #include "Post.h"
 #include <iostream>
+#include <cstdlib>   
+#include <ctime> 
+
 
 Post::Post() : title(""), timeStamp(-1), numLikes(-1), url(""), postDuration(-1) {} // default constructor
 
 // Main constructor to use. Initializes title, url, likes, postNum, and duration. Sets time stamp upon instantiation. 
-Post::Post(std::string postTitle, std::string postURL, int likes, int duration) : title(postTitle), url(postURL), numLikes(likes), postDuration(duration)
+Post::Post(std::string postTitle, std::string postURL, int duration) : title(postTitle), url(postURL), postDuration(duration)
 {
 	// Code provided for setting time stamp 
 	auto time_stamp = std::chrono::steady_clock::now();
 	timeStamp = std::chrono::duration_cast<std::chrono::seconds>(time_stamp.time_since_epoch()).count();
+	setNumLikes();
 }
 
 // Operator overloading implementation
@@ -44,14 +48,13 @@ void Post::editTitle(std::string newTitle) {
 
 
 
-void Post::setNumLikes(int likes) {
-	numLikes = likes;
+void Post::setNumLikes() {
+	std::srand(std::time(0)); // Seed random number generator
+	int random_number = std::rand() % 100 + 1; // Range [1, 100]
+	numLikes = random_number;
 }
 
-//void Post::setTimeStamp() {}
-//void Post::setPostURL(std::string newURL) {}
-//void Post::setPostNum(int num) {}
-// 
+
 void Post::setDuration(int newDuration) {
 	postDuration = newDuration;
 }

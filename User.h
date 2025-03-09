@@ -26,7 +26,7 @@ public:
     void modifyPassword(const std::string& newPass);
     void displayPosts();
     void displayNthPost(int n);
-    void createPost(const std::string& postTitle, const std::string& url, int likes, int duration, bool isReel);
+    void createPost(const std::string& postTitle, const std::string& url, int duration, bool isReel);
     void modifyNthPost(const std::string& newTitle, int n);
     void deletePost();
 

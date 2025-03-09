@@ -64,15 +64,15 @@ void User::displayNthPost(int n) {
 	
 }
 
-void User::createPost(const std::string& postTitle, const std::string& url, int likes, int duration, bool isReel) {
+void User::createPost(const std::string& postTitle, const std::string& url, int duration, bool isReel) {
 	Post* newPost = nullptr;
 
 	//Check whether reel or story
 	if (isReel) {
-		newPost = new Reel(postTitle, url, likes, duration);
+		newPost = new Reel(postTitle, url, duration);
 	}
 	else {
-		newPost = new Story(postTitle, url, likes, duration);
+		newPost = new Story(postTitle, url, duration);
 	}
 
 

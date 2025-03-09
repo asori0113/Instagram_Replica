@@ -14,7 +14,7 @@ private:
 
 public:
 	Story();
-	Story(std::string postTitle, std::string postURL, int likes, int duration);
+	Story(std::string postTitle, std::string postURL, int duration);
 	int getExpirationTime();
 
 	// Override keyword is a failsafe. 

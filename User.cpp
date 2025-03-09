@@ -7,7 +7,7 @@ User::User() : username(""), currentPass(""), email(""), profilePicturePath("") 
 
 }
 User::~User() {
-
+	userPosts.clear();
 }
 
 User::User(const std::string& name, const std::string& emailAdd, const std::string& password, const std::string& bioStr, const std::string& profilePicture) : username(name), email(emailAdd), currentPass(password), bio(bioStr), profilePicturePath(profilePicture) {
@@ -82,12 +82,14 @@ void User::createPost(const std::string& postTitle, const std::string& url, int 
 	}
 }
 
-void User::modifyPost(const std::string& newTitle, int postNum) {
-
+void User::modifyNthPost(const std::string& newTitle, int n) {
+	Node<Post*>* post = userPosts.findKthItem(n);
+	post->getItem()->editTitle(newTitle);
 }
 
-void User::editPost(int postIndex) {
-
+void User::editNthPost(int n) {
+	Node<Post*>* post = userPosts.findKthItem(n);
+	post->getItem()->editPost();
 }
 
 void User::deletePost() {

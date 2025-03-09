@@ -14,7 +14,15 @@ Instagram340::~Instagram340(){
 
 void Instagram340::createUser(const std::string& username, const std::string& email, const std::string& password,
 				const std::string& bio, const std::string& profilePicture){
-	// TO DO: implement function
+	User newUser = User(username, email, password, bio, profilePicture);
+
+	if (users.isEmpty()) {
+		users.add(newUser);
+	}
+
+	else {
+		users.append(newUser);
+	}
 
 }
 

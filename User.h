@@ -26,8 +26,8 @@ public:
     void displayPosts();
     void displayNthPost(int n);
     void createPost(const std::string& postTitle, const std::string& url, int likes, int duration, bool isReel);
-    void modifyPost(const std::string& newTitle, int postNum);
-    void editPost(int postIndex);
+    void modifyNthPost(const std::string& newTitle, int n);
+    void editNthPost(int n);
     void deletePost();
     bool operator==(const User& otherUser) const;
 

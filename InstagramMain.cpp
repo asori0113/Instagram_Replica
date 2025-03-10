@@ -43,10 +43,33 @@ void displayUserManu(User& user) {
 			break;
 		}
 		case 3: {
-			// TO DO: ask user to choose between Reel and Story, ask them to input post details:
-			//        (title, media URL, video length in seconds)
-			//        Your program should set the time stamp to current time (code provided in Post.cpp) 
-			// then create the post and add it to the user's posts
+			string title;
+			string url;
+			int duration;
+			bool isReel;
+
+			cout << "\nCase Sensitive\nType (true if it's a reel) || Type (false if it's a story) ";
+			cin >> boolalpha >> isReel;
+
+			cout << "\nWhat would you like to call it ";
+			cin >> title;
+
+			cout << "\nMedia Address(create your own): ";
+			cin >> url;
+
+			cout << "\nWhat is the duration (reel max(90 sec) and story max(60 sec)) ";
+			cin >> duration;
+
+
+			if (isReel == true) {
+				user.createPost(title, url, duration, isReel);
+			}
+			else if (isReel == false) {
+				user.createPost(title, url, duration, isReel);
+			}
+			else {
+				cout << "invalid Entry";
+			}
 
 			break;
 		}

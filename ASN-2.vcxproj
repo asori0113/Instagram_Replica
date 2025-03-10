@@ -122,10 +122,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="InstagramMain.cpp" />
-    <ClCompile Include="Post.cpp" />
-    <ClCompile Include="Reel.cpp" />
-    <ClCompile Include="Story.cpp" />
-    <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Instagram340.h" />

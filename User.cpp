@@ -80,10 +80,12 @@ void User::createPost(const std::string& postTitle, const std::string& url, int 
 	//Add to usersPost if empty, append otherwise.
 	if (userPosts.isEmpty()) {
 		userPosts.add(newPost);
+		postCount++;
 	}
 
 	else {
 		userPosts.append(newPost);
+		postCount++;
 	}
 }
 
@@ -96,7 +98,6 @@ void User::modifyNthPost(const std::string& newTitle, int n) {
 
 
 void User::deletePost(int n) {
-	delete userPosts.findKthItem(n)->getItem();
 	userPosts.findKthItem(n)->setItem(nullptr);
 	userPosts.remove(userPosts.findKthItem(n)->getItem());
 	

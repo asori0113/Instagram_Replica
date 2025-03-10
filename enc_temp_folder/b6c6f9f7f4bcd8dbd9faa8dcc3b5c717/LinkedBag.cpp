@@ -193,12 +193,12 @@ int LinkedBag<ItemType>::getFrequencyOf(const ItemType& anEntry) const {
 	return frequency;
 }  // end getFrequencyOf
 
-
-
 template<class ItemType>
 bool LinkedBag<ItemType>::contains(const ItemType& anEntry) const {
 	return (getPointerTo(anEntry) != nullptr);
 }  // end contains
+
+
 
 // private
 // Returns either a pointer to the node containing a given entry 

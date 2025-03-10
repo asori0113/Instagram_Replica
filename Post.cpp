@@ -3,6 +3,9 @@
 #include <cstdlib>   
 #include <ctime> 
 
+Post::~Post() {
+
+}
 
 Post::Post() : title(""), timeStamp(-1), numLikes(-1), url(""), postDuration(-1) {} // default constructor
 

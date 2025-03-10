@@ -7,7 +7,8 @@ User::User() : username(""), currentPass(""), email(""), profilePicturePath(""),
 
 }
 User::~User() {
-	userPosts.clear();
+
+	
 }
 
 User::User(const std::string& name, const std::string& emailAdd, const std::string& password, const std::string& bioStr, const std::string& profilePicture) : username(name), email(emailAdd), currentPass(password), bio(bioStr), profilePicturePath(profilePicture), postCount(0) {
@@ -94,8 +95,11 @@ void User::modifyNthPost(const std::string& newTitle, int n) {
 }
 
 
-void User::deletePost() {
-
+void User::deletePost(int n) {
+	delete userPosts.findKthItem(n)->getItem();
+	userPosts.findKthItem(n)->setItem(nullptr);
+	userPosts.remove(userPosts.findKthItem(n)->getItem());
+	
 }
 
 std::string User::getUsername() {

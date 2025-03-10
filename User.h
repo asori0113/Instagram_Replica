@@ -28,7 +28,7 @@ public:
     void displayNthPost(int n);
     void createPost(const std::string& postTitle, const std::string& url, int duration, bool isReel);
     void modifyNthPost(const std::string& newTitle, int n);
-    void deletePost();
+    void deletePost(int n);
 
     int getPostCount();
     bool operator==(const User& otherUser) const;

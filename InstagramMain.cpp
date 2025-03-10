@@ -47,6 +47,7 @@ void displayUserManu(User& user) {
 			//        (title, media URL, video length in seconds)
 			//        Your program should set the time stamp to current time (code provided in Post.cpp) 
 			// then create the post and add it to the user's posts
+
 			break;
 		}
 		case 4: {
@@ -56,32 +57,28 @@ void displayUserManu(User& user) {
 			break;
 		}
 		case 5: {
-			int value;
+			int k;
 
 			cout << "Which post would you like to display? Enter the post number: (e.g Enter '1' for the 1st post) \n";
-			cin >> value;
+			cin >> k;
 
-			while (value > user.getPostCount() || value < 1) {
+			while (k > user.getPostCount() || k < 1) {
 				cout << "Error: You only have " << user.getPostCount() << " post(s)." << "Please enter another number.\n";
-				cin >> value;
+				cin >> k;
 
 			}
 
-			user.displayNthPost(value);
+			user.displayNthPost(k);
 			break;
 		}
 		case 6: {
-			// TO DO: ask the user for the index of the post they want to modify and the new title
-			// Find the post, then update the title. 
-			// If index > Linked Bag size, 
-			//    return an error message that includes the size of the Linked Bag
-			int postnum;
+			int k;
 			cout << "Which post would you like to modify? Enter the post number: (e.g Enter '1' for the 1st post) \n";
-			cin >> postnum;
+			cin >> k;
 
-			while (postnum > user.getPostCount() || postnum < 1) {
+			while (k > user.getPostCount() || k < 1) {
 				cout << "Error: You only have " << user.getPostCount() << " post(s)." << "Please enter another number.\n";
-				cin >> postnum;
+				cin >> k;
 
 			}
 
@@ -89,20 +86,27 @@ void displayUserManu(User& user) {
 			cout << "Enter new post title: \n";
 			cin >> title;
 
-			user.modifyNthPost(title, postnum);
+			user.modifyNthPost(title, k);
 
 			break;
 		}
-		case 7: {
-			// TO DO: ask the user for the index of the post they want to delete 
-			// Find the post, then remove it from the list. 
-			// If index > LinkedBag size, 
-			//    return an error message that includes the size of the Linked Bag
+		case 7: { // Delete Post
+			int k;
+
+			cout << "Which post would you like to delete? Enter the post number: (e.g Enter '1' for the 1st post) \n";
+			cin >> k;
+
+			while (k > user.getPostCount() || k < 1) {
+				cout << "Error: You only have " << user.getPostCount() << " post(s)." << "Please enter another number.\n";
+				cin >> k;
+
+			}
+
+			user.deletePost(k);
+
 			break;
 		}
-		case 8: {
 
-		}
 		case 0: {
 			cout << "Logging you out." << endl;
 			break;

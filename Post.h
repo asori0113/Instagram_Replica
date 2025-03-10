@@ -23,6 +23,7 @@ private:
 
 	
 public:
+	virtual ~Post();
 	Post();
 	Post(std::string postTitle, std::string url, int duration);
 	bool operator==(const Post& otherPost) const;

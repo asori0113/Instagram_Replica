@@ -3,15 +3,20 @@
 #include <iostream>
 
 // TO DO: function implementations
-User::User() : username(""), currentPass(""), bio(""), email(""), profilePicturePath("") {
+User::User() : username(""), currentPass(""), email(""), profilePicturePath(""), postCount(0) {
 
 }
 User::~User() {
 
+	
 }
 
-User::User(std::string name, std::string password, std::string biog, std::string eMail, std::string path): username(name), currentPass(password), bio(biog), email(eMail), profilePicturePath(path) {
+User::User(const std::string& name, const std::string& emailAdd, const std::string& password, const std::string& bioStr, const std::string& profilePicture) : username(name), email(emailAdd), currentPass(password), bio(bioStr), profilePicturePath(profilePicture), postCount(0) {
 
+}
+
+int User::getPostCount() {
+	return postCount;
 }
 
 void User::displayProfile() {
@@ -24,19 +29,20 @@ void User::displayProfile() {
 
 }
 
-void User::modifyPassword(std::string newPass) {
+void User::modifyPassword(const std::string& newPass) {
 	currentPass = newPass;
 }
 
 void User::displayPosts() {
-	int postNumber = 1;
-
 	if (!userPosts.isEmpty()) {
 
-		// Continue to display until you reach the end
-		while (postNumber != userPosts.getCurrentSize()) {
-			displayNthPost(postNumber);
-			postNumber++;
+		//Set postNode to headPtr
+		Node<Post*>* postNode = userPosts.findKthItem(1);
+
+		// Iterate through bag, calling Post's display until reach the end
+		while (postNode != NULL) {
+			postNode->getItem()->display();
+			postNode = postNode->getNext();
 		}
 	}
 	else {
@@ -59,9 +65,7 @@ void User::displayNthPost(int n) {
 	
 }
 
-void User::createPost(std::string postTitle, std::string url, int duration, bool isReel) {
-	
-
+void User::createPost(const std::string& postTitle, const std::string& url, int duration, bool isReel) {
 	Post* newPost = nullptr;
 
 	//Check whether reel or story
@@ -76,39 +80,27 @@ void User::createPost(std::string postTitle, std::string url, int duration, bool
 	//Add to usersPost if empty, append otherwise.
 	if (userPosts.isEmpty()) {
 		userPosts.add(newPost);
+		postCount++;
 	}
 
 	else {
 		userPosts.append(newPost);
+		postCount++;
 	}
+}
 
+void User::modifyNthPost(const std::string& newTitle, int n) {
+	Node<Post*>* post = userPosts.findKthItem(n);
+	post->getItem()->editTitle(newTitle);
+	post->getItem()->editPost();
+
+}
+
+
+void User::deletePost(int n) {
+	userPosts.findKthItem(n)->setItem(nullptr);
+	userPosts.remove(userPosts.findKthItem(n)->getItem());
 	
-}
-
-void User::modifyPost(std::string newTitle, int postNum) {
-	Node<Post*>* post = userPosts.findKthItem(postNum);
-
-	if (post != NULL) {
-		post->getItem()->editTitle(newTitle);
-		post->getItem()->editPost();
-	}
-
-	else {
-		std::cout << "No post to edit\n\n";
-	}
-}
-
-
-void User::deletePost(int postNum) {
-	Node<Post*>* post = userPosts.findKthItem(postNum);
-
-	if (post != NULL) {
-		post->setNext(NULL);
-	}
-
-	else {
-		std::cout << "No post to delete\n\n";
-	}
 }
 
 std::string User::getUsername() {

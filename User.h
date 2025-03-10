@@ -5,7 +5,6 @@
 #include "Reel.h"
 #include "Story.h"
 class User {
-    
 private:
     //LinkedBag contains Post pointers to enable polymorphism.
     LinkedBag<Post*> userPosts;
@@ -15,20 +14,23 @@ private:
     std::string email;
     std::string profilePicturePath;
     std::string bio;
+    int postCount;
 
 public:
 
     User();
     ~User();
-    User(std::string name, std::string password, std::string bio, std::string eMail, std::string path);
+    User(const std::string& name, const std::string& emailAdd, const std::string& password, const std::string& bioStr, const std::string& profilePicture);
 
     void displayProfile();
-    void modifyPassword(std::string newPass);
+    void modifyPassword(const std::string& newPass);
     void displayPosts();
     void displayNthPost(int n);
-    void createPost(std::string postTitle, std::string url, int duration, bool isReel);
-    void modifyPost(std::string newTitle, int postNum);
-    void deletePost(int postNum);
+    void createPost(const std::string& postTitle, const std::string& url, int duration, bool isReel);
+    void modifyNthPost(const std::string& newTitle, int n);
+    void deletePost(int n);
+
+    int getPostCount();
     bool operator==(const User& otherUser) const;
 
     std::string getUsername();

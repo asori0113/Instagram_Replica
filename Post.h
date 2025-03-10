@@ -1,4 +1,3 @@
-
 // TO DO: #include all the standard libraries and your own libraries here
 // To DO: define the class Post with the necessary functions' prototypes and data fields
 // This is a function that allows you to compare two posts based on their title. 
@@ -20,9 +19,11 @@ private:
 	int timeStamp;
 	int numLikes;
 	int postDuration;
+	void setNumLikes();
 
 	
 public:
+	virtual ~Post();
 	Post();
 	Post(std::string postTitle, std::string url, int duration);
 	bool operator==(const Post& otherPost) const;
@@ -32,7 +33,6 @@ public:
 	// Setters
 
 	void editTitle(std::string newTitle);
-	void setNumLikes();
 	//void setTimeStamp();
 	//void setPostURL(std::string newURL);
 	//void setPostNum(int num);

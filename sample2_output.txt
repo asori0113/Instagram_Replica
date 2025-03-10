@@ -1,0 +1,22 @@
+DISPLAYING ALL POSTS 
+===========================
+POST INFO: 
+
+Title: ReelTitle
+Time Stamp: 54075
+Likes: 73
+URL: adress
+Duration: 35s
+
+===========================
+POST INFO: 
+
+Title: StoryTitle
+Time Stamp: 54090
+Likes: 78
+URL: adress2
+Duration: 45
+
+Expires in 23s
+===========================
+

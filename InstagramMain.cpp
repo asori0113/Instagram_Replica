@@ -62,6 +62,7 @@ void displayUserManu(User& user) {
 
 
 			if (isReel == true) {
+				isReel = true;
 				user.createPost(title, url, duration, isReel);
 			}
 			else if (isReel == false) {

@@ -38,7 +38,7 @@ void displayUserManu(User& user){
 			}
 			case 2: {
 				// TO DO: ask for new password and update user's password
-				std::string newPass;
+				string newPass;
 				cout << "What is your new password\n";
 				cin >> newPass;
 
@@ -50,14 +50,14 @@ void displayUserManu(User& user){
 				//        (title, media URL, video length in seconds)
 				//        Your program should set the time stamp to current time (code provided in Post.cpp) 
 				// then create the post and add it to the user's posts
-				std::string postChoice;
-				std::string title;
-				std::string url;
+				
+				string title;
+				string url;
 				int duration;
 				bool isReel;
 
-				cout << "\nDid you want to create a reel or story ";
-				cin >> postChoice;
+				cout << "\nCase Sensitive\nType (true if it's a reel) || Type (false if it's a story) ";
+				cin >> boolalpha >> isReel;
 
 				cout << "\nWhat would you like to call it "; 
 				cin >> title;
@@ -69,19 +69,15 @@ void displayUserManu(User& user){
 				cin >> duration;
 
 
-				if (postChoice == "reel") {
-					isReel = true;
+				if (isReel == true) {
 					user.createPost(title, url, duration, isReel);
 				}
-				else if (postChoice == "story") {
-					isReel = false;
+				else if (isReel == false) {
 					user.createPost(title, url, duration, isReel);
 				}
 				else {
 					cout << "invalid Entry";
 				}
-
-
 				break;
 			}
 			case 4:{

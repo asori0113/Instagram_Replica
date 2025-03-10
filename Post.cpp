@@ -9,6 +9,7 @@ Post::Post() : title(""), timeStamp(-1), url(""), postDuration(-1) {} // default
 Post::Post(std::string postTitle, std::string postURL, int duration) : title(postTitle), url(postURL), postDuration(duration)
 {
 	// Code provided for setting time stamp 
+	setNumLikes();
 	auto time_stamp = std::chrono::steady_clock::now();
 	timeStamp = std::chrono::duration_cast<std::chrono::seconds>(time_stamp.time_since_epoch()).count();
 }

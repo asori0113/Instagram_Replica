@@ -46,31 +46,39 @@ void displayUserManu(User& user) {
 			string title;
 			string url;
 			int duration;
-			bool isReel;
+			string postType;
+			bool isReel = false;
+			bool isValid = false;
 
-			cout << "\nCase Sensitive\nType (true if it's a reel) || Type (false if it's a story) ";
-			cin >> boolalpha >> isReel;
-
-			cout << "\nWhat would you like to call it ";
+			cout << "What would you like to call it \n";
 			cin >> title;
 
-			cout << "\nMedia Address(create your own): ";
-			cin >> url;
+			cout << "Media Address(create your own):\n";
+			cin >> url ;
 
-			cout << "\nWhat is the duration (reel max(90 sec) and story max(60 sec)) ";
+
+			do {
+				cout << "Type ('true' if it's a reel) || Type ('false' if it's a story)\n " << endl;
+				cin >> postType;
+
+				if (postType.compare("true") == 0) {
+					isValid = true;
+					isReel = true;
+				}
+				else if (postType.compare("false") == 0) {
+					isValid = true;
+					isReel = false;
+				}
+
+				else {
+					cout << "Invalid input. Write only 'reel' or 'story'\n";
+				}
+
+			} while (!isValid);
+
+			cout << "What is the duration? Enter a number (1-90) for Reel || Enter a number (1-60) for Story.\n";
 			cin >> duration;
-
-
-			if (isReel == true) {
-				isReel = true;
-				user.createPost(title, url, duration, isReel);
-			}
-			else if (isReel == false) {
-				user.createPost(title, url, duration, isReel);
-			}
-			else {
-				cout << "invalid Entry";
-			}
+			user.createPost(title, url, duration, isReel);
 
 			break;
 		}
@@ -80,6 +88,7 @@ void displayUserManu(User& user) {
 
 			break;
 		}
+
 		case 5: {
 			int k;
 

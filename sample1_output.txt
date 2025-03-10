@@ -1,1 +1,176 @@
-no post
+ Welcome to Instagram340:
+Enter Username: aj
+
+Enter email: aljhayjhass@gmail.com
+
+Enter Password: password
+
+Enter bio: bio
+
+Enter Profile Picture Path: progilepicpath
+
+ Hi, aj, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 1
+===========================
+
+aj's Profile
+bio
+
+
+ Hi, aj, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 2
+What is your new password?
+newpass
+
+ Hi, aj, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 3
+What would you like to call it 
+true
+Media Address(create your own):
+ReelTitle
+Type ('true' if it's a reel) || Type ('false' if it's a story)
+ 
+true 
+What is the duration? Enter a number (1-90) for Reel || Enter a number (1-60) for Story.
+35
+
+ Hi, aj, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 4
+DISPLAYING ALL POSTS 
+===========================
+POST INFO: 
+
+Title: true
+Time Stamp: 2408
+Likes: 70
+URL: ReelTitle
+Duration: 35s
+
+
+ Hi, aj, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 5
+Which post would you like to display? Enter the post number: (e.g Enter '1' for the 1st post) 
+3
+Error: You only have 1 post(s).Please enter another number.
+1
+===========================
+POST INFO: 
+
+Title: true
+Time Stamp: 2408
+Likes: 70
+URL: ReelTitle
+Duration: 35s
+
+
+ Hi, aj, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 6
+Which post would you like to modify? Enter the post number: (e.g Enter '1' for the 1st post) 
+3
+Error: You only have 1 post(s).Please enter another number.
+1
+Enter new post title: 
+newTitle
+EDITING POST
+*****Filter, AR effects, and music have been added to the post.
+
+ Hi, aj, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 6
+Which post would you like to modify? Enter the post number: (e.g Enter '1' for the 1st post) 
+1
+Enter new post title: 
+10
+EDITING POST
+*****Filter, AR effects, and music have been added to the post.
+
+ Hi, aj, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 5
+Which post would you like to display? Enter the post number: (e.g Enter '1' for the 1st post) 
+0
+Error: You only have 1 post(s).Please enter another number.
+1
+===========================
+POST INFO: 
+
+Title: 10
+Time Stamp: 2408
+Likes: 70
+URL: ReelTitle
+Duration: 35s
+
+
+ Hi, aj, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 0
+Logging you out.

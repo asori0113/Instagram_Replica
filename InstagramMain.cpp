@@ -7,102 +7,176 @@
 
 using namespace std;
 
-/** 
- * 
+/**
+ *
  * Displays the application's main menu
  * pre create a new object of type User
  * @param user object to interact with
- * 
+ *
  * */
-void displayUserManu(User& user){
+void displayUserManu(User& user) {
 	int userChoice = 0;
 	do {
-		cout << "\n Hi, "<< user.getUsername() <<", what would you like to do:\n"
-		<< "1. Display Profile\n"
-		<< "2. Modify Password\n"
-		<< "3. Create Post\n"
-		<< "4. Display All Posts\n"
-		<< "5. Display Kth Post\n"
-		<< "6. Modify Post\n"
-		<< "7. Delete Post\n"
-		<< "0. Logout\n"
-		<< "Choice: ";
+		cout << "\n Hi, " << user.getUsername() << ", what would you like to do:\n"
+			<< "1. Display Profile\n"
+			<< "2. Modify Password\n"
+			<< "3. Create Post\n"
+			<< "4. Display All Posts\n"
+			<< "5. Display Kth Post\n"
+			<< "6. Modify Post\n"
+			<< "7. Delete Post\n"
+			<< "0. Logout\n"
+			<< "Choice: ";
 		cin >> userChoice;
 
 		switch (userChoice) {
-			case 1:{
-				// TO DO: display user's profile information
-				//      : e.g. user.displayProfile();
-				break;
+		case 1: {
+			user.displayProfile();
+			break;
+		}
+		case 2: {
+			std::string newPass;
+			cout << "What is your new password?\n";
+			cin >> newPass;
+
+			user.modifyPassword(newPass);
+			break;
+		}
+		case 3: {
+			string title;
+			string url;
+			int duration;
+			bool isReel;
+
+			cout << "\nCase Sensitive\nType (true if it's a reel) || Type (false if it's a story) ";
+			cin >> boolalpha >> isReel;
+
+			cout << "\nWhat would you like to call it ";
+			cin >> title;
+
+			cout << "\nMedia Address(create your own): ";
+			cin >> url;
+
+			cout << "\nWhat is the duration (reel max(90 sec) and story max(60 sec)) ";
+			cin >> duration;
+
+
+			if (isReel == true) {
+				user.createPost(title, url, duration, isReel);
 			}
-			case 2: {
-				// TO DO: ask for new password and update user's password
-				break;
+			else if (isReel == false) {
+				user.createPost(title, url, duration, isReel);
 			}
-			case 3: {
-				// TO DO: ask user to choose between Reel and Story, ask them to input post details:
-				//        (title, media URL, video length in seconds)
-				//        Your program should set the time stamp to current time (code provided in Post.cpp) 
-				// then create the post and add it to the user's posts
-				break;
+			else {
+				cout << "invalid Entry";
 			}
-			case 4:{
-				// TO DO: display all user's posts
-				//        You may re-use code from class demo
-				break;
+
+			break;
+		}
+		case 4: {
+			cout << "DISPLAYING ALL POSTS \n";
+			user.displayPosts();
+
+			break;
+		}
+		case 5: {
+			int k;
+
+			cout << "Which post would you like to display? Enter the post number: (e.g Enter '1' for the 1st post) \n";
+			cin >> k;
+
+			while (k > user.getPostCount() || k < 1) {
+				cout << "Error: You only have " << user.getPostCount() << " post(s)." << "Please enter another number.\n";
+				cin >> k;
+
 			}
-			case 5: {
-				// TO DO: ask the user for a value k
-				// Find the Kth post, if k > Linked Bag size, 
-				//    return an error message that includes the size of the Linked Bag
-				break;
+
+			user.displayNthPost(k);
+			break;
+		}
+		case 6: {
+			int k;
+			cout << "Which post would you like to modify? Enter the post number: (e.g Enter '1' for the 1st post) \n";
+			cin >> k;
+
+			while (k > user.getPostCount() || k < 1) {
+				cout << "Error: You only have " << user.getPostCount() << " post(s)." << "Please enter another number.\n";
+				cin >> k;
+
 			}
-			case 6: {
-				// TO DO: ask the user for the index of the post they want to modify and the new title
-				// Find the post, then update the title. 
-				// If index > Linked Bag size, 
-				//    return an error message that includes the size of the Linked Bag
-				break;
+
+			string title;
+			cout << "Enter new post title: \n";
+			cin >> title;
+
+			user.modifyNthPost(title, k);
+
+			break;
+		}
+		case 7: { // Delete Post
+			int k;
+
+			cout << "Which post would you like to delete? Enter the post number: (e.g Enter '1' for the 1st post) \n";
+			cin >> k;
+
+			while (k > user.getPostCount() || k < 1) {
+				cout << "Error: You only have " << user.getPostCount() << " post(s)." << "Please enter another number.\n";
+				cin >> k;
+
 			}
-			case 7: {
-				// TO DO: ask the user for the index of the post they want to delete 
-				// Find the post, then remove it from the list. 
-				// If index > LinkedBag size, 
-				//    return an error message that includes the size of the Linked Bag
-				break;
-			}
-			case 8:{
-				
-			}
-			case 0: {
-				cout << "Logging you out." << endl;
-				break;
-			}
-			default:
-				cout << "Invalid choice. Please try again." << endl;
+
+			user.deletePost(k);
+
+			break;
+		}
+
+		case 0: {
+			cout << "Logging you out." << endl;
+			break;
+		}
+		default:
+			cout << "Invalid choice. Please try again." << endl;
 		}
 
 	} while (userChoice != 0);
 }
 
 
-int main(){
-	// Instantiating the program using the default constructor
-	// With this implementation, the application will only have one user
-	Instagram340 instagram; 
+int main() {
+	Instagram340 instagram;
 
 	cout << "\n Welcome to Instagram340:" << endl;
-	// TO DO: Ask the user to enter their information 
-	//        Instantiate a new User object
 
+	string username;
+	string email;
+	string password;
+	string bio;
+	string profilePicture;
+
+	cout << "Enter Username: ";
+	getline(cin, username);
+
+	cout << "\nEnter email: ";
+	getline(cin, email);
+
+	cout << "\nEnter Password: ";
+	getline(cin, password);
+
+	cout << "\nEnter bio: ";
+	getline(cin, bio);
+
+	cout << "\nEnter Profile Picture Path: ";
+	getline(cin, profilePicture);
 
 	// call instagram createUser function 
 	// replace /*...*/ with the right parameters
-	instagram.createUser(/*...*/);
+	instagram.createUser(username, email, password,
+		bio, profilePicture);
 
 	// Retrieve the user 
-	User currentUser = instagram.getUser(0);
+	User currentUser = instagram.getUser(1);
 	displayUserManu(currentUser);
-				
 	return 0;
+
+
 }

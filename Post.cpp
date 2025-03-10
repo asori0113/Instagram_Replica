@@ -1,36 +1,89 @@
-// TO DO: #include all the standard libraries and your own libraries here
-#include <chrono>
+#include "Post.h"
+#include <iostream>
+#include <cstdlib>   
+#include <ctime> 
 
+Post::~Post() {
 
-// TO DO: function implementations
+}
 
+Post::Post() : title(""), timeStamp(-1), numLikes(-1), url(""), postDuration(-1) {} // default constructor
 
+// Main constructor to use. Initializes title, url, likes, postNum, and duration. Sets time stamp upon instantiation. 
+Post::Post(std::string postTitle, std::string postURL, int duration) : title(postTitle), url(postURL), postDuration(duration)
+{
+	// Code provided for setting time stamp 
+	auto time_stamp = std::chrono::steady_clock::now();
+	timeStamp = std::chrono::duration_cast<std::chrono::seconds>(time_stamp.time_since_epoch()).count();
+	setNumLikes();
+}
 
-// When creating a post, you may use this code to set time stamp
-auto time_stamp = std::chrono::steady_clock::now();
-
-
-// ------------------------------------------------------------------------------
 // Operator overloading implementation
 bool Post::operator==(const Post& otherPost) const {
 	return Post::title == otherPost.title;
 }
 
-// When displaying a story, use this to compute expected expiration time: timeToExpiration
-// Define this as a private function 
-int Post::computeTimeToExpiration() const{
-	const int secondsInHour = 3600;
-	// 24 hours in seconds
-	const int expiresAfter = 24 * secondsInHour; 
+void Post::display() {
 
-	// Get current time
-	auto time_now = std::chrono::steady_clock::now();
-	// Compute elapsed time since post creation
-	std::chrono::duration<double> elapsed_seconds = time_now - Post::time_stamp;
-	// time to expiration in hours
-	int timeToExpiration = (expiresAfter - elapsed_seconds.count()) / secondsInHour;
+	std::cout << "===========================\n";
+	std::cout << "POST INFO: \n\n";
+	std::cout << "Title: " << getTitle() << "\n";
+	std::cout << "Time Stamp: " << getTimeStamp() << "\n";
+	std::cout << "Likes: " << getNumLikes() << "\n";
+	std::cout << "URL: " << getURL() << "\n";
+	std::cout << "Duration: " << getDuration() << "s\n\n";
 
-	return timeToExpiration;
+
 }
+
+void Post::editPost() {
+	std::cout << "===========================\n";
+	std::cout << "You have edited your post. \n";
+	std::cout << "===========================\n\n\n";
+
+}
+
+// Setters
+
+void Post::editTitle(std::string newTitle) {
+	title = newTitle;
+}
+
+
+
+void Post::setNumLikes() {
+	std::srand(std::time(0)); // Seed random number generator
+	int random_number = std::rand() % 100 + 1; // Range [1, 100]
+	numLikes = random_number;
+}
+
+
+void Post::setDuration(int newDuration) {
+	postDuration = newDuration;
+}
+
+// Getters
+
+std::string Post::getTitle() {
+	return title;
+}
+std::string Post::getURL() {
+	return url;
+}
+
+int Post::getTimeStamp() {
+	return timeStamp;
+}
+
+int Post::getNumLikes() {
+	return numLikes;
+}
+	
+int Post::getDuration() {
+	return postDuration;
+}
+
+
+
 
 

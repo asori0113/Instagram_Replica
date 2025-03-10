@@ -66,6 +66,8 @@ void User::displayNthPost(int n) {
 }
 
 void User::createPost(const std::string& postTitle, const std::string& url, int duration, bool isReel) {
+	
+
 	Post* newPost = nullptr;
 
 	//Check whether reel or story

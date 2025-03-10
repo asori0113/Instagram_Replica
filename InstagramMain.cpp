@@ -61,6 +61,7 @@ void displayUserManu(User& user) {
 			cin >> duration;
 
 
+
 			if (isReel == true) {
 				user.createPost(title, url, duration, isReel);
 			}
@@ -79,6 +80,7 @@ void displayUserManu(User& user) {
 
 			break;
 		}
+
 		case 5: {
 			int k;
 

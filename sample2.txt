@@ -11,19 +11,14 @@ profilepicpath2
 newpass
 3
 true
-postTitle
+ReelTitle
 adress
 35
+3
+false
+StoryTitle
+adress2
+45
 4
-5
-3
-1
-6
-3
-1
-newTitle
-7
-1
-10
-5
+0
 

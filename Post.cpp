@@ -1,4 +1,3 @@
-
 #include "Post.h"
 #include <iostream>
 #include <cstdlib>   

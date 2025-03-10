@@ -100,6 +100,7 @@ void User::modifyNthPost(const std::string& newTitle, int n) {
 void User::deletePost(int n) {
 	userPosts.findKthItem(n)->setItem(nullptr);
 	userPosts.remove(userPosts.findKthItem(n)->getItem());
+	postCount--;
 	
 }
 

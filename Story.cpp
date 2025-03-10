@@ -16,6 +16,7 @@ Story::Story(std::string postTitle, std::string postURL, int duration) : Post(po
 		while (duration > maxDuration || duration <= 0) {
 			std::cout << "===========================\n\n";
 			std::cout << "Error: Video duration must be at most 90 seconds and at least 0. Please input new video duration: \n";
+
 			std::cin >> duration;
 
 		}
@@ -71,4 +72,6 @@ int Story::computeTimeToExpiration() {
 	int timeToExpiration = (expiresAfter - elapsed_seconds.count()) / secondsInHour;
 
 	return timeToExpiration;
+
 }
+

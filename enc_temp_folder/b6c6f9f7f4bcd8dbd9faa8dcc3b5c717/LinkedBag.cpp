@@ -9,46 +9,8 @@
 #include <cstddef>
 
 
-// Assignment 2 functions -------------------------------------------
-// TO DO: implement the two functions here
-template<class ItemType>
-bool LinkedBag<ItemType>::append(const ItemType& newEntry) {
-
-	Node<ItemType>* travelNode = headPtr;
-	Node<ItemType>* oldNode = nullptr;
-
-	//Go to tail node
-	while (travelNode != NULL) {
-		oldNode = travelNode;
-		travelNode = oldNode->getNext();
-	}
-
-	//Add a new node to the end of the list. oldNode is the tail node.
-	Node<ItemType>* newNode = new Node<ItemType>(newEntry, nullptr);
-	oldNode->setNext(newNode);
-	itemCount++;
-
-	return true; 
-}
-
-template<class ItemType>
-Node<ItemType>* LinkedBag<ItemType>::findKthItem(const int& indexK) const {
-	Node<ItemType>* travelNode = headPtr;
-	int itemNum = 1;
-
-	//This function assumes that we do not start at 0 when counting. 
-	// When travelNode == null or item does not exist, return null.
-	// Return travelNode when itemNum = indexK
-
-	while ((travelNode != NULL) && !(itemNum == indexK)) {
-
-		travelNode = travelNode->getNext();
-		itemNum++;
-	}
-
-	return travelNode;
-}
-
+	 // Assignment 2 functions -------------------------------------------
+	 // TO DO: implement the two functions here
 
 	 // ------------------------------------------------------------------
 
@@ -231,12 +193,12 @@ int LinkedBag<ItemType>::getFrequencyOf(const ItemType& anEntry) const {
 	return frequency;
 }  // end getFrequencyOf
 
-
-
 template<class ItemType>
 bool LinkedBag<ItemType>::contains(const ItemType& anEntry) const {
 	return (getPointerTo(anEntry) != nullptr);
 }  // end contains
+
+
 
 // private
 // Returns either a pointer to the node containing a given entry 

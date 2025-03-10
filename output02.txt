@@ -1,27 +1,118 @@
+Welcome to Instagram340:
+Enter Username: John
+
+Enter email: John@gmail.com
+
+Enter Password: password2
+
+Enter bio: bio2
+
+Enter Profile Picture Path: profilepicpath2
+
+ Hi, John, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 1
+===========================
+
+John's Profile
+bio2
+
+
+ Hi, John, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 2
+What is your new password?
+newpass
+
+ Hi, John, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 3
+What would you like to call it 
+true
+Media Address(create your own):
+ReelTitle
+Type ('true' if it's a reel) || Type ('false' if it's a story)
+ 
+true
+What is the duration? Enter a number (1-90) for Reel || Enter a number (1-60) for Story.
+35
+
+ Hi, John, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 3
+What would you like to call it 
+StoryTitle
+Media Address(create your own):
+address2
+Type ('true' if it's a reel) || Type ('false' if it's a story)
+ 
+false
+What is the duration? Enter a number (1-90) for Reel || Enter a number (1-60) for Story.
+45
+
+ Hi, John, what would you like to do:
+1. Display Profile
+2. Modify Password
+3. Create Post
+4. Display All Posts
+5. Display Kth Post
+6. Modify Post
+7. Delete Post
+0. Logout
+Choice: 4
 DISPLAYING ALL POSTS 
 ===========================
 POST INFO: 
 
-Title: ReelTitle
-Time Stamp: 54075
-Likes: 73
-URL: adress
+Title: true
+Time Stamp: 8421
+Likes: 61
+URL: ReelTitle
 Duration: 35s
 
 ===========================
 POST INFO: 
 
 Title: StoryTitle
-Time Stamp: 54090
-Likes: 78
-URL: adress2
-Duration: 45
+Time Stamp: 8455
+Likes: 99
+URL: address2
+Duration: 45s
 
 Expires in 23s
 ===========================
 
 
- Hi, aj, what would you like to do:
+
+ Hi, John, what would you like to do:
 1. Display Profile
 2. Modify Password
 3. Create Post

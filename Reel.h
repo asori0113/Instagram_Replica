@@ -3,6 +3,7 @@
 //public or private inheritance
 #include <string>
 #include "Post.h"
+
 class Reel : public Post {
 private:
     int maxDuration;
@@ -13,3 +14,4 @@ public:
 };
 #include "Reel.cpp"
 #endif
+

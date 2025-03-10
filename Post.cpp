@@ -50,7 +50,6 @@ void Post::editTitle(std::string newTitle) {
 }
 
 
-
 void Post::setNumLikes() {
 	std::srand(std::time(0)); // Seed random number generator
 	int random_number = std::rand() % 100 + 1; // Range [1, 100]
@@ -60,6 +59,7 @@ void Post::setNumLikes() {
 
 void Post::setDuration(int newDuration) {
 	postDuration = newDuration;
+
 }
 
 // Getters
@@ -82,8 +82,4 @@ int Post::getNumLikes() {
 int Post::getDuration() {
 	return postDuration;
 }
-
-
-
-
 

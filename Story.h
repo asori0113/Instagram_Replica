@@ -1,5 +1,3 @@
-
-
 #ifndef STORY_
 #define STORY_
 

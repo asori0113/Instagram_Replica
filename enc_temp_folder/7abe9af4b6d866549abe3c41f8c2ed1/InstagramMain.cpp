@@ -71,7 +71,7 @@ void displayUserManu(User& user) {
 				}
 
 				else {
-					cout << "Invalid input. Write only 'reel' or 'story'\n";
+					cout << " Invalid input. Write only 'reel' or 'story'\n";
 				}
 
 			} while (!isValid);

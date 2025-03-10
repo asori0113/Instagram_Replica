@@ -34,5 +34,4 @@ User Instagram340::getUser(const int& indexK){
 	}
 	
 	return User();
-
 }

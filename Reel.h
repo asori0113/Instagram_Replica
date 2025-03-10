@@ -1,4 +1,3 @@
-
 #ifndef REEL_
 #define REEL_
 //public or private inheritance
@@ -15,3 +14,4 @@ public:
 };
 #include "Reel.cpp"
 #endif
+

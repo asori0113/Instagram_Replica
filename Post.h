@@ -24,7 +24,7 @@ private:
 	
 public:
 	Post();
-	Post(std::string postTitle, std::string url, int likes, int duration);
+	Post(std::string postTitle, std::string url, int duration);
 	bool operator==(const Post& otherPost) const;
 	virtual void display();
 	virtual void editPost();
@@ -32,7 +32,7 @@ public:
 	// Setters
 
 	void editTitle(std::string newTitle);
-	void setNumLikes(int likes);
+	void setNumLikes();
 	//void setTimeStamp();
 	//void setPostURL(std::string newURL);
 	//void setPostNum(int num);

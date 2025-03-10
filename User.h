@@ -26,10 +26,9 @@ public:
     void modifyPassword(std::string newPass);
     void displayPosts();
     void displayNthPost(int n);
-    void createPost(std::string postTitle, std::string url, int likes, int duration, bool isReel);
+    void createPost(std::string postTitle, std::string url, int duration, bool isReel);
     void modifyPost(std::string newTitle, int postNum);
-    void editPost(int postIndex);
-    void deletePost();
+    void deletePost(int postNum);
     bool operator==(const User& otherUser) const;
 
     std::string getUsername();

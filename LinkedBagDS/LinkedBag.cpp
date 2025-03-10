@@ -34,7 +34,7 @@ bool LinkedBag<ItemType>::append(const ItemType& newEntry) {
 template<class ItemType>
 Node<ItemType>* LinkedBag<ItemType>::findKthItem(const int& indexK) const {
 	Node<ItemType>* travelNode = headPtr;
-	int itemNum = 1;s
+	int itemNum = 1;
 
 	//This function assumes that we do not start at 0 when counting. 
 	// When travelNode == null or item does not exist, return null.

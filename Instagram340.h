@@ -1,9 +1,10 @@
-#include "LinkedBagDS/LinkedBag.h"
-#include "User.h"
-// TO DO include necessary libraries
 
+// TO DO include necessary libraries
 #ifndef INSTAGRAM340
 #define INSTAGRAM340
+
+#include "LinkedBagDS/LinkedBag.h"
+#include "User.h"
 
 
 // This class only contains a list of users
@@ -22,4 +23,5 @@ class Instagram340 {
 		User getUser(const int& indexK);
 };
 
+#include "Instagram340.cpp"
 #endif

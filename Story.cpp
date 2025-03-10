@@ -8,7 +8,7 @@ Story::Story() : maxDuration(60) {
 }
 
 // Main constructor. Calls parent class to initialize title, url, likes, postNum, duration. Initializes maxDuration to 60. 
-Story::Story(std::string postTitle, std::string postURL, int likes, int duration) : Post(postTitle, postURL, likes, duration), maxDuration(60)
+Story::Story(std::string postTitle, std::string postURL, int duration) : Post(postTitle, postURL, duration), maxDuration(60)
 {
 	//If duration exceeds maxDuration, keep prompting for a new duration. 
 	if (duration > maxDuration) {

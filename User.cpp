@@ -3,14 +3,14 @@
 #include <iostream>
 
 // TO DO: function implementations
-User::User() : username(""), currentPass(""), email(""), profilePicturePath("") {
+User::User() : username(""), currentPass(""), bio(""), email(""), profilePicturePath("") {
 
 }
 User::~User() {
 
 }
 
-User::User(std::string name, std::string password, std::string bio, std::string eMail, std::string path): username(name), currentPass(password), email(eMail), profilePicturePath(path) {
+User::User(std::string name, std::string password, std::string biog, std::string eMail, std::string path): username(name), currentPass(password), bio(biog), email(eMail), profilePicturePath(path) {
 
 }
 
@@ -59,17 +59,17 @@ void User::displayNthPost(int n) {
 	
 }
 
-void User::createPost(std::string postTitle, std::string url, int likes, int duration, bool isReel) {
+void User::createPost(std::string postTitle, std::string url, int duration, bool isReel) {
 	
 
 	Post* newPost = nullptr;
 
 	//Check whether reel or story
 	if (isReel) {
-		newPost = new Reel(postTitle, url, likes, duration);
+		newPost = new Reel(postTitle, url, duration);
 	}
 	else {
-		newPost = new Story(postTitle, url, likes, duration);
+		newPost = new Story(postTitle, url, duration);
 	}
 
 
@@ -86,15 +86,29 @@ void User::createPost(std::string postTitle, std::string url, int likes, int dur
 }
 
 void User::modifyPost(std::string newTitle, int postNum) {
+	Node<Post*>* post = userPosts.findKthItem(postNum);
 
+	if (post != NULL) {
+		post->getItem()->editTitle(newTitle);
+		post->getItem()->editPost();
+	}
+
+	else {
+		std::cout << "No post to edit\n\n";
+	}
 }
 
-void User::editPost(int postIndex) {
 
-}
+void User::deletePost(int postNum) {
+	Node<Post*>* post = userPosts.findKthItem(postNum);
 
-void User::deletePost() {
+	if (post != NULL) {
+		post->setNext(NULL);
+	}
 
+	else {
+		std::cout << "No post to delete\n\n";
+	}
 }
 
 std::string User::getUsername() {

@@ -10,7 +10,7 @@ private:
     int maxDuration;
 public:
     Reel();
-    Reel(std::string postTitle, std::string postURL, int likes, int duration);
+    Reel(std::string postTitle, std::string postURL, int duration);
     
     void editPost() override;
 };

@@ -50,6 +50,38 @@ void displayUserManu(User& user){
 				//        (title, media URL, video length in seconds)
 				//        Your program should set the time stamp to current time (code provided in Post.cpp) 
 				// then create the post and add it to the user's posts
+				std::string postChoice;
+				std::string title;
+				std::string url;
+				int duration;
+				bool isReel;
+
+				cout << "\nDid you want to create a reel or story ";
+				cin >> postChoice;
+
+				cout << "\nWhat would you like to call it "; 
+				cin >> title;
+
+				cout << "\nMedia Address(create your own): ";
+				cin >> url;
+
+				cout << "\nWhat is the duration (reel max(90 sec) and story max(60 sec)) ";
+				cin >> duration;
+
+
+				if (postChoice == "reel") {
+					isReel = true;
+					user.createPost(title, url, duration, isReel);
+				}
+				else if (postChoice == "story") {
+					isReel = false;
+					user.createPost(title, url, duration, isReel);
+				}
+				else {
+					cout << "invalid Entry";
+				}
+
+
 				break;
 			}
 			case 4:{
@@ -83,7 +115,7 @@ void displayUserManu(User& user){
 				cout << "\nWhich post would you like to modify: ";
 				cin >> postnum;
 
-				cout << "\nWhat would you like to name it: "
+				cout << "\nWhat would you like to name it: ";
 				user.modifyPost(title, postnum);
 				break;
 			}

@@ -1,6 +1,7 @@
 #include "User.h"
 #include <string>
 #include <iostream>
+#include <memory>
 
 // TO DO: function implementations
 User::User() : username(""), currentPass(""), email(""), profilePicturePath(""), postCount(0) {
@@ -67,34 +68,31 @@ void User::displayNthPost(int n) {
 
 void User::createPost(const std::string& postTitle, const std::string& url, int duration, bool isReel) {
 	
-
-	Post* newPost = nullptr;
+	std::unique_ptr<Post> newPost;
 
 	//Check whether reel or story
 	if (isReel) {
-		newPost = new Reel(postTitle, url, duration);
+		newPost = std::make_unique<Reel>(postTitle, url, duration);
 	}
 	else {
-		newPost = new Story(postTitle, url, duration);
+		newPost = std::make_unique<Story>(postTitle, url, duration);
 	}
 
 
 	//Add to usersPost if empty, append otherwise.
 	if (userPosts.isEmpty()) {
-		userPosts.add(newPost);
+		userPosts.add(std::move(newPost));
 		postCount++;
 	}
 
 	else {
-		userPosts.append(newPost);
+		userPosts.append(std::move(newPost));
 		postCount++;
 	}
 }
 
 void User::modifyNthPost(const std::string& newTitle, int n) {
 	Node<Post*>* post = userPosts.findKthItem(n);
-	post->getItem()->editTitle(newTitle);
-	post->getItem()->editPost();
 
 }
 
@@ -102,6 +100,7 @@ void User::modifyNthPost(const std::string& newTitle, int n) {
 void User::deletePost(int n) {
 	userPosts.findKthItem(n)->setItem(nullptr);
 	userPosts.remove(userPosts.findKthItem(n)->getItem());
+	postCount--;
 	
 }
 

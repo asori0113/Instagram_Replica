@@ -7,7 +7,7 @@
 class User {
 private:
     //LinkedBag contains Post pointers to enable polymorphism.
-    LinkedBag<Post*> userPosts;
+    LinkedBag<std::unique_ptr<Post>> userPosts;
 
     std::string username;
     std::string currentPass;

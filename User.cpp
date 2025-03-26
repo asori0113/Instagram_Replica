@@ -8,7 +8,7 @@ User::User() : username(""), currentPass(""), email(""), profilePicturePath(""),
 
 }
 User::~User() {
-
+	User::userPosts.clear();
 	
 }
 
@@ -38,7 +38,7 @@ void User::displayPosts() {
 	if (!userPosts.isEmpty()) {
 
 		//Set postNode to headPtr
-		Node<Post*>* postNode = userPosts.findKthItem(1);
+		Node<std::unique_ptr<Post>>* postNode = userPosts.findKthItem(1);
 
 		// Iterate through bag, calling Post's display until reach the end
 		while (postNode != NULL) {
@@ -54,7 +54,7 @@ void User::displayPosts() {
 }
 
 void User::displayNthPost(int n) {
-	Node<Post*>* post = userPosts.findKthItem(n);
+	Node<std::unique_ptr<Post>>* post = userPosts.findKthItem(n);
 
 	if (post != NULL) {
 		post->getItem()->display();
@@ -92,7 +92,7 @@ void User::createPost(const std::string& postTitle, const std::string& url, int 
 }
 
 void User::modifyNthPost(const std::string& newTitle, int n) {
-	Node<Post*>* post = userPosts.findKthItem(n);
+	Node<std::unique_ptr<Post>>* post = userPosts.findKthItem(n);
 
 }
 

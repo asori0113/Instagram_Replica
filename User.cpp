@@ -23,23 +23,17 @@ User::User(const User& other) {
 	currentPass = other.currentPass;
 	bio = other.bio;
 	profilePicturePath = other.profilePicturePath;
-	postCount = other.userPosts.getCurrentSize();
 
 	
 	userPosts.clear();
-	int index = 1;
-
+	
 	//This block of code will copy each post from other to this user. This assumes other's post list is not empty.
-	
+	int index = 1;
+	postCount = other.userPosts.getCurrentSize();
 
-	//Move first post of other user to this user.
-	std::unique_ptr<Post> otherPost = std::move(other.userPosts.findKthItem(index)->getItem());
-	userPosts.add(std::move(otherPost));
-	
-	//Move each post. not sure if this works as intended
-	while (!other.userPosts.isEmpty()) {
-		otherPost = std::move(other.userPosts.findKthItem(index)->getItem());
-		userPosts.append(std::move(otherPost));
+	//Copy each post, starting from head. 
+	while (index <= postCount ) {
+		userPosts.append(other.userPosts.findKthItem(index)->getItem());
 		index++;
 	}
 
@@ -69,7 +63,7 @@ void User::displayPosts() {
 	if (!userPosts.isEmpty()) {
 
 		//Set postNode to headPtr
-		Node<std::unique_ptr<Post>>* postNode = userPosts.findKthItem(1);
+		Node<std::shared_ptr<Post>>* postNode = userPosts.findKthItem(1);
 
 		// Iterate through bag, calling Post's display until reach the end
 		while (postNode != NULL) {
@@ -85,7 +79,7 @@ void User::displayPosts() {
 }
 
 void User::displayNthPost(int n) {
-	Node<std::unique_ptr<Post>>* post = userPosts.findKthItem(n);
+	Node<std::shared_ptr<Post>>* post = userPosts.findKthItem(n);
 
 	if (post != NULL) {
 		post->getItem()->display();
@@ -99,14 +93,14 @@ void User::displayNthPost(int n) {
 
 void User::createPost(const std::string& postTitle, const std::string& url, int duration, bool isReel) {
 	
-	std::unique_ptr<Post> newPost;
+	std::shared_ptr<Post> newPost;
 
 	//Check whether reel or story
 	if (isReel) {
-		newPost = std::make_unique<Reel>(postTitle, url, duration);
+		newPost = std::make_shared<Reel>(postTitle, url, duration);
 	}
 	else {
-		newPost = std::make_unique<Story>(postTitle, url, duration);
+		newPost = std::make_shared<Story>(postTitle, url, duration);
 	}
 
 
@@ -123,7 +117,7 @@ void User::createPost(const std::string& postTitle, const std::string& url, int 
 }
 
 void User::modifyNthPost(const std::string& newTitle, int n) {
-	Node<std::unique_ptr<Post>>* post = userPosts.findKthItem(n);
+	Node<std::shared_ptr<Post>>* post = userPosts.findKthItem(n);
 
 }
 

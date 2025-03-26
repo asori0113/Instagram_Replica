@@ -16,6 +16,37 @@ User::User(const std::string& name, const std::string& emailAdd, const std::stri
 
 }
 
+User::User(const User& other) { 
+
+	username = other.username;
+	email = other.email;
+	currentPass = other.currentPass;
+	bio = other.bio;
+	profilePicturePath = other.profilePicturePath;
+	postCount = other.userPosts.getCurrentSize();
+
+	
+	userPosts.clear();
+	int index = 1;
+
+	//This block of code will copy each post from other to this user. This assumes other's post list is not empty.
+	
+
+	//Move first post of other user to this user.
+	std::unique_ptr<Post> otherPost = std::move(other.userPosts.findKthItem(index)->getItem());
+	userPosts.add(std::move(otherPost));
+	
+	//Move each post. not sure if this works as intended
+	while (!other.userPosts.isEmpty()) {
+		otherPost = std::move(other.userPosts.findKthItem(index)->getItem());
+		userPosts.append(std::move(otherPost));
+		index++;
+	}
+
+	
+	
+}
+
 int User::getPostCount() {
 	return postCount;
 }

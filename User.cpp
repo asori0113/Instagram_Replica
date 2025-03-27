@@ -30,10 +30,12 @@ User::User(const User& other) {
 	//This block of code will copy each post from other to this user. This assumes other's post list is not empty.
 	int index = 1;
 	postCount = other.userPosts.getCurrentSize();
-
+	
 	//Copy each post, starting from head. 
+
+	//std::unique_ptr<Post> newMove = std::make_unique<Post>(&(other.userPosts.findKthItem(index)->getItem()));
 	while (index <= postCount ) {
-		userPosts.append(other.userPosts.findKthItem(index)->getItem());
+		userPosts.append((other.userPosts.findKthItem(index)->getItem()));
 		index++;
 	}
 
@@ -106,12 +108,12 @@ void User::createPost(const std::string& postTitle, const std::string& url, int 
 
 	//Add to usersPost if empty, append otherwise.
 	if (userPosts.isEmpty()) {
-		userPosts.add(std::move(newPost));
+		userPosts.add((newPost));
 		postCount++;
 	}
 
 	else {
-		userPosts.append(std::move(newPost));
+		userPosts.append((newPost));
 		postCount++;
 	}
 }
@@ -123,7 +125,6 @@ void User::modifyNthPost(const std::string& newTitle, int n) {
 
 
 void User::deletePost(int n) {
-	userPosts.findKthItem(n)->setItem(nullptr);
 	userPosts.remove(userPosts.findKthItem(n)->getItem());
 	postCount--;
 	

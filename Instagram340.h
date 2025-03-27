@@ -9,7 +9,7 @@
 // It should allow clients to add users and retrieve a user from the list
 class Instagram340 {
 	private:
-		LinkedBag<std::unique_ptr<User>> users;
+		LinkedBag<User> users;
 
 	public:
 		Instagram340();

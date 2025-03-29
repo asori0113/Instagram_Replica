@@ -23,23 +23,22 @@ User::User(const User& other) {
 	currentPass = other.currentPass;
 	bio = other.bio;
 	profilePicturePath = other.profilePicturePath;
+	
+	if (!(other.userPosts.isEmpty())) {
 
-	
 	userPosts.clear();
-	
-	//This block of code will copy each post from other to this user. This assumes other's post list is not empty.
-	int index = 1;
 	postCount = other.userPosts.getCurrentSize();
 	
 	//Copy each post, starting from head. 
+	auto post = std::make_shared<Post>(*(other.userPosts.findKthItem(1)->getItem()));
+	userPosts.add(post);
 
-	//std::unique_ptr<Post> newMove = std::make_unique<Post>(&(other.userPosts.findKthItem(index)->getItem()));
-	while (index <= postCount ) {
-		userPosts.append((other.userPosts.findKthItem(index)->getItem()));
-		index++;
+	for (int postNum = 2; postNum <= postCount; ++postNum) {
+		auto post = std::make_shared<Post>(*(other.userPosts.findKthItem(postNum)->getItem()));
+		userPosts.append(post);
 	}
 
-	
+	}
 	
 }
 
@@ -116,6 +115,8 @@ void User::createPost(const std::string& postTitle, const std::string& url, int 
 		userPosts.append((newPost));
 		postCount++;
 	}
+
+	newPost = NULL;
 }
 
 void User::modifyNthPost(const std::string& newTitle, int n) {

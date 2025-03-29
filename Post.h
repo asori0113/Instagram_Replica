@@ -24,6 +24,7 @@ private:
 	
 public:
 	virtual ~Post();
+	Post::Post(const Post& post2);
 	Post();
 	Post(std::string postTitle, std::string url, int duration);
 	bool operator==(const Post& otherPost) const;

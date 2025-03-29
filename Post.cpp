@@ -9,6 +9,10 @@ Post::~Post() {
 
 Post::Post() : title(""), timeStamp(-1), numLikes(-1), url(""), postDuration(-1) {} // default constructor
 
+Post::Post(const Post& post2) : title(post2.title), url(post2.url), postDuration(post2.postDuration) {
+
+}
+
 // Main constructor to use. Initializes title, url, likes, postNum, and duration. Sets time stamp upon instantiation. 
 Post::Post(std::string postTitle, std::string postURL, int duration) : title(postTitle), url(postURL), postDuration(duration)
 {

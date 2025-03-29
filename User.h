@@ -7,7 +7,7 @@
 class User {
 private:
     //LinkedBag contains Post pointers to enable polymorphism.
-    LinkedBag<Post*> userPosts;
+    LinkedBag<std::unique_ptr<Post>> userPosts;
 
     std::string username;
     std::string currentPass;
@@ -29,7 +29,6 @@ public:
     void createPost(const std::string& postTitle, const std::string& url, int duration, bool isReel);
     void modifyNthPost(const std::string& newTitle, int n);
     void deletePost(int n);
-
     int getPostCount();
     bool operator==(const User& otherUser) const;
 

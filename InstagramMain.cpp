@@ -142,6 +142,26 @@ void displayUserManu(User& user) {
 			break;
 		}
 
+		case 8: {
+			int k;
+			string newTitle;
+
+			cout << "Which post would you like to edit? Enter the post number: (e.g Enter '1' for the 1st post) \n";
+			cin >> k;
+
+			cout << "What would you like to name it? ";
+			cin >> newTitle;
+
+			while (k > user.getPostCount() || k < 1) {
+				cout << "Error: You only have " << user.getPostCount() << " post(s)." << "Please enter another number.\n";
+				cin >> k;
+
+			}
+			
+			user.modifyNthPost(newTitle, k);
+			cout << "Post has been edited \n";
+		}
+
 		case 0: {
 			cout << "Logging you out." << endl;
 			break;

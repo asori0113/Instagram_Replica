@@ -1,14 +1,24 @@
 #include "User.h"
 #include <string>
 #include <iostream>
+#include <memory>
 
 // TO DO: function implementations
 User::User() : username(""), currentPass(""), email(""), profilePicturePath(""), postCount(0) {
 
 }
-User::~User() {
 
-	
+User::~User() {
+	userPosts.clear();
+}
+
+
+User::User(const User& other) : username(other.username), currentPass(other.currentPass), email(other.email), profilePicturePath(other.profilePicturePath), bio(other.bio), postCount(other.postCount) {
+	int size = other.userPosts.getCurrentSize(); // Get the size of the linked bag
+	for (int i = 0; i < size; ++i) {
+		auto post = std::make_unique<Post>(other.userPosts.findKthItem(i)); // Assuming findKthItem(i) retrieves the element at index i
+		userPosts.append(post); // Copy post to the new userPosts bag
+	}
 }
 
 User::User(const std::string& name, const std::string& emailAdd, const std::string& password, const std::string& bioStr, const std::string& profilePicture) : username(name), email(emailAdd), currentPass(password), bio(bioStr), profilePicturePath(profilePicture), postCount(0) {
@@ -37,7 +47,7 @@ void User::displayPosts() {
 	if (!userPosts.isEmpty()) {
 
 		//Set postNode to headPtr
-		Node<Post*>* postNode = userPosts.findKthItem(1);
+		Node<std::unique_ptr<Post>>* postNode = userPosts.findKthItem(1);
 
 		// Iterate through bag, calling Post's display until reach the end
 		while (postNode != NULL) {
@@ -53,7 +63,7 @@ void User::displayPosts() {
 }
 
 void User::displayNthPost(int n) {
-	Node<Post*>* post = userPosts.findKthItem(n);
+	Node<std::unique_ptr<Post>>* post = userPosts.findKthItem(n);
 
 	if (post != NULL) {
 		post->getItem()->display();
@@ -66,31 +76,31 @@ void User::displayNthPost(int n) {
 }
 
 void User::createPost(const std::string& postTitle, const std::string& url, int duration, bool isReel) {
-	Post* newPost = nullptr;
+	std::unique_ptr<Post> newPost;
 
 	//Check whether reel or story
 	if (isReel) {
-		newPost = new Reel(postTitle, url, duration);
+		newPost = std::make_unique<Reel>(postTitle, url, duration);
 	}
 	else {
-		newPost = new Story(postTitle, url, duration);
+		newPost = std::make_unique<Story>(postTitle, url, duration);
 	}
 
 
 	//Add to usersPost if empty, append otherwise.
 	if (userPosts.isEmpty()) {
-		userPosts.add(newPost);
+		userPosts.add(std::move(newPost));
 		postCount++;
 	}
 
 	else {
-		userPosts.append(newPost);
+		userPosts.append(std::move(newPost));
 		postCount++;
 	}
 }
 
 void User::modifyNthPost(const std::string& newTitle, int n) {
-	Node<Post*>* post = userPosts.findKthItem(n);
+	Node<std::unique_ptr<Post>>* post = userPosts.findKthItem(n);
 	post->getItem()->editTitle(newTitle);
 	post->getItem()->editPost();
 
@@ -103,6 +113,7 @@ void User::deletePost(int n) {
 	postCount--;
 	
 }
+
 
 std::string User::getUsername() {
 	return username;

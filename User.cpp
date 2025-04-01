@@ -7,43 +7,34 @@
 User::User() : username(""), currentPass(""), email(""), profilePicturePath(""), postCount(0) {
 
 }
+
 User::~User() {
 	User::userPosts.clear();
-	
 }
 
 User::User(const std::string& name, const std::string& emailAdd, const std::string& password, const std::string& bioStr, const std::string& profilePicture) : username(name), email(emailAdd), currentPass(password), bio(bioStr), profilePicturePath(profilePicture), postCount(0) {
 
 }
 
-User::User(const User& other) { 
-
-	username = other.username;
-	email = other.email;
-	currentPass = other.currentPass;
-	bio = other.bio;
-	profilePicturePath = other.profilePicturePath;
+User::User(const User& otherUser) : username(otherUser.getUsername()), email(otherUser.getEmail()), currentPass(otherUser.getPass()), bio(otherUser.getBio()), profilePicturePath(otherUser.getProfilePicture()) {
+	postCount = otherUser.userPosts.getCurrentSize();
 	
-	if (!(other.userPosts.isEmpty())) {
+	/*
+	The suggestion of a clone() function comes from a prompt to chatGPT about copy constructors and polymorphism.
 
-	userPosts.clear();
-	postCount = other.userPosts.getCurrentSize();
+	We encounter a particular problem when copying a polymorphic object: data slicing. When we dereference a derived object and store its information in a base class container we lose the data from derived class.
 	
-	//Copy each post, starting from head. 
-	auto post = std::make_shared<Post>(*(other.userPosts.findKthItem(1)->getItem()));
-	userPosts.add(post);
+	clone() solves this by dynamically allocating memory for a copy of the object that called the aforementioned method and returning a pointer to it. 
+
+	*/
+
+	//No need for make_shared since clone() takes care of it.
+
+	userPosts.add(otherUser.userPosts.findKthItem(1)->getItem().get()->clone());
 
 	for (int postNum = 2; postNum <= postCount; ++postNum) {
-		auto post = std::make_shared<Post>(*(other.userPosts.findKthItem(postNum)->getItem()));
-		userPosts.append(post);
+		userPosts.append(otherUser.userPosts.findKthItem(postNum)->getItem().get()->clone());
 	}
-
-	}
-	
-}
-
-int User::getPostCount() {
-	return postCount;
 }
 
 void User::displayProfile() {
@@ -67,7 +58,7 @@ void User::displayPosts() {
 		Node<std::shared_ptr<Post>>* postNode = userPosts.findKthItem(1);
 
 		// Iterate through bag, calling Post's display until reach the end
-		while (postNode != NULL) {
+		while (postNode != NULL) {	
 			postNode->getItem()->display();
 			postNode = postNode->getNext();
 		}
@@ -130,17 +121,24 @@ void User::deletePost(int n) {
 	postCount--;
 	
 }
+std::string User::getEmail() const {
+	return email;
+}
 
-std::string User::getUsername() {
+std::string User::getUsername() const {
 	return username;
 }
 
-std::string User::getBio() {
+std::string User::getBio() const {
 	return bio;
 }
 
-std::string User::getProfilePicture() {
+std::string User::getProfilePicture() const {
 	return profilePicturePath;
+}
+
+int User::getPostCount() const {
+	return postCount;
 }
 
 

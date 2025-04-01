@@ -10,6 +10,7 @@
 
 #include <string>
 #include <chrono>
+#include <memory>
 
 class Post {
 
@@ -23,11 +24,10 @@ private:
 
 	
 public:
-	virtual ~Post();
-	Post::Post(const Post& post2);
 	Post();
 	Post(std::string postTitle, std::string url, int duration);
 	bool operator==(const Post& otherPost) const;
+	virtual std::shared_ptr<Post> clone() const;
 	virtual void display();
 	virtual void editPost();
 
@@ -41,11 +41,11 @@ public:
 
 	// Getters
 
-	std::string getTitle();
-	std::string getURL();
-	int getTimeStamp();
-	int getNumLikes();
-	int getDuration();
+	std::string getTitle() const;
+	std::string getURL() const;
+	int getTimeStamp() const;
+	int getNumLikes() const;
+	int getDuration() const;
 	
 	
 };

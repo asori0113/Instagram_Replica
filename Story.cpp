@@ -10,25 +10,43 @@ Story::Story() : maxDuration(60) {
 // Main constructor. Calls parent class to initialize title, url, likes, postNum, duration. Initializes maxDuration to 60. 
 Story::Story(std::string postTitle, std::string postURL, int duration) : Post(postTitle, postURL, duration), maxDuration(60)
 {
+	bool invalid = (duration > maxDuration) || (duration < 1);
 	//If duration exceeds maxDuration, keep prompting for a new duration. 
-	while ((duration > maxDuration) || (duration < 1)) {
-		std::cout << "===========================\n\n";
-		std::cout << "Error: Video duration must be at most 90 seconds. Please input new video duration: \n";
-		std::cin >> duration;
+	if (invalid) {
+		int newDuration;
 
+		while (invalid) {
+			std::cout << "===========================\n\n";
+			std::cout << "Error: Video duration must be at most 60 seconds. Please input new video duration: \n";
+			std::cin >> newDuration;
+
+			invalid = (newDuration > maxDuration) || (newDuration < 1);
+
+		}
+
+		Post::setDuration(newDuration);
 	}
-
-		Post::setDuration(duration);
-	
 
 	expirationTime = computeTimeToExpiration();
 }
 
-int Story::getExpirationTime() {
-	return expirationTime;
+Story::Story(const Story& otherStory):Post(otherStory.getTitle(), otherStory.getURL(), otherStory.getDuration()), maxDuration(60), expirationTime(otherStory.getExpirationTime())  {
+
 }
 
-// Please check whether  editPost() and display() actually override the virtual methods in Post class.
+//Polymorphic "Copy Constructor" - Dynamically allocates a new copy of this Story object, using the information of itself to instantiate it. 
+// When Post's clone() is invoked, the program should know it should go here (polymorphism) when clone is invoked from a Post shared ptr. 
+// Returns the newly allocated Story object stored in a shared ptr of Post obj. Naturally, we end up needing to implement the copy constructor of Story since we are passing the object pointed to by "this". 
+//Not sure whether this should return a smart pointer or just raw pointer. check later.
+std::shared_ptr<Post> Story::clone() const
+{
+	return std::make_shared<Story>(*this);
+}
+
+
+int Story::getExpirationTime() const {
+	return expirationTime;
+}
 void Story::editPost() {
 	std::cout << "EDITING POST\n";
 	std::cout << "*****Filter, music, stickers and effects have been added to the post." << "\n";

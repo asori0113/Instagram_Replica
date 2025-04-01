@@ -1,5 +1,3 @@
-
-
 #ifndef STORY_
 #define STORY_
 
@@ -14,10 +12,13 @@ private:
 
 public:
 	Story();
+	Story(const Story& otherStory);
+	
 	Story(std::string postTitle, std::string postURL, int duration);
-	int getExpirationTime();
+	int getExpirationTime() const;
 
 	// Override keyword is a failsafe. 
+	std::shared_ptr<Post> clone() const override;
 	void display() override;
 	void editPost() override;
 

@@ -16,12 +16,17 @@ private:
     std::string bio;
     int postCount;
 
+    std::string getPass() const;
+    std::string getEmail() const;
+    int getPostCount() const;
+
+
 public:
 
     User();
     ~User();
     User(const std::string& name, const std::string& emailAdd, const std::string& password, const std::string& bioStr, const std::string& profilePicture);
-    User(const User& other);
+    User(const User& otherUser);
 
     void displayProfile();
     void modifyPassword(const std::string& newPass);
@@ -31,12 +36,12 @@ public:
     void modifyNthPost(const std::string& newTitle, int n);
     void deletePost(int n);
 
-    int getPostCount();
+    
     bool operator==(const User& otherUser) const;
 
-    std::string getUsername();
-    std::string getProfilePicture();
-    std::string getBio();
+    std::string getUsername() const;
+    std::string getProfilePicture() const;
+    std::string getBio() const;
 
 
 };

@@ -3,6 +3,17 @@
 #include <cstdlib>   
 #include <ctime> 
 
+Post::~Post() {
+
+}
+
+
+
+Post::Post(const Post& post2) : title(post2.title), url(post2.url), postDuration(post2.postDuration) {
+
+}
+
+
 Post::Post() : title(""), timeStamp(-1), numLikes(-1), url(""), postDuration(-1) {} // default constructor
 
 // Main constructor to use. Initializes title, url, likes, postNum, and duration. Sets time stamp upon instantiation. 
@@ -13,6 +24,7 @@ Post::Post(std::string postTitle, std::string postURL, int duration) : title(pos
 	timeStamp = std::chrono::duration_cast<std::chrono::seconds>(time_stamp.time_since_epoch()).count();
 	setNumLikes();
 }
+
 
 // Operator overloading implementation
 bool Post::operator==(const Post& otherPost) const {

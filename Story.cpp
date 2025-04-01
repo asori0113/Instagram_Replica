@@ -2,9 +2,27 @@
 #include <string>
 #include <iostream>
 
+//Default Constructor
 Story::Story() : maxDuration(60) {
 	expirationTime = computeTimeToExpiration();
 
+}
+//Copy Constructor
+
+
+Story::Story(const Story& otherStory) :Post(otherStory.getTitle(), otherStory.getURL(), otherStory.getDuration()), maxDuration(60), expirationTime(otherStory.getExpirationTime()) {
+
+}
+
+/*
+	Clone() is a "polymorphic" copy constructor. Dynamically allocates a new copy of this object, using the information of itself to instantiate it.
+	Returns the newly allocated Story object managed by a shared ptr of type Post. 
+	Naturally, we end up needing to implement the copy constructor of Story since we are passing the object pointed to by "this". 
+*/
+
+std::shared_ptr<Post> Story::clone() const
+{
+	return std::make_shared<Story>(*this);
 }
 
 // Main constructor. Calls parent class to initialize title, url, likes, postNum, duration. Initializes maxDuration to 60. 
@@ -30,18 +48,7 @@ Story::Story(std::string postTitle, std::string postURL, int duration) : Post(po
 	expirationTime = computeTimeToExpiration();
 }
 
-Story::Story(const Story& otherStory):Post(otherStory.getTitle(), otherStory.getURL(), otherStory.getDuration()), maxDuration(60), expirationTime(otherStory.getExpirationTime())  {
 
-}
-
-//Polymorphic "Copy Constructor" - Dynamically allocates a new copy of this Story object, using the information of itself to instantiate it. 
-// When Post's clone() is invoked, the program should know it should go here (polymorphism) when clone is invoked from a Post shared ptr. 
-// Returns the newly allocated Story object stored in a shared ptr of Post obj. Naturally, we end up needing to implement the copy constructor of Story since we are passing the object pointed to by "this". 
-//Not sure whether this should return a smart pointer or just raw pointer. check later.
-std::shared_ptr<Post> Story::clone() const
-{
-	return std::make_shared<Story>(*this);
-}
 
 
 int Story::getExpirationTime() const {

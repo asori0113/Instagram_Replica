@@ -18,7 +18,7 @@ private:
 
     std::string getPass() const;
     std::string getEmail() const;
-    int getPostCount() const;
+   
 
 
 public:
@@ -38,7 +38,7 @@ public:
 
     
     bool operator==(const User& otherUser) const;
-
+    int getPostCount() const;
     std::string getUsername() const;
     std::string getProfilePicture() const;
     std::string getBio() const;

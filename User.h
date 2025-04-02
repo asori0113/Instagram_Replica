@@ -27,7 +27,7 @@ public:
     User(const std::string& name, const std::string& emailAdd, const std::string& password, const std::string& bioStr, const std::string& profilePicture);
     User& operator=(const User& other);
    
-
+    virtual std::shared_ptr<User> clone() const;
     void displayProfile();
     void modifyPassword(const std::string& newPass);
     void displayPosts();

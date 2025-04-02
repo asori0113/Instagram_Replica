@@ -2,14 +2,16 @@
 #include <string>
 #include <iostream>
 
+Story::~Story() {
+
+}
+
 //Default Constructor
 Story::Story() : maxDuration(60) {
 	expirationTime = computeTimeToExpiration();
 
 }
 //Copy Constructor
-
-
 Story::Story(const Story& otherStory) :Post(otherStory.getTitle(), otherStory.getURL(), otherStory.getDuration()), maxDuration(60), expirationTime(otherStory.getExpirationTime()) {
 
 }

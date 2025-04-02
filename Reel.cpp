@@ -2,6 +2,10 @@
 #include <string>
 #include <iostream>
 
+Reel::~Reel() {
+
+}
+
 //Default Constructor
 Reel::Reel() : maxDuration(90) {
 }

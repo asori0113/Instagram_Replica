@@ -11,6 +11,7 @@ private:
 	int computeTimeToExpiration();
 
 public:
+	~Story() override;
 	Story();
 	Story(const Story& otherStory);
 	

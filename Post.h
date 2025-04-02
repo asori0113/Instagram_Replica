@@ -18,7 +18,7 @@ private:
 
 	
 public:
-	~Post();
+	virtual ~Post();
 	Post();
 	Post(const Post& post2);
 	Post(std::string postTitle, std::string url, int duration);

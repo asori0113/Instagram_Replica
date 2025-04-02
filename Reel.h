@@ -7,6 +7,7 @@ class Reel : public Post {
 private:
     int maxDuration;
 public:
+    ~Reel() override;
     Reel();
     Reel(const Reel& otherReel);
     std::shared_ptr<Post> clone() const override;

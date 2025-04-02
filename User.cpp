@@ -3,7 +3,6 @@
 #include <iostream>
 #include <memory>
 
-// TO DO: function implementations
 User::User() : username(""), currentPass(""), email(""), profilePicturePath(""), postCount(0) {
 
 }
@@ -17,8 +16,6 @@ User::User(const std::string& name, const std::string& emailAdd, const std::stri
 }
 
 User::User(const User& otherUser) : username(otherUser.getUsername()), email(otherUser.getEmail()), currentPass(otherUser.getPass()), bio(otherUser.getBio()), profilePicturePath(otherUser.getProfilePicture()) {
-	postCount = otherUser.userPosts.getCurrentSize();
-	
 	/*
 	The suggestion of a clone() function comes from a prompt to chatGPT about copy constructors and polymorphism.
 
@@ -28,12 +25,17 @@ User::User(const User& otherUser) : username(otherUser.getUsername()), email(oth
 
 	*/
 
-	//No need for make_shared since clone() takes care of it.
+	if (!otherUser.userPosts.isEmpty()) {
+		//No need for make_shared since clone() takes care of it.
+		userPosts.add(otherUser.userPosts.findKthItem(1)->getItem().get()->clone());
 
-	userPosts.add(otherUser.userPosts.findKthItem(1)->getItem().get()->clone());
+		for (int postNum = 2; postNum <= postCount; ++postNum) {
+			userPosts.append(otherUser.userPosts.findKthItem(postNum)->getItem().get()->clone());
+		}
 
-	for (int postNum = 2; postNum <= postCount; ++postNum) {
-		userPosts.append(otherUser.userPosts.findKthItem(postNum)->getItem().get()->clone());
+		postCount = otherUser.userPosts.getCurrentSize();
+
+
 	}
 }
 
@@ -110,9 +112,13 @@ void User::createPost(const std::string& postTitle, const std::string& url, int 
 	newPost = NULL;
 }
 
-void User::modifyNthPost(const std::string& newTitle, int n) {
-	Node<std::shared_ptr<Post>>* post = userPosts.findKthItem(n);
+void User::modifyNthPost(int n) {
+	userPosts.findKthItem(n)->getItem().get()->editPost();
 
+}
+
+void User::editNthPost(const std::string& newTitle, int n) {
+	userPosts.findKthItem(n)->getItem().get()->editTitle(newTitle);
 }
 
 
@@ -137,16 +143,14 @@ std::string User::getProfilePicture() const {
 	return profilePicturePath;
 }
 
+std::string User::getPass() const {
+	return currentPass;
+}
 int User::getPostCount() const {
 	return postCount;
 }
 
 
-
-// This is a function that allows you to compare two users based on their username and email address.  
-// You may directly include it in your class definition. 
-// You don't need to modify it but will have to put it inside your class. 
-// Operator == overloading function prototype: 
 
 // Operator == overloading implementation
 bool User::operator==(const User& otherUser) const {

@@ -4,13 +4,13 @@
 #include <ctime> 
 
 Post::~Post() {
-
 }
 
 
 
 Post::Post(const Post& post2) : title(post2.title), url(post2.url), postDuration(post2.postDuration) {
-
+	timeStamp = post2.getTimeStamp();
+	numLikes = post2.getNumLikes();
 }
 
 

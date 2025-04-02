@@ -33,7 +33,8 @@ public:
     void displayPosts();
     void displayNthPost(int n);
     void createPost(const std::string& postTitle, const std::string& url, int duration, bool isReel);
-    void modifyNthPost(const std::string& newTitle, int n);
+    void modifyNthPost(int n);
+    void editNthPost(const std::string& newTitle, int n);
     void deletePost(int n);
 
     

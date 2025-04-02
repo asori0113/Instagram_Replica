@@ -18,7 +18,9 @@ private:
 
 	
 public:
+	~Post();
 	Post();
+	Post(const Post& post2);
 	Post(std::string postTitle, std::string url, int duration);
 	bool operator==(const Post& otherPost) const;
 	virtual std::shared_ptr<Post> clone() const;

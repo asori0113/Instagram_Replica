@@ -1,11 +1,11 @@
-// TO DO: Implementation of Instagram340 functions
+
 #include <iostream>
 #include <string>
 #include "Instagram340.h"
 #include <memory>
 
 
-Instagram340::Instagram340() { // After discussing, we found that there is nothing we can put in the default constructor (right?????). There is nothing to initialize.
+Instagram340::Instagram340() {
 
 }
 

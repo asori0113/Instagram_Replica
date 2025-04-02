@@ -38,11 +38,11 @@ User& User::operator=(const User& other) {
 
 	userPosts.add(other.userPosts.findKthItem(1)->getItem().get()->clone());
 
-	for (int postNum = 2; postNum <= postCount; ++postNum) {
+	for (int postNum = 2; postNum <= other.userPosts.getCurrentSize(); ++postNum) {
 		userPosts.append(other.userPosts.findKthItem(postNum)->getItem().get()->clone());
 	}
 
-	postCount = other.userPosts.getCurrentSize();
+	
 
     std::string username = other.username;
     std::string currentPass = other.currentPass;
@@ -51,6 +51,10 @@ User& User::operator=(const User& other) {
     std::string bio = other.bio;
 
 	return *this;
+}
+
+std::shared_ptr<User> User::clone() const{
+	return NULL;
 }
 
 int User::getPostCount() {

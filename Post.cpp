@@ -31,7 +31,11 @@ Post& Post::operator=(const Post& other){
 		return *this;
 	}
 
-	au
+	std::string title = other.title;
+	std::string url = other.url;
+	int timeStamp = other.timeStamp;
+	int numLikes = other.numLikes;
+	int postDuration = other.postDuration;
 
 	return *this;
 	

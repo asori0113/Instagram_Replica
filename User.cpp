@@ -29,6 +29,30 @@ User::User(const User& other) : username(other.username), email(other.email), cu
 	}
 }
 
+User& User::operator=(const User& other) {
+	if (this == &other) {
+		return *this;
+	}
+
+	userPosts.clear();
+
+	userPosts.add(other.userPosts.findKthItem(1)->getItem().get()->clone());
+
+	for (int postNum = 2; postNum <= postCount; ++postNum) {
+		userPosts.append(other.userPosts.findKthItem(postNum)->getItem().get()->clone());
+	}
+
+	postCount = other.userPosts.getCurrentSize();
+
+    std::string username = other.username;
+    std::string currentPass = other.currentPass;
+    std::string email = other.email;
+    std::string profilePicturePath = other.profilePicturePath;
+    std::string bio = other.bio;
+
+	return *this;
+}
+
 int User::getPostCount() {
 	return postCount;
 }

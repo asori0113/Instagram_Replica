@@ -25,6 +25,7 @@ public:
     ~User();
     User(const User& other);
     User(const std::string& name, const std::string& emailAdd, const std::string& password, const std::string& bioStr, const std::string& profilePicture);
+    User& operator=(const User& other);
    
 
     void displayProfile();

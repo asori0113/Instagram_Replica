@@ -44,17 +44,13 @@ User& User::operator=(const User& other) {
 
 	
 
-    std::string username = other.username;
-    std::string currentPass = other.currentPass;
-    std::string email = other.email;
-    std::string profilePicturePath = other.profilePicturePath;
-    std::string bio = other.bio;
+    username = other.username;
+    currentPass = other.currentPass;
+    email = other.email;
+    profilePicturePath = other.profilePicturePath;
+    bio = other.bio;
 
 	return *this;
-}
-
-std::shared_ptr<User> User::clone() const{
-	return NULL;
 }
 
 int User::getPostCount() {

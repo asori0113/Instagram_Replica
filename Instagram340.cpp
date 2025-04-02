@@ -13,11 +13,11 @@ Instagram340::Instagram340(const Instagram340& other) {
 	int size = other.users.getCurrentSize();
 
 	auto user = std::make_shared<User>(other.users.findKthItem(1)->getItem().get());
-	users.add(std::move(user));
+	users.add(user);
 
 	for (int i = 0; i < size; i++) {
 		auto user = std::make_shared<User>(other.users.findKthItem(i)->getItem().get());
-		users.append(std::move(user));
+		users.append(user);
 	}
 }
 
@@ -28,10 +28,10 @@ Instagram340& Instagram340::operator=(const Instagram340& other) {
 
 	users.clear();
 
-	users.add(other.users.findKthItem(1)->getItem().get()->clone());
+	users.add(std::make_shared<User>(other.users.findKthItem(1)->getItem().get()));
 
 	for (int usersNum = 2; usersNum <= other.users.getCurrentSize(); ++usersNum) {
-		users.append(other.users.findKthItem(usersNum)->getItem().get()->clone());
+		users.append(std::make_shared<User>(other.users.findKthItem(usersNum)->getItem().get()));
 	}
 
 	return *this;
@@ -58,7 +58,7 @@ void Instagram340::createUser(const std::string& username, const std::string& em
 }
 
 User Instagram340::getUser(const int& indexK){
-	Node<std::shared_ptr<User>>* userNode = users.findKthItem(indexK);
+	Node<std::shared_ptr<User> >* userNode = users.findKthItem(indexK);
 
 	if (userNode != NULL) {
 		return *userNode->getItem();

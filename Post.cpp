@@ -3,11 +3,19 @@
 #include <cstdlib>   
 #include <ctime> 
 
-Post::~Post() {
+
+
+Post::Post() : title(""), timeStamp(-1), numLikes(-1), url(""), postDuration(-1) {} // default constructor
+
+Post::~Post() {}
+
+Post::Post(const Post& other) :  title(other.title), timeStamp(other.timeStamp), numLikes(other.numLikes), url(other.url), postDuration(other.postDuration){
 
 }
 
-Post::Post() : title(""), timeStamp(-1), numLikes(-1), url(""), postDuration(-1) {} // default constructor
+std::shared_ptr<Post> Post::clone() const{
+	return NULL;
+}
 
 // Main constructor to use. Initializes title, url, likes, postNum, and duration. Sets time stamp upon instantiation. 
 Post::Post(std::string postTitle, std::string postURL, int duration) : title(postTitle), url(postURL), postDuration(duration)
@@ -18,9 +26,20 @@ Post::Post(std::string postTitle, std::string postURL, int duration) : title(pos
 	setNumLikes();
 }
 
+Post& Post::operator=(const Post& other){
+	if (this == &other) {
+		return *this;
+	}
+
+	au
+
+	return *this;
+	
+}
+
 // Operator overloading implementation
-bool Post::operator==(const Post& otherPost) const {
-	return Post::title == otherPost.title;
+bool Post::operator==(const Post& other) const {
+	return Post::title == other.title;
 }
 
 void Post::display() {

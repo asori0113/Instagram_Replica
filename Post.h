@@ -23,10 +23,14 @@ private:
 
 	
 public:
-	virtual ~Post();
+	
 	Post();
+	Post(const Post& other);
+	virtual ~Post();
 	Post(std::string postTitle, std::string url, int duration);
-	bool operator==(const Post& otherPost) const;
+	Post& operator=(const Post& other);
+	bool operator==(const Post& other) const;
+	virtual std::shared_ptr<Post> clone() const;
 	virtual void display();
 	virtual void editPost();
 

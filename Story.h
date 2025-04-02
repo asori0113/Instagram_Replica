@@ -12,6 +12,7 @@ private:
 
 public:
 	Story();
+	~Story() override;
 	Story(std::string postTitle, std::string postURL, int duration);
 	int getExpirationTime();
 

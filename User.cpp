@@ -7,22 +7,26 @@
 User::User() : username(""), currentPass(""), email(""), profilePicturePath(""), postCount(0) {
 
 }
-
 User::~User() {
-	userPosts.clear();
-}
-
-
-User::User(const User& other) : username(other.username), currentPass(other.currentPass), email(other.email), profilePicturePath(other.profilePicturePath), bio(other.bio), postCount(other.postCount) {
-	int size = other.userPosts.getCurrentSize(); // Get the size of the linked bag
-	for (int i = 0; i < size; ++i) {
-		auto post = std::make_unique<Post>(other.userPosts.findKthItem(i)); // Assuming findKthItem(i) retrieves the element at index i
-		userPosts.append(post); // Copy post to the new userPosts bag
-	}
+	User::userPosts.clear();
+	
 }
 
 User::User(const std::string& name, const std::string& emailAdd, const std::string& password, const std::string& bioStr, const std::string& profilePicture) : username(name), email(emailAdd), currentPass(password), bio(bioStr), profilePicturePath(profilePicture), postCount(0) {
 
+}
+
+User::User(const User& other) : username(other.username), email(other.email), currentPass(other.currentPass), bio(other.bio), profilePicturePath(other.profilePicturePath){ 
+	if (!(other.userPosts.isEmpty())) {
+		//No need for make_shared since clone() takes care of it.
+		userPosts.add(other.userPosts.findKthItem(1)->getItem().get()->clone());
+
+		for (int postNum = 2; postNum <= postCount; ++postNum) {
+			userPosts.append(other.userPosts.findKthItem(postNum)->getItem().get()->clone());
+		}
+
+		postCount = other.userPosts.getCurrentSize();
+	}
 }
 
 int User::getPostCount() {
@@ -47,7 +51,7 @@ void User::displayPosts() {
 	if (!userPosts.isEmpty()) {
 
 		//Set postNode to headPtr
-		Node<std::unique_ptr<Post>>* postNode = userPosts.findKthItem(1);
+		Node<std::shared_ptr<Post> >* postNode = userPosts.findKthItem(1);
 
 		// Iterate through bag, calling Post's display until reach the end
 		while (postNode != NULL) {
@@ -63,7 +67,7 @@ void User::displayPosts() {
 }
 
 void User::displayNthPost(int n) {
-	Node<std::unique_ptr<Post>>* post = userPosts.findKthItem(n);
+	Node<std::shared_ptr<Post> >* post = userPosts.findKthItem(n);
 
 	if (post != NULL) {
 		post->getItem()->display();
@@ -76,47 +80,57 @@ void User::displayNthPost(int n) {
 }
 
 void User::createPost(const std::string& postTitle, const std::string& url, int duration, bool isReel) {
-	std::unique_ptr<Post> newPost;
+	
+	std::shared_ptr<Post> newPost;
 
 	//Check whether reel or story
 	if (isReel) {
-		newPost = std::make_unique<Reel>(postTitle, url, duration);
+		newPost = std::make_shared<Reel>(postTitle, url, duration);
 	}
 	else {
-		newPost = std::make_unique<Story>(postTitle, url, duration);
+		newPost = std::make_shared<Story>(postTitle, url, duration);
 	}
 
 
 	//Add to usersPost if empty, append otherwise.
 	if (userPosts.isEmpty()) {
-		userPosts.add(std::move(newPost));
+		userPosts.add((newPost));
 		postCount++;
 	}
 
 	else {
-		userPosts.append(std::move(newPost));
+		userPosts.append((newPost));
 		postCount++;
 	}
+
+	newPost = NULL;
 }
 
-void User::modifyNthPost(const std::string& newTitle, int n) {
-	Node<std::unique_ptr<Post>>* post = userPosts.findKthItem(n);
-	post->getItem()->editTitle(newTitle);
-	post->getItem()->editPost();
+void User::modifyNthPost(int n) {
+	userPosts.findKthItem(n)->getItem().get()->editPost();
+}
 
+void User::editNthPost(const std::string& newTitle, int n) {
+	userPosts.findKthItem(n)->getItem().get()->editTitle(newTitle);
 }
 
 
 void User::deletePost(int n) {
-	userPosts.findKthItem(n)->setItem(nullptr);
 	userPosts.remove(userPosts.findKthItem(n)->getItem());
 	postCount--;
 	
 }
 
-
 std::string User::getUsername() {
 	return username;
+}
+
+std::string User::getPass() const {
+	return currentPass;
+}
+
+std::string User::getEmail() const {
+	return email;
 }
 
 std::string User::getBio() {

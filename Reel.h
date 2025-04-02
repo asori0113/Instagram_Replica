@@ -9,6 +9,7 @@ private:
     int maxDuration;
 public:
     Reel();
+    ~Reel() override;
     Reel(std::string postTitle, std::string postURL, int duration);
     void editPost() override;
 };

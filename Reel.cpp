@@ -6,6 +6,10 @@
 Reel::Reel() : maxDuration(90) {
 }
 
+Reel::~Reel() {
+	
+}
+
 Reel::Reel(std::string postTitle, std::string postURL, int duration) : Post(postTitle, postURL, duration), maxDuration(90) {
 		while ((duration > maxDuration) || (duration < 1)) {
 			std::cout << "===========================\n\n";
@@ -16,6 +20,7 @@ Reel::Reel(std::string postTitle, std::string postURL, int duration) : Post(post
 		Post::setDuration(duration);
 
 }
+
 
 void Reel::editPost() {
 	std::cout << "EDITING POST\n";

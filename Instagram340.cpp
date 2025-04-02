@@ -11,9 +11,13 @@ Instagram340::Instagram340() { // After discussing, we found that there is nothi
 
 Instagram340::Instagram340(const Instagram340& other) {
 	int size = other.users.getCurrentSize();
+
+	auto user = std::make_unique<User>(other.users.findKthItem(1)->getItem().get());
+	users.add(std::move(user));
+
 	for (int i = 0; i < size; i++) {
-		auto user = std::make_unique<User>(other.users.findKthItem(i));
-		users.append(user);
+		auto user = std::make_unique<User>(other.users.findKthItem(i)->getItem().get());
+		users.append(std::move(user));
 	}
 }
 

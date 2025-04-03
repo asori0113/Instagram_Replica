@@ -4,7 +4,7 @@
 #include "Instagram340.h"
 #include <memory>
 
-
+ 
 Instagram340::Instagram340() {
 
 }

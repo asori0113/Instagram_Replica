@@ -11,6 +11,26 @@ User::~User() {
 	User::userPosts.clear();
 }
 
+User& User::operator=(const User& other) {
+	if (this != &other) {
+	userPosts.clear();
+
+	userPosts.add(other.userPosts.findKthItem(1)->getItem().get()->clone());
+
+	for (int postNum = 2; postNum <= other.userPosts.getCurrentSize(); ++postNum) {
+		userPosts.append(other.userPosts.findKthItem(postNum)->getItem().get()->clone());
+	}
+
+	username = other.getUsername();
+	currentPass = other.getPass();
+	email = other.getEmail();
+	profilePicturePath = other.getProfilePicture();
+	bio = other.getBio();
+
+	}
+	return *this;
+}
+
 User::User(const std::string& name, const std::string& emailAdd, const std::string& password, const std::string& bioStr, const std::string& profilePicture) : username(name), email(emailAdd), currentPass(password), bio(bioStr), profilePicturePath(profilePicture), postCount(0) {
 
 }

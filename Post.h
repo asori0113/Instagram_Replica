@@ -23,6 +23,7 @@ public:
 	Post(const Post& post2);
 	Post(std::string postTitle, std::string url, int duration);
 	bool operator==(const Post& otherPost) const;
+	Post& operator=(const Post& other);
 	virtual std::shared_ptr<Post> clone() const;
 	virtual void display();
 	virtual void editPost();

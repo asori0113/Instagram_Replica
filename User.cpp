@@ -56,8 +56,6 @@ User::User(const User& otherUser) : username(otherUser.getUsername()), email(oth
 			userPosts.append(otherUser.userPosts.findKthItem(postNum)->getItem().get()->clone());
 		}
 
-		postCount = otherUser.userPosts.getCurrentSize();
-
 
 	}
 }
@@ -124,12 +122,10 @@ void User::createPost(const std::string& postTitle, const std::string& url, int 
 	//Add to usersPost if empty, append otherwise.
 	if (userPosts.isEmpty()) {
 		userPosts.add((newPost));
-		postCount++;
 	}
 
 	else {
 		userPosts.append((newPost));
-		postCount++;
 	}
 
 	newPost = NULL;
@@ -147,7 +143,6 @@ void User::editNthPost(const std::string& newTitle, int n) {
 
 void User::deletePost(int n) {
 	userPosts.remove(userPosts.findKthItem(n)->getItem());
-	postCount--;
 	
 }
 std::string User::getEmail() const {
@@ -170,7 +165,7 @@ std::string User::getPass() const {
 	return currentPass;
 }
 int User::getPostCount() const {
-	return postCount;
+	return userPosts.getCurrentSize();
 }
 
 

@@ -122,31 +122,30 @@ void displayUserManu(User& user) {
 		}
 		case 7: { // Delete Post
 			int k;
-
+			int postCount = user.getPostCount();
 			cout << "Which post would you like to delete? Enter the post number: (e.g Enter '1' for the 1st post) \n";
 			cin >> k;
 
-			while (k > user.getPostCount() || k < 1) {
-				cout << "Error: You only have " << user.getPostCount() << " post(s)." << "Please enter another number.\n";
+			while (k > postCount || k < 1) {
+				cout << "Error: You only have " << postCount << " post(s)." << "Please enter another number.\n";
 				cin >> k;
 
 			}
 
 			user.deletePost(k);
-
 			break;
 		}
 
 		case 8: {
 			int k;
 			string newTitle;
-
+			int postCount = user.getPostCount();
 
 			cout << "Which post would you like to edit? Enter the post number: (e.g Enter '1' for the 1st post) \n";
 			cin >> k;
 
-			while (k > user.getPostCount() || k < 1) {
-				cout << "Error: You only have " << user.getPostCount() << " post(s)." << "Please enter another number.\n";
+			while (k > postCount || k < 1) {
+				cout << "Error: You only have " << postCount << " post(s)." << "Please enter another number.\n";
 				cin >> k;
 
 			}
@@ -177,7 +176,7 @@ int main() {
 	Instagram340 instagram;
 
 	cout << "\n Welcome to Instagram340:" << endl;
-
+/*
 	string username;
 	string email;
 	string password;
@@ -200,7 +199,8 @@ int main() {
 	getline(cin, profilePicture);
 
 	instagram.createUser(username, email, password, bio, profilePicture);
-
+	*/
+	instagram.createUser("user1", "email1", "password1", "biotako", "profile");
 
 	// Retrieve the user 
 	User currentUser = instagram.getUser(1);

@@ -9,6 +9,7 @@ private:
 public:
     ~Reel() override;
     Reel();
+    Reel& operator=(const Reel& other);
     Reel(const Reel& otherReel);
     std::shared_ptr<Post> clone() const override;
     Reel(std::string postTitle, std::string postURL, int duration);

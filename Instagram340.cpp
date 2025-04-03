@@ -4,7 +4,43 @@
 #include "Instagram340.h"
 #include <memory>
 
- 
+/*
+Instagram340::Instagram340(const Instagram340& other) {
+	int size = other.users.getCurrentSize();
+	if (!other.users.isEmpty()) {
+	auto user = User(other.users.findKthItem(1)->getItem());
+	users.add(user);
+	
+	for (int i = 2; i < size; i++) {
+		auto user = User(other.users.findKthItem(i)->getItem());
+		users.append(user);
+	}
+
+	}
+}
+
+Instagram340& Instagram340::operator=(const Instagram340& other) {
+	if (this != &other) {
+	
+
+	users.clear();
+
+	if (!other.users.isEmpty()) {
+
+	users.add(User(other.users.findKthItem(1)->getItem()));
+
+	for (int usersNum = 2; usersNum <= other.users.getCurrentSize(); ++usersNum) {
+		users.append(User(other.users.findKthItem(usersNum)->getItem()));
+	}
+
+	}
+
+	}
+
+	return *this;
+}
+*/
+
 Instagram340::Instagram340() {
 
 }

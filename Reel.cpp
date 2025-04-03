@@ -15,6 +15,17 @@ Reel::Reel(const Reel& otherReel) : Post(otherReel.getTitle(), otherReel.getURL(
 
 }
 
+Reel& Reel::operator=(const Reel& otherReel) {
+	if (this != &otherReel) {
+
+		Post(otherReel.getTitle(), otherReel.getURL(), otherReel.getDuration());
+		maxDuration = 90;
+
+	}
+
+	return *this;
+
+}
 
 //Clone function for polymorphic copying. Basically: Get a clone of this object to be managed by a separate shared pointer.
 

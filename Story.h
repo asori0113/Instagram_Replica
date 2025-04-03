@@ -14,7 +14,7 @@ public:
 	~Story() override;
 	Story();
 	Story(const Story& otherStory);
-	
+	Story& operator=(const Story& other);
 	Story(std::string postTitle, std::string postURL, int duration);
 	int getExpirationTime() const;
 

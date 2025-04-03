@@ -15,9 +15,8 @@ Post::Post(const Post& post2) : title(post2.title), url(post2.url), postDuration
 
 
 Post& Post::operator=(const Post& other) {
-	if (this == &other) {
-		return *this;
-	}
+	if (this != &other) {
+	
 
 	title = other.title;
 	url = other.url;
@@ -25,6 +24,8 @@ Post& Post::operator=(const Post& other) {
 	numLikes = other.numLikes;
 	postDuration = other.postDuration;
 
+
+	}
 	return *this;
 
 }

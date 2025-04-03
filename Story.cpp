@@ -11,6 +11,20 @@ Story::Story() : maxDuration(60) {
 	expirationTime = computeTimeToExpiration();
 
 }
+
+
+Story& Story::operator=(const Story& otherStory) {
+	if (this != &otherStory) {
+
+	Post(otherStory.getTitle(), otherStory.getURL(), otherStory.getDuration());
+	maxDuration = 60;
+	expirationTime = otherStory.getExpirationTime();
+
+	}
+
+	return *this;
+
+}
 //Copy Constructor
 Story::Story(const Story& otherStory) :Post(otherStory.getTitle(), otherStory.getURL(), otherStory.getDuration()), maxDuration(60), expirationTime(otherStory.getExpirationTime()) {
 

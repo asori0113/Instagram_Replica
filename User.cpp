@@ -13,9 +13,12 @@ User::~User() {
 
 User& User::operator=(const User& other) {
 	if (this != &other) {
-	userPosts.clear();
+		userPosts.clear();
 
-	userPosts.add(other.userPosts.findKthItem(1)->getItem().get()->clone());
+
+	if (!other.userPosts.isEmpty()) {
+		userPosts.add(other.userPosts.findKthItem(1)->getItem().get()->clone());
+	}
 
 	for (int postNum = 2; postNum <= other.userPosts.getCurrentSize(); ++postNum) {
 		userPosts.append(other.userPosts.findKthItem(postNum)->getItem().get()->clone());

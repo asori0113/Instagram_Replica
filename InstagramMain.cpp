@@ -25,6 +25,7 @@ void displayUserManu(User& user) {
 			<< "5. Display Kth Post\n"
 			<< "6. Modify Post\n"
 			<< "7. Delete Post\n"
+			<< "8. Edit Post\n"
 			<< "0. Logout\n"
 			<< "Choice: ";
 		cin >> userChoice;
@@ -46,7 +47,6 @@ void displayUserManu(User& user) {
 			string title;
 			string url;
 			int duration;
-
 			string postType;
 			bool isReel = false;
 			bool isValid = false;
@@ -81,7 +81,6 @@ void displayUserManu(User& user) {
 			cin >> duration;
 			user.createPost(title, url, duration, isReel);
 
-
 			break;
 		}
 		case 4: {
@@ -90,7 +89,7 @@ void displayUserManu(User& user) {
 
 			break;
 		}
-        
+
 		case 5: {
 			int k;
 
@@ -117,10 +116,6 @@ void displayUserManu(User& user) {
 
 			}
 
-			string title;
-			cout << "Enter new post title: \n";
-			cin >> title;
-
 			user.modifyNthPost(k);
 
 			break;
@@ -138,6 +133,30 @@ void displayUserManu(User& user) {
 			}
 
 			user.deletePost(k);
+
+			break;
+		}
+
+		case 8: {
+			int k;
+			string newTitle;
+
+
+			cout << "Which post would you like to edit? Enter the post number: (e.g Enter '1' for the 1st post) \n";
+			cin >> k;
+
+			while (k > user.getPostCount() || k < 1) {
+				cout << "Error: You only have " << user.getPostCount() << " post(s)." << "Please enter another number.\n";
+				cin >> k;
+
+			}
+
+			cout << "What would you like to name it?\n";
+			cin >> newTitle;
+
+			
+			user.editNthPost(newTitle, k);
+			cout << "Post has been edited \n";
 
 			break;
 		}
@@ -180,10 +199,8 @@ int main() {
 	cout << "\nEnter Profile Picture Path: ";
 	getline(cin, profilePicture);
 
-	// call instagram createUser function 
-	// replace /*...*/ with the right parameters
-	instagram.createUser(username, email, password,
-		bio, profilePicture);
+	instagram.createUser(username, email, password, bio, profilePicture);
+
 
 	// Retrieve the user 
 	User currentUser = instagram.getUser(1);

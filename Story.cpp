@@ -2,40 +2,74 @@
 #include <string>
 #include <iostream>
 
+Story::~Story() {
+
+}
+
+//Default Constructor
 Story::Story() : maxDuration(60) {
 	expirationTime = computeTimeToExpiration();
 
 }
 
-Story::~Story(){
 
+Story& Story::operator=(const Story& otherStory) {
+	if (this != &otherStory) {
+
+	Post(otherStory.getTitle(), otherStory.getURL(), otherStory.getDuration());
+	maxDuration = 60;
+	expirationTime = otherStory.getExpirationTime();
+
+	}
+
+	return *this;
+
+}
+//Copy Constructor
+Story::Story(const Story& otherStory) :Post(otherStory.getTitle(), otherStory.getURL(), otherStory.getDuration()), maxDuration(60), expirationTime(otherStory.getExpirationTime()) {
+
+}
+
+/*
+	Clone() is a "polymorphic" copy constructor. Dynamically allocates a new copy of this object, using the information of itself to instantiate it.
+	Returns the newly allocated Story object managed by a shared ptr of type Post. 
+	Naturally, we end up needing to implement the copy constructor of Story since we are passing the object pointed to by "this". 
+*/
+
+std::shared_ptr<Post> Story::clone() const
+{
+	return std::make_shared<Story>(*this);
 }
 
 // Main constructor. Calls parent class to initialize title, url, likes, postNum, duration. Initializes maxDuration to 60. 
 Story::Story(std::string postTitle, std::string postURL, int duration) : Post(postTitle, postURL, duration), maxDuration(60)
 {
+	bool invalid = (duration > maxDuration) || (duration < 1);
 	//If duration exceeds maxDuration, keep prompting for a new duration. 
-	if (duration > maxDuration || duration <= 0 ) {
+	if (invalid) {
+		int newDuration;
 
-		while (duration > maxDuration || duration <= 0) {
+		while (invalid) {
 			std::cout << "===========================\n\n";
-			std::cout << "Error: Video duration must be at most 90 seconds and at least 0. Please input new video duration: \n";
+			std::cout << "Error: Video duration must be at most 60 seconds. Please input new video duration: \n";
+			std::cin >> newDuration;
 
-			std::cin >> duration;
+			invalid = (newDuration > maxDuration) || (newDuration < 1);
 
 		}
 
-		Post::setDuration(duration);
+		Post::setDuration(newDuration);
 	}
 
 	expirationTime = computeTimeToExpiration();
 }
 
-int Story::getExpirationTime() {
+
+
+
+int Story::getExpirationTime() const {
 	return expirationTime;
 }
-
-// Please check whether  editPost() and display() actually override the virtual methods in Post class.
 void Story::editPost() {
 	std::cout << "EDITING POST\n";
 	std::cout << "*****Filter, music, stickers and effects have been added to the post." << "\n";
@@ -76,6 +110,4 @@ int Story::computeTimeToExpiration() {
 	int timeToExpiration = (expiresAfter - elapsed_seconds.count()) / secondsInHour;
 
 	return timeToExpiration;
-
 }
-

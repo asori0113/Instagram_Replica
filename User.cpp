@@ -3,58 +3,63 @@
 #include <iostream>
 #include <memory>
 
-// TO DO: function implementations
 User::User() : username(""), currentPass(""), email(""), profilePicturePath(""), postCount(0) {
 
 }
+
 User::~User() {
 	User::userPosts.clear();
-	
+}
+
+User& User::operator=(const User& other) {
+	if (this != &other) {
+	userPosts.clear();
+
+	if (!other.userPosts.isEmpty()) {
+		userPosts.add(other.userPosts.findKthItem(1)->getItem().get()->clone());
+
+	}
+
+	for (int postNum = 2; postNum <= other.userPosts.getCurrentSize(); ++postNum) {
+		userPosts.append(other.userPosts.findKthItem(postNum)->getItem().get()->clone());
+	}
+
+	username = other.getUsername();
+	currentPass = other.getPass();
+	email = other.getEmail();
+	profilePicturePath = other.getProfilePicture();
+	bio = other.getBio();
+
+	}
+	return *this;
 }
 
 User::User(const std::string& name, const std::string& emailAdd, const std::string& password, const std::string& bioStr, const std::string& profilePicture) : username(name), email(emailAdd), currentPass(password), bio(bioStr), profilePicturePath(profilePicture), postCount(0) {
 
 }
 
-User::User(const User& other) : username(other.username), email(other.email), currentPass(other.currentPass), bio(other.bio), profilePicturePath(other.profilePicturePath){ 
-	if (!(other.userPosts.isEmpty())) {
+User::User(const User& otherUser) : username(otherUser.getUsername()), email(otherUser.getEmail()), currentPass(otherUser.getPass()), bio(otherUser.getBio()), profilePicturePath(otherUser.getProfilePicture()) {
+	/*
+	The suggestion of a clone() function comes from a prompt to chatGPT about copy constructors and polymorphism.
+
+	We encounter a particular problem when copying a polymorphic object: data slicing. When we dereference a derived object and store its information in a base class container we lose the data from derived class.
+	
+	clone() solves this by dynamically allocating memory for a copy of the object that called the aforementioned method and returning a pointer to it. 
+
+	*/
+
+	if (!otherUser.userPosts.isEmpty()) {
 		//No need for make_shared since clone() takes care of it.
-		userPosts.add(other.userPosts.findKthItem(1)->getItem().get()->clone());
+		userPosts.add(otherUser.userPosts.findKthItem(1)->getItem().get()->clone());
 
 		for (int postNum = 2; postNum <= postCount; ++postNum) {
-			userPosts.append(other.userPosts.findKthItem(postNum)->getItem().get()->clone());
+			userPosts.append(otherUser.userPosts.findKthItem(postNum)->getItem().get()->clone());
 		}
 
-		postCount = other.userPosts.getCurrentSize();
+		postCount = otherUser.userPosts.getCurrentSize();
+
+
 	}
-}
-
-User& User::operator=(const User& other) {
-	if (this == &other) {
-		return *this;
-	}
-
-	userPosts.clear();
-
-	userPosts.add(other.userPosts.findKthItem(1)->getItem().get()->clone());
-
-	for (int postNum = 2; postNum <= other.userPosts.getCurrentSize(); ++postNum) {
-		userPosts.append(other.userPosts.findKthItem(postNum)->getItem().get()->clone());
-	}
-
-	
-
-    username = other.username;
-    currentPass = other.currentPass;
-    email = other.email;
-    profilePicturePath = other.profilePicturePath;
-    bio = other.bio;
-
-	return *this;
-}
-
-int User::getPostCount() {
-	return postCount;
 }
 
 void User::displayProfile() {
@@ -78,7 +83,7 @@ void User::displayPosts() {
 		Node<std::shared_ptr<Post> >* postNode = userPosts.findKthItem(1);
 
 		// Iterate through bag, calling Post's display until reach the end
-		while (postNode != NULL) {
+		while (postNode != NULL) {	
 			postNode->getItem()->display();
 			postNode = postNode->getNext();
 		}
@@ -127,11 +132,12 @@ void User::createPost(const std::string& postTitle, const std::string& url, int 
 		postCount++;
 	}
 
-	newPost = NULL;
+	newPost = nullptr;
 }
 
 void User::modifyNthPost(int n) {
 	userPosts.findKthItem(n)->getItem().get()->editPost();
+
 }
 
 void User::editNthPost(const std::string& newTitle, int n) {
@@ -144,33 +150,30 @@ void User::deletePost(int n) {
 	postCount--;
 	
 }
+std::string User::getEmail() const {
+	return email;
+}
 
-std::string User::getUsername() {
+std::string User::getUsername() const {
 	return username;
+}
+
+std::string User::getBio() const {
+	return bio;
+}
+
+std::string User::getProfilePicture() const {
+	return profilePicturePath;
 }
 
 std::string User::getPass() const {
 	return currentPass;
 }
-
-std::string User::getEmail() const {
-	return email;
-}
-
-std::string User::getBio() {
-	return bio;
-}
-
-std::string User::getProfilePicture() {
-	return profilePicturePath;
+int User::getPostCount() const {
+	return postCount;
 }
 
 
-
-// This is a function that allows you to compare two users based on their username and email address.  
-// You may directly include it in your class definition. 
-// You don't need to modify it but will have to put it inside your class. 
-// Operator == overloading function prototype: 
 
 // Operator == overloading implementation
 bool User::operator==(const User& otherUser) const {

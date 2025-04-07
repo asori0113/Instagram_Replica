@@ -11,16 +11,18 @@ private:
 	int computeTimeToExpiration();
 
 public:
-	Story();
 	~Story() override;
+	Story();
+	Story(const Story& otherStory);
+	Story& operator=(const Story& other);
 	Story(std::string postTitle, std::string postURL, int duration);
-	int getExpirationTime();
+	int getExpirationTime() const;
 
 	// Override keyword is a failsafe. 
+	std::shared_ptr<Post> clone() const override;
 	void display() override;
 	void editPost() override;
 
 };
 #include "Story.cpp"
 #endif
-

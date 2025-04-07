@@ -3,19 +3,34 @@
 #include <cstdlib>   
 #include <ctime> 
 
+Post::~Post() {
+}
 
+
+
+Post::Post(const Post& post2) : title(post2.title), url(post2.url), postDuration(post2.postDuration) {
+	timeStamp = post2.getTimeStamp();
+	numLikes = post2.getNumLikes();
+}
+
+
+Post& Post::operator=(const Post& other) {
+	if (this != &other) {
+	
+
+	title = other.title;
+	url = other.url;
+	timeStamp = other.timeStamp;
+	numLikes = other.numLikes;
+	postDuration = other.postDuration;
+
+
+	}
+	return *this;
+
+}
 
 Post::Post() : title(""), timeStamp(-1), numLikes(-1), url(""), postDuration(-1) {} // default constructor
-
-Post::~Post() {}
-
-Post::Post(const Post& other) :  title(other.title), timeStamp(other.timeStamp), numLikes(other.numLikes), url(other.url), postDuration(other.postDuration){
-
-}
-
-std::shared_ptr<Post> Post::clone() const{
-	return NULL;
-}
 
 // Main constructor to use. Initializes title, url, likes, postNum, and duration. Sets time stamp upon instantiation. 
 Post::Post(std::string postTitle, std::string postURL, int duration) : title(postTitle), url(postURL), postDuration(duration)
@@ -26,24 +41,17 @@ Post::Post(std::string postTitle, std::string postURL, int duration) : title(pos
 	setNumLikes();
 }
 
-Post& Post::operator=(const Post& other){
-	if (this == &other) {
-		return *this;
-	}
-
-	title = other.title;
-	url = other.url;
-	timeStamp = other.timeStamp;
-	numLikes = other.numLikes;
-	postDuration = other.postDuration;
-
-	return *this;
-	
-}
 
 // Operator overloading implementation
-bool Post::operator==(const Post& other) const {
-	return Post::title == other.title;
+bool Post::operator==(const Post& otherPost) const {
+	return Post::title == otherPost.title;
+}
+
+
+
+std::shared_ptr<Post> Post::clone() const
+{
+	return nullptr;
 }
 
 void Post::display() {
@@ -73,6 +81,7 @@ void Post::editTitle(std::string newTitle) {
 }
 
 
+
 void Post::setNumLikes() {
 	std::srand(std::time(0)); // Seed random number generator
 	int random_number = std::rand() % 100 + 1; // Range [1, 100]
@@ -82,27 +91,25 @@ void Post::setNumLikes() {
 
 void Post::setDuration(int newDuration) {
 	postDuration = newDuration;
-
 }
 
 // Getters
 
-std::string Post::getTitle() {
+std::string Post::getTitle() const {
 	return title;
 }
-std::string Post::getURL() {
+std::string Post::getURL() const {
 	return url;
 }
 
-int Post::getTimeStamp() {
+int Post::getTimeStamp() const {
 	return timeStamp;
 }
-
-int Post::getNumLikes() {
+ 
+int Post::getNumLikes() const {
 	return numLikes;
 }
 	
-int Post::getDuration() {
+int Post::getDuration() const {
 	return postDuration;
 }
-

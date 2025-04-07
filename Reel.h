@@ -3,16 +3,17 @@
 //public or private inheritance
 #include <string>
 #include "Post.h"
-
 class Reel : public Post {
 private:
     int maxDuration;
 public:
-    Reel();
     ~Reel() override;
+    Reel();
+    Reel& operator=(const Reel& other);
+    Reel(const Reel& otherReel);
+    std::shared_ptr<Post> clone() const override;
     Reel(std::string postTitle, std::string postURL, int duration);
     void editPost() override;
 };
 #include "Reel.cpp"
 #endif
-

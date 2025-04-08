@@ -150,6 +150,11 @@ void User::deletePost(int n) {
 	postCount--;
 	
 }
+
+std::shared_ptr<User> User::clone() const {
+	return nullptr;
+}
+
 std::string User::getEmail() const {
 	return email;
 }

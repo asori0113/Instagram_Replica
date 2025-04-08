@@ -1,14 +1,19 @@
 #ifndef PERSONAL_
 #define PERSONAL_
 
-class Personal   {
+#include "User.h"
+
+class Personal : public User  {
 private:
 public:
     Personal();
-    ~Personal();
+    ~Personal() override;
 
     Personal(const Personal& other);
     Personal& operator=(const Personal& other);
+
+    
+    virtual std::shared_ptr<User> clone() const override; 
 };
 
 

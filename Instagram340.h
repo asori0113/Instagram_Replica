@@ -9,7 +9,7 @@
 // It should allow clients to add users and retrieve a user from the list
 class Instagram340 {
 	private:
-		LinkedBag<User> users;
+		LinkedBag<std::shared_ptr<User> > users;
 	
 	public:
 		Instagram340();
@@ -20,8 +20,10 @@ class Instagram340 {
 
 		void createUser(const std::string& username, const std::string& email, const std::string& password,
 						const std::string& bio, const std::string& profilePicture);
+		
+		
 
-		User getUser(const int& indexK);
+		std::shared_ptr<User> getUser(const int& indexK);
 };
 #include "Instagram340.cpp"
 #endif

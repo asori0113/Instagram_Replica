@@ -37,6 +37,7 @@ public:
     void editNthPost(const std::string& newTitle, int n);
     void deletePost(int n);
 
+    virtual std::shared_ptr<User> clone() const;
     
     bool operator==(const User& otherUser) const;
     int getPostCount() const;

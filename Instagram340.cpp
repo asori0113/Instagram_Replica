@@ -4,7 +4,7 @@
 #include "Instagram340.h"
 #include <memory>
 
-/*
+
 Instagram340::Instagram340(const Instagram340& other) {
 	int size = other.users.getCurrentSize();
 	if (!other.users.isEmpty()) {
@@ -39,7 +39,7 @@ Instagram340& Instagram340::operator=(const Instagram340& other) {
 
 	return *this;
 }
-*/
+
 
 Instagram340::Instagram340() {
 

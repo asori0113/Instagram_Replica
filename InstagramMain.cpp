@@ -14,10 +14,10 @@ using namespace std;
  * @param user object to interact with
  *
  * */
-void displayUserManu(User& user) {
+void displayUserManu(shared_ptr<User> user) {
 	int userChoice = 0;
 	do {
-		cout << "\n Hi, " << user.getUsername() << ", what would you like to do:\n"
+		cout << "\n Hi, " << user.get()->getUsername() << ", what would you like to do:\n"
 			<< "1. Display Profile\n"
 			<< "2. Modify Password\n"
 			<< "3. Create Post\n"
@@ -32,7 +32,7 @@ void displayUserManu(User& user) {
 
 		switch (userChoice) {
 		case 1: {
-			user.displayProfile();
+			user.get()->displayProfile();
 			break;
 		}
 		case 2: {
@@ -40,7 +40,7 @@ void displayUserManu(User& user) {
 			cout << "What is your new password?\n";
 			cin >> newPass;
 
-			user.modifyPassword(newPass);
+			user.get()->modifyPassword(newPass);
 			break;
 		}
 		case 3: {
@@ -79,13 +79,13 @@ void displayUserManu(User& user) {
 
 			cout << "What is the duration? Enter a number (1-90) for Reel || Enter a number (1-60) for Story.\n";
 			cin >> duration;
-			user.createPost(title, url, duration, isReel);
+			user.get()->createPost(title, url, duration, isReel);
 
 			break;
 		}
 		case 4: {
 			cout << "DISPLAYING ALL POSTS \n";
-			user.displayPosts();
+			user.get()->displayPosts();
 
 			break;
 		}
@@ -96,13 +96,13 @@ void displayUserManu(User& user) {
 			cout << "Which post would you like to display? Enter the post number: (e.g Enter '1' for the 1st post) \n";
 			cin >> k;
 
-			while (k > user.getPostCount() || k < 1) {
-				cout << "Error: You only have " << user.getPostCount() << " post(s)." << "Please enter another number.\n";
+			while (k > user.get()->getPostCount() || k < 1) {
+				cout << "Error: You only have " << user.get()->getPostCount() << " post(s)." << "Please enter another number.\n";
 				cin >> k;
 
 			}
 
-			user.displayNthPost(k);
+			user.get()->displayNthPost(k);
 			break;
 		}
 		case 6: {
@@ -110,19 +110,19 @@ void displayUserManu(User& user) {
 			cout << "Which post would you like to modify? Enter the post number: (e.g Enter '1' for the 1st post) \n";
 			cin >> k;
 
-			while (k > user.getPostCount() || k < 1) {
-				cout << "Error: You only have " << user.getPostCount() << " post(s)." << "Please enter another number.\n";
+			while (k > user.get()->getPostCount() || k < 1) {
+				cout << "Error: You only have " << user.get()->getPostCount() << " post(s)." << "Please enter another number.\n";
 				cin >> k;
 
 			}
 
-			user.modifyNthPost(k);
+			user.get()->modifyNthPost(k);
 
 			break;
 		}
 		case 7: { // Delete Post
 			int k;
-			int postCount = user.getPostCount();
+			int postCount = user.get()->getPostCount();
 			cout << "Which post would you like to delete? Enter the post number: (e.g Enter '1' for the 1st post) \n";
 			cin >> k;
 
@@ -132,14 +132,14 @@ void displayUserManu(User& user) {
 
 			}
 
-			user.deletePost(k);
+			user.get()->deletePost(k);
 			break;
 		}
 
 		case 8: {
 			int k;
 			string newTitle;
-			int postCount = user.getPostCount();
+			int postCount = user.get()->getPostCount();
 
 			cout << "Which post would you like to edit? Enter the post number: (e.g Enter '1' for the 1st post) \n";
 			cin >> k;
@@ -154,7 +154,7 @@ void displayUserManu(User& user) {
 			cin >> newTitle;
 
 			
-			user.editNthPost(newTitle, k);
+			user.get()->editNthPost(newTitle, k);
 			cout << "Post has been edited \n";
 
 			break;
@@ -176,7 +176,7 @@ int main() {
 	Instagram340 instagram;
 
 	cout << "\n Welcome to Instagram340:" << endl;
-/*
+
 	string username;
 	string email;
 	string password;
@@ -199,11 +199,8 @@ int main() {
 	getline(cin, profilePicture);
 
 	instagram.createUser(username, email, password, bio, profilePicture);
-	*/
-	instagram.createUser("user1", "email1", "password1", "biotako", "profile");
-
 	// Retrieve the user 
-	User currentUser = instagram.getUser(1);
+	shared_ptr<User> currentUser = instagram.getUser(1);
 	displayUserManu(currentUser);
 	return 0;
 

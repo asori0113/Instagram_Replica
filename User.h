@@ -24,25 +24,31 @@ private:
 public:
     User& operator=(const User& other);
     User();
-    ~User();
+    virtual ~User();
     User(const std::string& name, const std::string& emailAdd, const std::string& password, const std::string& bioStr, const std::string& profilePicture);
     User(const User& otherUser);
 
-    void displayProfile();
+    
     void modifyPassword(const std::string& newPass);
-    void displayPosts();
-    void displayNthPost(int n);
+    
     void createPost(const std::string& postTitle, const std::string& url, int duration, bool isReel);
     void modifyNthPost(int n);
     void editNthPost(const std::string& newTitle, int n);
     void deletePost(int n);
 
-    
+    virtual void displayProfile();
+    virtual void displayPosts();
+    virtual void displayNthPost(int n);
+    virtual std::shared_ptr<User> clone() const;
+
     bool operator==(const User& otherUser) const;
     int getPostCount() const;
     std::string getUsername() const;
     std::string getProfilePicture() const;
     std::string getBio() const;
+
+    
+
 
 
 };

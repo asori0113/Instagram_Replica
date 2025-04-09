@@ -13,7 +13,7 @@ public:
     Personal& operator=(const Personal& other);
 
     
-    virtual std::shared_ptr<User> clone() const override; 
+    std::shared_ptr<User> clone() const override; 
 };
 
 

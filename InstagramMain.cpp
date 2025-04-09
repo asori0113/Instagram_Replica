@@ -17,7 +17,7 @@ using namespace std;
 void displayUserManu(shared_ptr<User>& user) {
 	int userChoice = 0;
 	do {
-		cout << "\n Hi, " << (*user).getUsername() << ", what would you like to do:\n"
+		cout << "\n Hi, " << user.get()->getUsername() << ", what would you like to do:\n"
 			<< "1. Display Profile\n"
 			<< "2. Modify Password\n"
 			<< "3. Create Post\n"
@@ -32,7 +32,7 @@ void displayUserManu(shared_ptr<User>& user) {
 
 		switch (userChoice) {
 		case 1: {
-			(*user).displayProfile();
+			user.get()->displayProfile();
 			break;
 		}
 		case 2: {
@@ -40,7 +40,7 @@ void displayUserManu(shared_ptr<User>& user) {
 			cout << "What is your new password?\n";
 			cin >> newPass;
 
-			(*user).modifyPassword(newPass);
+			user.get()->modifyPassword(newPass);
 			break;
 		}
 		case 3: {
@@ -79,13 +79,13 @@ void displayUserManu(shared_ptr<User>& user) {
 
 			cout << "What is the duration? Enter a number (1-90) for Reel || Enter a number (1-60) for Story.\n";
 			cin >> duration;
-			(*user).createPost(title, url, duration, isReel);
+			user.get()->createPost(title, url, duration, isReel);
 
 			break;
 		}
 		case 4: {
 			cout << "DISPLAYING ALL POSTS \n";
-			(*user).displayPosts();
+			user.get()->displayPosts();
 
 			break;
 		}
@@ -96,13 +96,13 @@ void displayUserManu(shared_ptr<User>& user) {
 			cout << "Which post would you like to display? Enter the post number: (e.g Enter '1' for the 1st post) \n";
 			cin >> k;
 
-			while (k > (*user).getPostCount() || k < 1) {
-				cout << "Error: You only have " << (*user).getPostCount() << " post(s)." << "Please enter another number.\n";
+			while (k > user.get()->getPostCount() || k < 1) {
+				cout << "Error: You only have " << user.get()->getPostCount() << " post(s)." << "Please enter another number.\n";
 				cin >> k;
 
 			}
 
-			(*user).displayNthPost(k);
+			user.get()->displayNthPost(k);
 			break;
 		}
 		case 6: {
@@ -110,13 +110,13 @@ void displayUserManu(shared_ptr<User>& user) {
 			cout << "Which post would you like to modify? Enter the post number: (e.g Enter '1' for the 1st post) \n";
 			cin >> k;
 
-			while (k > (*user).getPostCount() || k < 1) {
-				cout << "Error: You only have " << (*user).getPostCount() << " post(s)." << "Please enter another number.\n";
+			while (k > user.get()->getPostCount() || k < 1) {
+				cout << "Error: You only have " << user.get()->getPostCount() << " post(s)." << "Please enter another number.\n";
 				cin >> k;
 
 			}
 
-			(*user).modifyNthPost(k);
+			user.get()->modifyNthPost(k);
 
 			break;
 		}
@@ -126,13 +126,13 @@ void displayUserManu(shared_ptr<User>& user) {
 			cout << "Which post would you like to delete? Enter the post number: (e.g Enter '1' for the 1st post) \n";
 			cin >> k;
 
-			while (k > (*user).getPostCount() || k < 1) {
-				cout << "Error: You only have " << (*user).getPostCount() << " post(s)." << "Please enter another number.\n";
+			while (k > user.get()->getPostCount() || k < 1) {
+				cout << "Error: You only have " << user.get()->getPostCount() << " post(s)." << "Please enter another number.\n";
 				cin >> k;
 
 			}
 
-			(*user).deletePost(k);
+			user.get()->deletePost(k);
 
 			break;
 		}
@@ -145,8 +145,8 @@ void displayUserManu(shared_ptr<User>& user) {
 			cout << "Which post would you like to edit? Enter the post number: (e.g Enter '1' for the 1st post) \n";
 			cin >> k;
 
-			while (k > (*user).getPostCount() || k < 1) {
-				cout << "Error: You only have " << (*user).getPostCount() << " post(s)." << "Please enter another number.\n";
+			while (k > user.get()->getPostCount() || k < 1) {
+				cout << "Error: You only have " << user.get()->getPostCount() << " post(s)." << "Please enter another number.\n";
 				cin >> k;
 
 			}
@@ -155,7 +155,7 @@ void displayUserManu(shared_ptr<User>& user) {
 			cin >> newTitle;
 
 			
-			(*user).editNthPost(newTitle, k);
+			user.get()->editNthPost(newTitle, k);
 			cout << "Post has been edited \n";
 
 			break;

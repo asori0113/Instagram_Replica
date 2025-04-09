@@ -24,7 +24,7 @@ private:
 public:
     User& operator=(const User& other);
     User();
-    ~User();
+    virtual ~User();
     User(const std::string& name, const std::string& emailAdd, const std::string& password, const std::string& bioStr, const std::string& profilePicture);
     User(const User& otherUser);
 

@@ -47,18 +47,11 @@ Instagram340& Instagram340::operator=(const Instagram340& other) {
 	return *this;
 }
 
-Instagram340::Instagram340() {
-
-}
-
-Instagram340::~Instagram340(){
-	Instagram340::users.clear();
-}
-
 void Instagram340::createUser(const std::string& username, const std::string& email, const std::string& password,
 				const std::string& bio, const std::string& profilePicture){
-	 auto newUser = std::make_shared<User>(username, email, password, bio, profilePicture);
+	auto newUser = std::make_shared<User>(username, email, password, bio, profilePicture);
 
+	
 	if (users.isEmpty()) {
 		users.add(newUser);
 	}

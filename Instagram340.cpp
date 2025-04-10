@@ -1,99 +1,85 @@
-
+#include "Instagram340.h"
 #include <iostream>
 #include <string>
-#include "Instagram340.h"
-/*
+#include <memory>
+
+
+Instagram340::Instagram340() {
+
+}
+
+Instagram340::~Instagram340() {
+	Instagram340::users.clear();
+}
+
 Instagram340::Instagram340(const Instagram340& other) {
 	int size = other.users.getCurrentSize();
 	if (!other.users.isEmpty()) {
-	auto user = User(other.users.findKthItem(1)->getItem());
-	users.add(user);
-	
-	for (int i = 2; i < size; i++) {
-		auto user = User(other.users.findKthItem(i)->getItem());
-		users.append(user);
-	}
+		auto user = other.users.findKthItem(1)->getItem().get()->clone();
+		users.add(user);
+
+		for (int i = 2; i < size; i++) {
+			auto user = other.users.findKthItem(i)->getItem().get()->clone();
+			users.append(user);
+		}
 
 	}
 }
 
 Instagram340& Instagram340::operator=(const Instagram340& other) {
 	if (this != &other) {
-	
 
-	users.clear();
 
-	if (!other.users.isEmpty()) {
+		users.clear();
 
-	users.add(User(other.users.findKthItem(1)->getItem()));
+		if (!other.users.isEmpty()) {
 
-	for (int usersNum = 2; usersNum <= other.users.getCurrentSize(); ++usersNum) {
-		users.append(User(other.users.findKthItem(usersNum)->getItem()));
-	}
+			users.add(other.users.findKthItem(1)->getItem().get()->clone());
 
-	}
+			for (int usersNum = 2; usersNum <= other.users.getCurrentSize(); ++usersNum) {
+				users.append(other.users.findKthItem(usersNum)->getItem());
+			}
+
+		}
 
 	}
 
 	return *this;
 }
 
-*/
-Instagram340::Instagram340() {
+void Instagram340::createUser(const std::string& username, const std::string& email, const std::string& password, const std::string& bio, const std::string& profilePicture, const bool isCreator) {
 
-}
+	std::shared_ptr<User> newUser;
 
-Instagram340::~Instagram340(){
-	Instagram340::users.clear();
-}
+	//Check whether reel or story
+	if (isCreator) {
+		newUser = std::make_shared<Creator>(username,email,password,bio,profilePicture);
+	}
+	else {
+		newUser = std::make_shared<Personal>(username, email, password, bio, profilePicture);
+	}
 
-void Instagram340::createUser(const std::string& username, const std::string& email, const std::string& password,
-				const std::string& bio, const std::string& profilePicture){
-	auto newUser = std::make_shared<User>(username, email, password, bio, profilePicture);
 
+	//Add to usersPost if empty, append otherwise.
 	if (users.isEmpty()) {
-		users.add(newUser);
+		users.add((newUser));
 	}
 
 	else {
-		users.append(newUser);
+		users.append((newUser));
 	}
 
+	newUser = NULL;
 }
 
-std::shared_ptr<User> Instagram340::getUser(const int& indexK) {
-
-
-	Node<std::shared_ptr<User> >* userNode = users.findKthItem(indexK);
-
-	if (userNode != NULL) {
-		return userNode->getItem();
-	}
-
-	return NULL;
-}
-
-void Instagram340::displayNthUser(int n) {
-	Node<std::shared_ptr<User> >* userNode = users.findKthItem(n);
-	if (userNode != NULL) {
-		userNode->getItem()->displayUser();
-	}
-
-	else {
-		std::cout << "User does not exist\n\n";
-	}
-
-}
 
 void Instagram340::displayUsers() {
 	if (!users.isEmpty()) {
 
-		//Set userNode to headPtr
 		Node<std::shared_ptr<User>>* userNode = users.findKthItem(1);
 
-		// Iterate through bag, calling User's display until reach the end
-		while (users != NULL) {
-			userNode->getItem()->displayUser();
+		while (userNode != NULL) {
+			userNode->getItem()->displayProfile();
 			userNode = userNode->getNext();
 		}
 	}
@@ -101,5 +87,30 @@ void Instagram340::displayUsers() {
 		std::cout << "No user to display\n\n";
 	}
 
+
+}
+
+void Instagram340::displayNthUser(const int& n) {
+	Node<std::shared_ptr<User>>* user = users.findKthItem(n);
+
+	if (user != NULL) {
+		user->getItem()->displayProfile();
+	}
+
+	else {
+		std::cout << "No user to display\n\n";
+	}
+
+}
+
+std::shared_ptr<User> Instagram340::getUser(const int& indexK) {
+	Node<std::shared_ptr<User> >* userNode = users.findKthItem(indexK);
+
+	if (userNode != NULL) {
+
+		return userNode->getItem();
+	}
+
+	return nullptr;
 
 }

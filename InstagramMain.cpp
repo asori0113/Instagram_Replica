@@ -14,7 +14,7 @@ using namespace std;
  * @param user object to interact with
  *
  * */
-void displayUserManu(shared_ptr<User> user) {
+void displayUserManu(shared_ptr<User> user, Instagram340 instagram) {
 	int userChoice = 0;
 	do {
 		cout << "\n Hi, " << user.get()->getUsername() << ", what would you like to do:\n"
@@ -26,6 +26,7 @@ void displayUserManu(shared_ptr<User> user) {
 			<< "6. Modify Post\n"
 			<< "7. Delete Post\n"
 			<< "8. Edit Post\n"
+			<< "9. Create A New Account\n"
 			<< "0. Logout\n"
 			<< "Choice: ";
 		cin >> userChoice;
@@ -55,7 +56,7 @@ void displayUserManu(shared_ptr<User> user) {
 			cin >> title;
 
 			cout << "Media Address(create your own):\n";
-			cin >> url ;
+			cin >> url;
 
 
 			do {
@@ -72,7 +73,7 @@ void displayUserManu(shared_ptr<User> user) {
 				}
 
 				else {
-					cout << "Invalid input. Write only 'reel' or 'story'\n";
+					cout << "Invalid input. Write only 'true' or 'false'\n";
 				}
 
 			} while (!isValid);
@@ -122,30 +123,31 @@ void displayUserManu(shared_ptr<User> user) {
 		}
 		case 7: { // Delete Post
 			int k;
-			int postCount = user.get()->getPostCount();
+
 			cout << "Which post would you like to delete? Enter the post number: (e.g Enter '1' for the 1st post) \n";
 			cin >> k;
 
-			while (k > postCount || k < 1) {
-				cout << "Error: You only have " << postCount << " post(s)." << "Please enter another number.\n";
+			while (k > user.get()->getPostCount() || k < 1) {
+				cout << "Error: You only have " << user.get()->getPostCount() << " post(s)." << "Please enter another number.\n";
 				cin >> k;
 
 			}
 
 			user.get()->deletePost(k);
+
 			break;
 		}
 
 		case 8: {
 			int k;
 			string newTitle;
-			int postCount = user.get()->getPostCount();
+
 
 			cout << "Which post would you like to edit? Enter the post number: (e.g Enter '1' for the 1st post) \n";
 			cin >> k;
 
-			while (k > postCount || k < 1) {
-				cout << "Error: You only have " << postCount << " post(s)." << "Please enter another number.\n";
+			while (k > user.get()->getPostCount() || k < 1) {
+				cout << "Error: You only have " << user.get()->getPostCount() << " post(s)." << "Please enter another number.\n";
 				cin >> k;
 
 			}
@@ -153,13 +155,61 @@ void displayUserManu(shared_ptr<User> user) {
 			cout << "What would you like to name it?\n";
 			cin >> newTitle;
 
-			
+
 			user.get()->editNthPost(newTitle, k);
 			cout << "Post has been edited \n";
 
 			break;
 		}
 
+			  //NEED TO MOVE CASE 9 TO INSTAGRAM340 LANDING PAGE (SEE EC PART 2)
+		case 9: {
+			string newUsername;
+			string newEmail;
+			string newPassword;
+			string newBio;
+			string newProfilePicture;
+
+			cout << "Enter Username: ";
+			getline(cin, newUsername);
+
+			cout << "\nEnter email: ";
+			getline(cin, newEmail);
+
+			cout << "\nEnter Password: ";
+			getline(cin, newPassword);
+
+			cout << "\nEnter bio: ";
+			getline(cin, newBio);
+
+			cout << "\nEnter Profile Picture Path: ";
+			getline(cin, newProfilePicture);
+
+			string userType;
+			bool isCreator = false;
+			bool isValid = false;
+			do {
+				cout << "Account Type: Enter ('true' if a Creator) || Enter ('false' if Personal)\n " << endl;
+				cin >> userType;
+
+				if (userType.compare("true") == 0) {
+					isValid = true;
+					isCreator = true;
+				}
+				else if (userType.compare("false") == 0) {
+					isValid = true;
+					isCreator = false;
+				}
+
+				else {
+					cout << "Invalid input. Write only 'true' or 'false'\n";
+				}
+
+			} while (!isValid);
+
+			instagram.createUser(newUsername, newEmail, newPassword, newBio, newProfilePicture, isCreator);
+			break;
+		}
 		case 0: {
 			cout << "Logging you out." << endl;
 			break;
@@ -198,11 +248,66 @@ int main() {
 	cout << "\nEnter Profile Picture Path: ";
 	getline(cin, profilePicture);
 
-	instagram.createUser(username, email, password, bio, profilePicture);
+	instagram.createUser(username, email, password, bio, profilePicture, false);
+
+
 	// Retrieve the user 
 	shared_ptr<User> currentUser = instagram.getUser(1);
-	displayUserManu(currentUser);
+	displayUserManu(currentUser, instagram);
 	return 0;
 
 
 }
+
+//makeVerified maybe for instagram landing page?
+/*
+ void makeVerified() {
+
+
+		char ans;
+
+
+		while (ans != 'n' || ans != 'y') {
+
+
+			if (isVerified == false) {
+
+
+				std::cout << "\nWould you like to verify (y/n): ";
+
+
+				std::cin >> ans;
+
+
+				if (ans == 'y') {
+
+
+					isVerified = true;
+
+
+				}
+
+
+				else if (ans == 'n') {
+
+
+					isVerified = false;
+
+
+				}
+
+
+				else {
+
+
+					std::cout << "Invalid Response\n";
+				}
+
+			}
+
+
+		}
+
+	}
+
+*/

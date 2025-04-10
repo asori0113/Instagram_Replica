@@ -25,9 +25,10 @@ std::shared_ptr<User> Creator::clone() const {
 }
 
 //Dont forget to call this when creating a User. Or maybe we can automatically determine it using an arbitrary standard...
-void Creator::setVerification(bool status)
+void Creator::makeVerified(bool status)
 {
     isVerified = status;
+    
 }
 
 bool Creator::checkVerification()
@@ -38,3 +39,5 @@ bool Creator::checkVerification()
 void Creator::displayProfile()
 {
 }
+
+

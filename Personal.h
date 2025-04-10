@@ -5,7 +5,8 @@
 
 class Personal : public User {
 private:
-    LinkedBag<std::shared_ptr<Post>> privatePosts;
+    //Having private posts might not make sense in this context but for the sake of showing polymorphism this is a quick and easy way. 
+    LinkedBag<std::shared_ptr<Post>> privatePosts; 
 
 public:
     Personal();

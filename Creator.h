@@ -17,9 +17,9 @@ public:
 
     std::shared_ptr<User> clone() const override;
 
-    void setVerification(bool status);
+    void makeVerified(bool status);
     bool checkVerification();
-    virtual void displayProfile() override;
+    void displayProfile() override;
 
 
 

@@ -38,10 +38,16 @@ void Personal::displayPosts()
 {
 }
 
-void Personal::displayProfile()
-{
+void Personal::displayProfile() {
+
+	User::displayProfile();
+	std::cout << "Type: Personal\n";
+
+
 }
 
+
+//This should display nth private post too. Just make this call a method that displays those. 
 void Personal::displayNthPost(int n)
 {
 }

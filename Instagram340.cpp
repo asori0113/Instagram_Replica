@@ -62,7 +62,7 @@ void Instagram340::createUser(const std::string& username, const std::string& em
 
 }
 
-void Instagram340::landingPage(int choice) {	
+void Instagram340::landingPage(int& choice) {	
 	if (choice == 1){
 		std::string newUsername;
 		std::string newEmail;
@@ -88,13 +88,24 @@ void Instagram340::landingPage(int choice) {
 		createUser(newUsername, newEmail, newPassword, newBio, newProfilePicture);
 	}
 	else if (choice == 2) {
-		
+		int userNum;
+		std::cout << "\nWhich User would you like to get (by index): ";
+		std::cin >> userNum;
+
+		if (getUser(userNum) != nullptr) {
+			getUser(userNum).get();
+		}
+		else {
+			std::cout << "\nUser does not Exist";
+			choice = 0;
+			
+		}
 	}
 	else if (choice==3) {
-		break;
+		std::cout << "\nLogging Out!";
 	}
 	else {
-		std::cout << "Invalid option\n";
+		std::cout << "\nInvalid option";
 	}
 	
 }
@@ -106,6 +117,7 @@ std::shared_ptr<User> Instagram340::getUser(const int& indexK){
 		
 		return userNode->getItem();
 	}
+	std::cout << "Invalid User\n";
 	
 	return nullptr;
 

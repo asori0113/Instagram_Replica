@@ -17,7 +17,7 @@ using namespace std;
 void displayUserManu(shared_ptr<User>& user, Instagram340 instagram) {
 	int userChoice = 0;
 	do {
-		cout << "\n Hi, " << user.get()->getUsername() << ", what would you like to do:\n"
+		std::cout << "\n Hi, " << user.get()->getUsername() << ", what would you like to do:\n"
 			<< "1. Display Profile\n"
 			<< "2. Modify Password\n"
 			<< "3. Create Post\n"
@@ -26,10 +26,10 @@ void displayUserManu(shared_ptr<User>& user, Instagram340 instagram) {
 			<< "6. Modify Post\n"
 			<< "7. Delete Post\n"
 			<< "8. Edit Post\n"
-			<< "9. Create A New Account\n"
+			<< "9. Create A New Account or Retreive Account\n"
 			<< "0. Logout\n"
 			<< "Choice: ";
-		cin >> userChoice;
+		std::cin >> userChoice;
 
 		switch (userChoice) {
 		case 1: {
@@ -38,7 +38,7 @@ void displayUserManu(shared_ptr<User>& user, Instagram340 instagram) {
 		}
 		case 2: {
 			std::string newPass;
-			cout << "What is your new password?\n";
+			std::cout << "What is your new password?\n";
 			cin >> newPass;
 
 			user.get()->modifyPassword(newPass);
@@ -52,16 +52,16 @@ void displayUserManu(shared_ptr<User>& user, Instagram340 instagram) {
 			bool isReel = false;
 			bool isValid = false;
 
-			cout << "What would you like to call it \n";
+			std::cout << "What would you like to call it \n";
 			cin >> title;
 
-			cout << "Media Address(create your own):\n";
+			std::cout << "Media Address(create your own):\n";
 			cin >> url ;
 
 
 			do {
-				cout << "Type ('true' if it's a reel) || Type ('false' if it's a story)\n " << endl;
-				cin >> postType;
+				std::cout << "Type ('true' if it's a reel) || Type ('false' if it's a story)\n " << endl;
+				std::cin >> postType;
 
 				if (postType.compare("true") == 0) {
 					isValid = true;
@@ -73,19 +73,19 @@ void displayUserManu(shared_ptr<User>& user, Instagram340 instagram) {
 				}
 
 				else {
-					cout << "Invalid input. Write only 'reel' or 'story'\n";
+					std::cout << "Invalid input. Write only 'reel' or 'story'\n";
 				}
 
 			} while (!isValid);
 
-			cout << "What is the duration? Enter a number (1-90) for Reel || Enter a number (1-60) for Story.\n";
-			cin >> duration;
+			std::cout << "What is the duration? Enter a number (1-90) for Reel || Enter a number (1-60) for Story.\n";
+			std::cin >> duration;
 			user.get()->createPost(title, url, duration, isReel);
 
 			break;
 		}
 		case 4: {
-			cout << "DISPLAYING ALL POSTS \n";
+			std::cout << "DISPLAYING ALL POSTS \n";
 			user.get()->displayPosts();
 
 			break;
@@ -94,12 +94,12 @@ void displayUserManu(shared_ptr<User>& user, Instagram340 instagram) {
 		case 5: {
 			int k;
 
-			cout << "Which post would you like to display? Enter the post number: (e.g Enter '1' for the 1st post) \n";
-			cin >> k;
+			std::cout << "Which post would you like to display? Enter the post number: (e.g Enter '1' for the 1st post) \n";
+			std::cin >> k;
 
 			while (k > user.get()->getPostCount() || k < 1) {
-				cout << "Error: You only have " << user.get()->getPostCount() << " post(s)." << "Please enter another number.\n";
-				cin >> k;
+				std::cout << "Error: You only have " << user.get()->getPostCount() << " post(s)." << "Please enter another number.\n";
+				std::cin >> k;
 
 			}
 
@@ -108,11 +108,11 @@ void displayUserManu(shared_ptr<User>& user, Instagram340 instagram) {
 		}
 		case 6: {
 			int k;
-			cout << "Which post would you like to modify? Enter the post number: (e.g Enter '1' for the 1st post) \n";
+			std::cout << "Which post would you like to modify? Enter the post number: (e.g Enter '1' for the 1st post) \n";
 			cin >> k;
 
 			while (k > user.get()->getPostCount() || k < 1) {
-				cout << "Error: You only have " << user.get()->getPostCount() << " post(s)." << "Please enter another number.\n";
+				std::cout << "Error: You only have " << user.get()->getPostCount() << " post(s)." << "Please enter another number.\n";
 				cin >> k;
 
 			}
@@ -124,11 +124,11 @@ void displayUserManu(shared_ptr<User>& user, Instagram340 instagram) {
 		case 7: { // Delete Post
 			int k;
 
-			cout << "Which post would you like to delete? Enter the post number: (e.g Enter '1' for the 1st post) \n";
+			std::cout << "Which post would you like to delete? Enter the post number: (e.g Enter '1' for the 1st post) \n";
 			cin >> k;
 
 			while (k > user.get()->getPostCount() || k < 1) {
-				cout << "Error: You only have " << user.get()->getPostCount() << " post(s)." << "Please enter another number.\n";
+				std::cout << "Error: You only have " << user.get()->getPostCount() << " post(s)." << "Please enter another number.\n";
 				cin >> k;
 
 			}
@@ -143,55 +143,37 @@ void displayUserManu(shared_ptr<User>& user, Instagram340 instagram) {
 			string newTitle;
 
 
-			cout << "Which post would you like to edit? Enter the post number: (e.g Enter '1' for the 1st post) \n";
+			std::cout << "Which post would you like to edit? Enter the post number: (e.g Enter '1' for the 1st post) \n";
 			cin >> k;
 
 			while (k > user.get()->getPostCount() || k < 1) {
-				cout << "Error: You only have " << user.get()->getPostCount() << " post(s)." << "Please enter another number.\n";
-				cin >> k;
+				std::cout << "Error: You only have " << user.get()->getPostCount() << " post(s)." << "Please enter another number.\n";
+				std::cin >> k;
 
 			}
 
-			cout << "What would you like to name it?\n";
-			cin >> newTitle;
+			std::cout << "What would you like to name it?\n";
+			std::cin >> newTitle;
 
 			
 			user.get()->editNthPost(newTitle, k);
-			cout << "Post has been edited \n";
+			std::cout << "Post has been edited \n";
 
-			break;
-		}
-		case 9 : {
-			string newUsername;
-			string newEmail;
-			string newPassword;
-			string newBio;
-			string newProfilePicture;
-
-			cout << "Enter Username: ";
-			getline(cin, newUsername);
-
-			cout << "\nEnter email: ";
-			getline(cin, newEmail);
-
-			cout << "\nEnter Password: ";
-			getline(cin, newPassword);
-
-			cout << "\nEnter bio: ";
-			getline(cin, newBio);
-
-			cout << "\nEnter Profile Picture Path: ";
-			getline(cin, newProfilePicture);
-
-			instagram.createUser(newUsername, newEmail, newPassword, newBio, newProfilePicture);
 			break;
 		}
 		case 0: {
-			cout << "Logging you out." << endl;
+			int choice;
+			std::cout << "Options: \n"
+				<< "1. Create Account\n"
+				<< "2. Retreive Account\n"
+				<< "3. Logout\n";
+
+			std::cin >> choice;
+			instagram.landingPage(choice);
 			break;
 		}
 		default:
-			cout << "Invalid choice. Please try again." << endl;
+			std::cout << "Invalid choice. Please try again." << endl;
 		}
 
 	} while (userChoice != 0);
@@ -201,7 +183,7 @@ void displayUserManu(shared_ptr<User>& user, Instagram340 instagram) {
 int main() {
 	Instagram340 instagram;
 
-	cout << "\n Welcome to Instagram340:" << endl;
+	std::cout << "\n Welcome to Instagram340:" << endl;
 
 	string username;
 	string email;
@@ -209,19 +191,19 @@ int main() {
 	string bio;
 	string profilePicture;
 
-	cout << "Enter Username: ";
+	std::cout << "Enter Username: ";
 	getline(cin, username);
 
-	cout << "\nEnter email: ";
+	std::cout << "\nEnter email: ";
 	getline(cin, email);
 
-	cout << "\nEnter Password: ";
+	std::cout << "\nEnter Password: ";
 	getline(cin, password);
 
-	cout << "\nEnter bio: ";
+	std::cout << "\nEnter bio: ";
 	getline(cin, bio);
 
-	cout << "\nEnter Profile Picture Path: ";
+	std::cout << "\nEnter Profile Picture Path: ";
 	getline(cin, profilePicture);
 
 	instagram.createUser(username, email, password, bio, profilePicture);

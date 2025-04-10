@@ -19,3 +19,7 @@ Creator& Creator::operator=(const Creator& other) {
 std::shared_ptr<User> Creator::clone() const {
     return std::make_shared<Creator> (*this);
 }
+
+void Creator::displayProfile() {
+    std::cout << "Type: Creator\n";
+}

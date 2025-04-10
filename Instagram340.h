@@ -21,8 +21,10 @@ class Instagram340 {
 		void createUser(const std::string& username, const std::string& email, const std::string& password,
 						const std::string& bio, const std::string& profilePicture);
 		
+		void landingPage(int logout);
 		
-
+		
+		
 		std::shared_ptr<User> getUser(const int& indexK);
 };
 #include "Instagram340.cpp"

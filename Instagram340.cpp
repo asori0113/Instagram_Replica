@@ -62,6 +62,43 @@ void Instagram340::createUser(const std::string& username, const std::string& em
 
 }
 
+void Instagram340::landingPage(int choice) {	
+	if (choice == 1){
+		std::string newUsername;
+		std::string newEmail;
+		std::string newPassword;
+		std::string newBio;
+		std::string newProfilePicture;
+
+		std::cout << "Enter Username: ";
+		getline(std::cin, newUsername);
+
+		std::cout << "\nEnter email: ";
+		getline(std::cin, newEmail);
+
+		std::cout << "\nEnter Password: ";
+		getline(std::cin, newPassword);
+
+		std::cout << "\nEnter bio: ";
+		getline(std::cin, newBio);
+
+		std::cout << "\nEnter Profile Picture Path: ";
+		getline(std::cin, newProfilePicture);
+
+		createUser(newUsername, newEmail, newPassword, newBio, newProfilePicture);
+	}
+	else if (choice == 2) {
+		
+	}
+	else if (choice==3) {
+		break;
+	}
+	else {
+		std::cout << "Invalid option\n";
+	}
+	
+}
+
 std::shared_ptr<User> Instagram340::getUser(const int& indexK){
 	Node<std::shared_ptr<User> > *userNode = users.findKthItem(indexK);
 

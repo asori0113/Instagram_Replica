@@ -14,7 +14,7 @@ using namespace std;
  * @param user object to interact with
  *
  * */
-void displayUserManu(shared_ptr<User>& user) {
+void displayUserManu(shared_ptr<User>& user, Instagram340 instagram) {
 	int userChoice = 0;
 	do {
 		cout << "\n Hi, " << user.get()->getUsername() << ", what would you like to do:\n"
@@ -26,6 +26,7 @@ void displayUserManu(shared_ptr<User>& user) {
 			<< "6. Modify Post\n"
 			<< "7. Delete Post\n"
 			<< "8. Edit Post\n"
+			<< "9. Create A New Account\n"
 			<< "0. Logout\n"
 			<< "Choice: ";
 		cin >> userChoice;
@@ -160,7 +161,31 @@ void displayUserManu(shared_ptr<User>& user) {
 
 			break;
 		}
+		case 9 : {
+			string newUsername;
+			string newEmail;
+			string newPassword;
+			string newBio;
+			string newProfilePicture;
 
+			cout << "Enter Username: ";
+			getline(cin, newUsername);
+
+			cout << "\nEnter email: ";
+			getline(cin, newEmail);
+
+			cout << "\nEnter Password: ";
+			getline(cin, newPassword);
+
+			cout << "\nEnter bio: ";
+			getline(cin, newBio);
+
+			cout << "\nEnter Profile Picture Path: ";
+			getline(cin, newProfilePicture);
+
+			instagram.createUser(newUsername, newEmail, newPassword, newBio, newProfilePicture);
+			break;
+		}
 		case 0: {
 			cout << "Logging you out." << endl;
 			break;
@@ -204,7 +229,7 @@ int main() {
 
 	// Retrieve the user 
 	shared_ptr<User> currentUser = instagram.getUser(1);
-	displayUserManu(currentUser);
+	displayUserManu(currentUser, instagram);
 	return 0;
 
 

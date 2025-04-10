@@ -28,7 +28,7 @@ public:
     User(const std::string& name, const std::string& emailAdd, const std::string& password, const std::string& bioStr, const std::string& profilePicture);
     User(const User& otherUser);
 
-    void displayProfile();
+    virtual void displayProfile();
     void modifyPassword(const std::string& newPass);
     void displayPosts();
     void displayNthPost(int n);

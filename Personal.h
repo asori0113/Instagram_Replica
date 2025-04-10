@@ -14,6 +14,8 @@ public:
 
     
     std::shared_ptr<User> clone() const override; 
+
+    void displayProfile() override;
 };
 
 

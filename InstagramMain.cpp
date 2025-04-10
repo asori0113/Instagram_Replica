@@ -162,15 +162,22 @@ void displayUserManu(shared_ptr<User>& user, Instagram340 instagram) {
 			break;
 		}
 		case 0: {
-			int choice;
-			std::cout << "Options: \n"
+			int landingChoice;
+
+			do
+			{
+				std::cout << "Options: \n"
 				<< "1. Create Account\n"
 				<< "2. Retreive Account\n"
 				<< "3. Logout\n";
+			std::cin >> landingChoice;
+			instagram.landingPage(landingChoice);
+			
+			} while (landingChoice != 1,2,3);
 
-			std::cin >> choice;
-			instagram.landingPage(choice);
-			break;
+			displayUserManu(user, instagram);
+			
+			
 		}
 		default:
 			std::cout << "Invalid choice. Please try again." << endl;

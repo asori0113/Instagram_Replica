@@ -219,7 +219,22 @@ Node<ItemType>* LinkedBag<ItemType>::getPointerTo(const ItemType& anEntry) const
 	return curPtr;
 } // end getPointerTo
 
+template<class ItemType>
+LinkedBag<ItemType>& LinkedBag<ItemType>::operator=(const LinkedBag<ItemType>& aBag) {
+	 if (this != &aBag) {
+        clear();
 
+        Node<ItemType>* curPtr = aBag.headPtr;
+        while (tempPtr != nullptr) {
+            add(curPtr->getItem());
+            curPtr = curPtr->getNext();
+        }
+
+        itemCount = aBag.itemCount;
+    }
+
+    return *this;
+}
 
 
 

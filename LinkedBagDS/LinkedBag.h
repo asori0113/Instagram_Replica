@@ -42,6 +42,9 @@ public:
 	std::vector<ItemType> toVector() const;
 
 
+	LinkedBag<ItemType>& operator=(const LinkedBag < ItemType >& aBag); //Linkedbag operator
+
+
 
 }; // end LinkedBag
 

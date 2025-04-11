@@ -1,7 +1,7 @@
 #include <iostream>
 #include <list>
 
-class ContainerList {
+class someClass {
 private:
     std::list<int> container;  // list to store integers
 
@@ -37,7 +37,7 @@ public:
 };
 
 int main() {
-    ContainerList cl;
+    someClass cl;
 
     // Adding elements to the list
     cl.add(10);

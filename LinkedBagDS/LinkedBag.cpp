@@ -225,7 +225,7 @@ LinkedBag<ItemType>& LinkedBag<ItemType>::operator=(const LinkedBag<ItemType>& a
         clear();
 
         Node<ItemType>* curPtr = aBag.headPtr;
-        while (tempPtr != nullptr) {
+        while (curPtr != nullptr) {
             add(curPtr->getItem());
             curPtr = curPtr->getNext();
         }

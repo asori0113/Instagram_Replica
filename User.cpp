@@ -106,6 +106,11 @@ void User::displayNthPost(int n) {
 	
 }
 
+std::shared_ptr<User> User::clone() const
+{
+	return std::make_shared<User>(*this);
+}
+
 void User::createPost(const std::string& postTitle, const std::string& url, int duration, bool isReel) {
 	
 	std::shared_ptr<Post> newPost;

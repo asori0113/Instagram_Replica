@@ -16,6 +16,7 @@ using namespace std;
  * */
 void displayUserManu(shared_ptr<User>& user, Instagram340 instagram) {
 	int userChoice = 0;
+
 	do {
 		std::cout << "\n Hi, " << user.get()->getUsername() << ", what would you like to do:\n"
 			<< "1. Display Profile\n"
@@ -161,64 +162,135 @@ void displayUserManu(shared_ptr<User>& user, Instagram340 instagram) {
 
 			break;
 		}
+		
 		case 0: {
-			int landingChoice;
-
-			do
-			{
-				std::cout << "Options: \n"
+			int choice;
+			std::cout << "Options: \n"
 				<< "1. Create Account\n"
 				<< "2. Retreive Account\n"
-				<< "3. Logout\n";
-			std::cin >> landingChoice;
-			instagram.landingPage(landingChoice);
-			
-			} while (landingChoice != 1,2,3);
+				<< "3. Logout\n"
+				<< "4. Display Users";
 
+			std::cin >> choice;
+			landingPage(choice);
 			displayUserManu(user, instagram);
 			
 			
 		}
 		default:
-			std::cout << "Invalid choice. Please try again." << endl;
+			std::cout << "Invalid choice. sPlease try again." << endl;
 		}
 
 	} while (userChoice != 0);
 }
 
-
-int main() {
+void landingPage(int& choice) {	
 	Instagram340 instagram;
 
-	std::cout << "\n Welcome to Instagram340:" << endl;
+	do {
+		if (choice == 1) {
+			std::cout << "CREATE AN ACCOUNT\n\n";
 
-	string username;
-	string email;
-	string password;
-	string bio;
-	string profilePicture;
+			std::string newUsername;
+			std::string newEmail;
+			std::string newPassword;
+			std::string newBio;
+			std::string newProfilePicture;
+	
+			std::cout << "Enter Username: ";
+			getline(std::cin, newUsername);
+	
+			std::cout << "\nEnter email: ";
+			getline(std::cin, newEmail);
+	
+			std::cout << "\nEnter Password: ";
+			getline(std::cin, newPassword);
+	
+			std::cout << "\nEnter bio: ";
+			getline(std::cin, newBio);
+	
+			std::cout << "\nEnter Profile Picture Path: ";
+			getline(std::cin, newProfilePicture);
+	
+			std::string userType;
+			bool isCreator = false;
+			bool isValid = false;
 
-	std::cout << "Enter Username: ";
-	getline(cin, username);
+			do {
+				std::cout << "Account Type: Enter('true' if a Creator) || Enter('false' if a Personal)";
+				std::cin >> userType;
+				if (userType.compare("true") == 0) {
+					isValid = true;
+					isCreator = true;
+				}
+				else if (userType.compare("false") == 0) {
+					isValid = true;
+					isCreator = false;
+				}
+				else {
+					std::cout << "Invalid input. Write only 'true' or 'false\n";
+				}
 
-	std::cout << "\nEnter email: ";
-	getline(cin, email);
+			} while(!isValid);
+			instagram.createUser(newUsername, newEmail, newPassword, newBio, newProfilePicture);
+		}
+		else if (choice == 2) {
+			int userNum;
+			std::cout << "\nWhich User would you like to get (by index): ";
+			std::cin >> userNum;
+	
+			if (instagram.getUser(userNum) != nullptr) {
+				instagram.getUser(userNum).get();
+			}
+			else {
+				std::cout << "\nUser does not Exist";
+				choice = 0;
+				
+			}
+		}
+		else if (choice==3) {
+			std::cout << "\nLogging Out!";
+		}
+		else if (choice == 4) {
+			
+		}
+		else {
+			std::cout << "\nInvalid option";
+		}	
+	} while (choice != 1, 2, 3);
+	
+	
+	
+}
 
-	std::cout << "\nEnter Password: ";
-	getline(cin, password);
 
-	std::cout << "\nEnter bio: ";
-	getline(cin, bio);
+int main() {
+	bool exitProgram = false; 
 
-	std::cout << "\nEnter Profile Picture Path: ";
-	getline(cin, profilePicture);
-
-	instagram.createUser(username, email, password, bio, profilePicture);
+	do {
+		std:: cout << "welcome to Instagram340. What do you want to do? \n";
+		int choice;
 
 
-	// Retrieve the user 
-	shared_ptr<User> currentUser = instagram.getUser(1);
-	displayUserManu(currentUser, instagram);
+		std::cout << "Options: \n"
+				<< "1. Create Account\n"
+				<< "2. Retreive Account\n"
+				<< "3. Logout\n";
+
+		std::cin >> choice;
+
+		if (choice != 0) {
+			landingPage(choice);
+		}
+		else if (choice == 0) {
+			exitProgram = true;
+		}
+		else {
+			cout << "Error.\n";
+		}
+		
+
+	} while(!exitProgram);
 	return 0;
 
 

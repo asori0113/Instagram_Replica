@@ -3,7 +3,6 @@
 #include <string>
 #include <memory>
 
-
 Instagram340::Instagram340() {
 
 }
@@ -28,17 +27,16 @@ Instagram340::Instagram340(const Instagram340& other) {
 
 Instagram340& Instagram340::operator=(const Instagram340& other) {
 	if (this != &other) {
-	
 
-	users.clear();
+		users.clear();
 
-	if (!other.users.isEmpty()) {
+		if (!other.users.isEmpty()) {
 
-	users.add(other.users.findKthItem(1)->getItem().get()->clone());
+			users.add(other.users.findKthItem(1)->getItem().get()->clone());
 
-	for (int usersNum = 2; usersNum <= other.users.getCurrentSize(); ++usersNum) {
-		users.append(other.users.findKthItem(usersNum)->getItem());
-	}
+			for (int usersNum = 2; usersNum <= other.users.getCurrentSize(); ++usersNum) {
+				users.append(other.users.findKthItem(usersNum)->getItem());
+			}
 
 	}
 
@@ -62,52 +60,23 @@ void Instagram340::createUser(const std::string& username, const std::string& em
 
 }
 
-void Instagram340::landingPage(int& choice) {	
-	if (choice == 1){
-		std::string newUsername;
-		std::string newEmail;
-		std::string newPassword;
-		std::string newBio;
-		std::string newProfilePicture;
+void Instagram340::displayUsers() {
+	if (!users.isEmpty()) {
 
-		std::cout << "Enter Username: ";
-		getline(std::cin, newUsername);
+		//Set postNode to headPtr
+		Node<std::shared_ptr<User> >* postNode = users.findKthItem(1);
 
-		std::cout << "\nEnter email: ";
-		getline(std::cin, newEmail);
-
-		std::cout << "\nEnter Password: ";
-		getline(std::cin, newPassword);
-
-		std::cout << "\nEnter bio: ";
-		getline(std::cin, newBio);
-
-		std::cout << "\nEnter Profile Picture Path: ";
-		getline(std::cin, newProfilePicture);
-
-		createUser(newUsername, newEmail, newPassword, newBio, newProfilePicture);
-	}
-	else if (choice == 2) {
-		int userNum;
-		std::cout << "\nWhich User would you like to get (by index): ";
-		std::cin >> userNum;
-
-		if (getUser(userNum) != nullptr) {
-			getUser(userNum).get();
+		// Iterate through bag, calling Post's display until reach the end
+		while (postNode != NULL) {	
+			postNode->getItem()->displayProfile();
+			postNode = postNode->getNext();
 		}
-		else {
-			std::cout << "\nUser does not Exist";
-			choice = 0;
-			
-		}
-	}
-	else if (choice==3) {
-		std::cout << "\nLogging Out!";
 	}
 	else {
-		std::cout << "\nInvalid option";
+		std::cout << "No post to display\n\n";
 	}
-	
+
+
 }
 
 std::shared_ptr<User> Instagram340::getUser(const int& indexK){

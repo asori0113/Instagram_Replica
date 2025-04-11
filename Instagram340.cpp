@@ -53,7 +53,7 @@ void Instagram340::createUser(const std::string& username, const std::string& em
 
 	//Check whether reel or story
 	if (isCreator) {
-		newUser = std::make_shared<Creator>(username,email,password,bio,profilePicture);
+		newUser = std::make_shared<Creator>(username,email,password,bio,profilePicture, verified);
 	}
 	else {
 		newUser = std::make_shared<Personal>(username, email, password, bio, profilePicture);

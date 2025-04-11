@@ -32,12 +32,13 @@ Creator& Creator::operator=(const Creator& other) {
 
 		if (!other.userPosts.isEmpty()) {
 			userPosts.add(other.userPosts.findKthItem(1)->getItem().get()->clone());
-		}
+		
 
 		for (int postNum = 2; postNum <= other.userPosts.getCurrentSize(); ++postNum) {
 			userPosts.append(other.userPosts.findKthItem(postNum)->getItem().get()->clone());
 		}
 
+		}
 		User(other.getUsername(), other.getEmail(), other.getPass(), other.getBio(), other.getProfilePicture());
 		isVerified = other.checkVerification();
 

@@ -5,9 +5,14 @@
 #include "Reel.h"
 #include "Story.h"
 class User {
+protected:
+    LinkedBag<std::shared_ptr<Post>> userPosts;
+    std::string getPass() const;
+    std::string getEmail() const;
+
 private:
     //LinkedBag contains Post pointers to enable polymorphism.
-    LinkedBag<std::shared_ptr<Post>> userPosts;
+   
 
     std::string username;
     std::string currentPass;
@@ -15,11 +20,6 @@ private:
     std::string profilePicturePath;
     std::string bio;
     int postCount;
-
-    std::string getPass() const;
-    std::string getEmail() const;
-   
-
 
 public:
     User& operator=(const User& other);
@@ -37,8 +37,8 @@ public:
     void deletePost(int n);
 
     virtual void displayProfile();
-    virtual void displayPosts();
-    virtual void displayNthPost(int n);
+    void displayPosts();
+    void displayNthPost(int n);
     virtual std::shared_ptr<User> clone() const;
 
     bool operator==(const User& otherUser) const;

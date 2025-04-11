@@ -9,17 +9,43 @@ Personal::Personal(const std::string& name, const std::string& emailAdd, const s
 }
 
 Personal::~Personal() {
-
+	userPosts.clear();
 }
 
-Personal::Personal(const Personal& other) {
+Personal::Personal(const Personal& other) : User(other.getUsername(), other.getEmail(), other.getPass(), other.getBio(), other.getProfilePicture()) {
+	if (!other.userPosts.isEmpty()) {
+		//No need for make_shared since clone() takes care of it.
+		userPosts.add(other.userPosts.findKthItem(1)->getItem().get()->clone());
+
+		for (int postNum = 2; postNum <= getPostCount(); ++postNum) {
+			userPosts.append(other.userPosts.findKthItem(postNum)->getItem().get()->clone());
+		}
+
+	}
 
 }
 
 
 Personal& Personal::operator=(const Personal& other) {
 
+	if (this != &other) {
+		userPosts.clear();
 
+
+		if (!other.userPosts.isEmpty()) {
+			userPosts.add(other.userPosts.findKthItem(1)->getItem().get()->clone());
+		
+
+		for (int postNum = 2; postNum <= other.userPosts.getCurrentSize(); ++postNum) {
+			userPosts.append(other.userPosts.findKthItem(postNum)->getItem().get()->clone());
+		}
+
+		}
+
+		User(other.getUsername(), other.getEmail(), other.getPass(), other.getBio(), other.getProfilePicture());
+
+	}
+	return *this;
 }
 
 std::shared_ptr<User> Personal::clone() const {
@@ -30,24 +56,14 @@ std::shared_ptr<User> Personal::clone() const {
 
 }
 
-void Personal::createPrivatePost(std::string postTitle, std::string url, int duration, bool isReel)
-{
-}
-
-void Personal::displayPosts()
-{
-}
 
 void Personal::displayProfile() {
 
 	User::displayProfile();
 	std::cout << "Type: Personal\n";
+	std::cout << "Personal Account was intended to have a collection of memorable posts. To be implemented later.\n";
 
 
 }
 
 
-//This should display nth private post too. Just make this call a method that displays those. 
-void Personal::displayNthPost(int n)
-{
-}

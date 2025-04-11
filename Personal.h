@@ -5,8 +5,6 @@
 
 class Personal : public User {
 private:
-    //Having private posts might not make sense in this context but for the sake of showing polymorphism this is a quick and easy way. 
-    LinkedBag<std::shared_ptr<Post>> privatePosts; 
 
 public:
     Personal();
@@ -17,16 +15,9 @@ public:
     Personal(const Personal& other);
     Personal& operator=(const Personal& other);
 
-
     std::shared_ptr<User> clone() const override;
 
-    void createPrivatePost(std::string postTitle, std::string url, int duration, bool isReel);
-
-     void displayPosts() override;
-
      void displayProfile() override;
-
-     void displayNthPost(int n) override;
 
 
 };

@@ -47,7 +47,7 @@ Instagram340& Instagram340::operator=(const Instagram340& other) {
 	return *this;
 }
 
-void Instagram340::createUser(const std::string& username, const std::string& email, const std::string& password, const std::string& bio, const std::string& profilePicture, const bool isCreator) {
+void Instagram340::createUser(const std::string& username, const std::string& email, const std::string& password, const std::string& bio, const std::string& profilePicture, const bool isCreator, const bool verified) {
 
 	std::shared_ptr<User> newUser;
 
@@ -114,3 +114,4 @@ std::shared_ptr<User> Instagram340::getUser(const int& indexK) {
 	return nullptr;
 
 }
+

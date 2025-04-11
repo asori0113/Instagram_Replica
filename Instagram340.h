@@ -19,7 +19,7 @@ class Instagram340 {
 		Instagram340(const Instagram340& other);
 		Instagram340& operator=(const Instagram340& other);
 		void createUser(const std::string& username, const std::string& email, const std::string& password,
-						const std::string& bio, const std::string& profilePicture, const bool isCreator);
+						const std::string& bio, const std::string& profilePicture, const bool isCreator, const bool verified);
 		void displayNthUser(const int& n);
 		std::shared_ptr<User> getUser(const int& indexK);
 		void displayUsers();

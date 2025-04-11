@@ -201,8 +201,10 @@ void landingPage(int& choice, Instagram340& instagram) {
 		getline(std::cin, newProfilePicture);
 
 		std::string userType;
+		
 		bool isCreator = false;
 		bool isValid = false;
+		bool creatorVerified = false;
 		do {
 			std::cout << "Account Type: Enter ('true' if a Creator) || Enter ('false' if Personal)\n " << std::endl;
 			std::cin >> userType;
@@ -210,6 +212,16 @@ void landingPage(int& choice, Instagram340& instagram) {
 			if (userType.compare("true") == 0) {
 				isValid = true;
 				isCreator = true;
+
+				std::string creatorStatus;
+				std::cout << "Is this creator verified? Enter ('true' || 'false')" << std::endl;
+				std::cin >> creatorStatus;
+
+				
+				if (creatorStatus.compare("true") == 0) {
+					creatorVerified = true;
+				}
+
 			}
 			else if (userType.compare("false") == 0) {
 				isValid = true;
@@ -222,7 +234,7 @@ void landingPage(int& choice, Instagram340& instagram) {
 
 		} while (!isValid);
 
-		instagram.createUser(newUsername, newEmail, newPassword, newBio, newProfilePicture, isCreator);
+		instagram.createUser(newUsername, newEmail, newPassword, newBio, newProfilePicture, isCreator, creatorVerified);
 		
 	}
 	else if (choice == 2) {

@@ -1,1 +1,1 @@
-This repository replicates an instagram program using linked list as well as different sorting algorthms using linked lists designed to be efficient with time and space complexity
+This repository replicates an instagram program using linked list as well as different sorting algorthms using linked lists designed to be efficient with time and space complexity. It also shows use of polymorphism, encapsulation as well as real world CS application
